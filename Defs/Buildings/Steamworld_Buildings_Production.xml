@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+ 
+ <ThingDef Name="MrXuiryus_BenchBase" ParentName="MrXuiryus_Building_Base" Abstract="True">
+    <castEdgeShadows>true</castEdgeShadows>
+    <staticSunShadowHeight>0.20</staticSunShadowHeight>
+    <canOverlapZones>false</canOverlapZones>
+		<building>
+			<workSpeedPenaltyOutdoors>true</workSpeedPenaltyOutdoors>
+			<workSpeedPenaltyTemperature>true</workSpeedPenaltyTemperature>
+		</building>
+		<comps>
+			<li>
+				<compClass>CompReportWorkSpeed</compClass>
+			</li>
+		</comps>
+		<placeWorkers>
+			<li>PlaceWorker_ReportWorkSpeedPenalties</li>
+		</placeWorkers>
+  </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_BenchBase">
+    <DefName>ClockworkComponentBench</DefName>
+    <label>Clockwork Component Bench</label>
+    <ThingClass>Building_WorkTable_HeatPush</ThingClass>
+    <Description>Create Clockwork Components for use in Steampunk devices.</Description>
+    <graphicData>
+      <texPath>Things/Building/Production/ElectricSmelter</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3.5,1.5)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <constructEffect>ConstructMetal</constructEffect>
+    <CostList>
+      <Steel>170</Steel>
+      <Component>2</Component>
+    </CostList>
+    <AltitudeLayer>Building</AltitudeLayer>
+    <fillPercent>0.5</fillPercent>
+    <useHitPoints>True</useHitPoints>
+    <statBases>
+      <WorkToBuild>3500</WorkToBuild>
+      <MaxHitPoints>180</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <Size>(3,1)</Size>
+    <DesignationCategory>Production</DesignationCategory>
+    <Passability>PassThroughOnly</Passability>
+    <pathCost>70</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <recipes>
+      <li>MrXuiryus_MakeBrassIngot</li>
+    </recipes>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>700</basePowerConsumption>
+        <startElectricalFires>true</startElectricalFires>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Glower">
+        <glowRadius>6</glowRadius>
+        <glowColor>(217,112,33,0)</glowColor>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>12</heatPerSecond>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <heatPerTickWhileWorking>0.32</heatPerTickWhileWorking>
+    </building>
+    <researchPrerequisites><li>MrXuiryus_ClockworkComponents</li></researchPrerequisites>
+  </ThingDef>
+  
+</ThingDefs>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>BrassIngot</defName>
+    <label>Brass Ingot</label>
+    <description>Refined brass ignot used to created steamworld items.</description>
+    <graphicData>
+      <texPath>Items/Manufactured/BrassIngot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <stackLimit>50</stackLimit>
+    <statBases>
+      <MaxHitPoints>70</MaxHitPoints>
+      <MarketValue>21</MarketValue>
+      <Mass>0.6</Mass>
+      <Flammability>1.0</Flammability>
+			<DeteriorationRate>2.0</DeteriorationRate>
+		</statBases>
+    <intricate>true</intricate>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+  </ThingDef>
+  
+</Defs>  

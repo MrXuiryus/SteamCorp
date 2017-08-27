@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TerrainDefs>
+
+
+  <TerrainDef Name="MrXuiryus_FloorBase" Abstract="True">
+    <layerable>true</layerable>
+    <affordances>
+      <li>Light</li>
+      <li>Heavy</li>
+      <li>SmoothHard</li>
+    </affordances>
+    <statBases>
+      <WorkToBuild>135</WorkToBuild>
+    </statBases>
+    <designationCategory>Floors</designationCategory>
+    <Fertility>0</Fertility>
+    <constructEffect>ConstructDirt</constructEffect>
+    <AcceptTerrainSourceFilth>True</AcceptTerrainSourceFilth>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+  </TerrainDef>
+  
+	<TerrainDef ParentName="MrXuiryus_FloorBase">
+    <DefName>MrXuiryus_Metalgrid</DefName>
+    <label>brass metal grate</label>
+    <RenderPrecedence>240</RenderPrecedence>
+    <Description>A metal grate, the most basic of metal flooring.</Description>
+    <texturePath>Buildings/Floor_Metalgrate</texturePath>
+    <color>(0.98, 0.71, 0.59)</color>
+    <statBases>
+      <WorkToBuild>700</WorkToBuild>
+			<Beauty>1</Beauty>
+    </statBases>
+    <CostList>
+      <MrXuiryus_Brass>7</MrXuiryus_Brass>
+    </CostList>
+    <constructEffect>ConstructMetal</constructEffect>
+    <designationHotkey>Misc1</designationHotkey>
+	<researchPrerequisites><li>MrXuiryus_BrassRefining</li></researchPrerequisites>
+  </TerrainDef>
+
+	<TerrainDef ParentName="MrXuiryus_FloorBase">
+    <DefName>MrXuiryus_Metalgrid_Big</DefName>
+    <label>big brass metal grate</label>
+    <RenderPrecedence>240</RenderPrecedence>
+    <Description>A metal grate, the most basic of metal flooring.</Description>
+    <texturePath>Buildings/Floor_Metalgrate_Big</texturePath>
+    <color>(0.98, 0.71, 0.59)</color>
+    <statBases>
+      <WorkToBuild>700</WorkToBuild>
+			<Beauty>1</Beauty>
+    </statBases>
+    <CostList>
+      <MrXuiryus_Brass>7</MrXuiryus_Brass>
+    </CostList>
+    <constructEffect>ConstructMetal</constructEffect>
+    <designationHotkey>Misc1</designationHotkey>
+	<researchPrerequisites><li>MrXuiryus_BrassRefining</li></researchPrerequisites>
+  </TerrainDef>
+
+	<TerrainDef ParentName="MrXuiryus_FloorBase">
+    <DefName>MrXuiryus_Metalplate</DefName>
+    <label>big brass metal grate</label>
+    <RenderPrecedence>240</RenderPrecedence>
+    <Description>A metal grate, the most basic of metal flooring.</Description>
+    <texturePath>Buildings/Floor_Metalplate</texturePath>
+    <color>(0.98, 0.71, 0.59)</color>
+    <statBases>
+      <WorkToBuild>700</WorkToBuild>
+			<Beauty>1</Beauty>
+    </statBases>
+    <CostList>
+      <MrXuiryus_Brass>7</MrXuiryus_Brass>
+    </CostList>
+    <constructEffect>ConstructMetal</constructEffect>
+    <designationHotkey>Misc1</designationHotkey>
+	<researchPrerequisites><li>MrXuiryus_BrassRefining</li></researchPrerequisites>
+  </TerrainDef>   
+  
+</TerrainDefs>  

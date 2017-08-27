@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>Mr_Xuiryus_SteamHeater</defName>
+    <label>steam heater</label>
+    <thingClass>Building_Heater</thingClass>
+    <graphicData>
+      <texPath>Buildings/steamvent</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0.234375,0,0.515625,0.984375)</rect>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Standable</passability>
+    <pathCost>0</pathCost>
+    <blockWind>false</blockWind>
+    <rotatable>false</rotatable>
+    <fillPercent>0.0</fillPercent>
+    <statBases>
+      <WorkToBuild>1000</WorkToBuild>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>6</Mass>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <tickerType>Rare</tickerType>
+    <description>A vent that heats the area by releasing excees steam</description>
+    <costList>
+      <MrXuiryus_Brass>65</MrXuiryus_Brass>
+      <Component>1</Component>
+    </costList>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <placeWorkers>
+      <li>PlaceWorker_Heater</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <startElectricalFires>true</startElectricalFires>
+        <basePowerConsumption>120</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_TempControl">
+        <energyPerSecond>21</energyPerSecond>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(255,150,100,0)</glowColor>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>	
+    <designationCategory>Temperature</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+	<building>
+		<allowWireConnection>false</allowWireConnection>
+	</building>
+  </ThingDef>
+ 
+ </Defs> 

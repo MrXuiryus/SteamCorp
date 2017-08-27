@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+  <ThingDef Name="MrXuiryus_ResourceBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>75</stackLimit>
+		<statBases>
+			<Beauty>-4</Beauty>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+		</comps>
+		<alwaysHaulable>true</alwaysHaulable>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<rotatable>false</rotatable>
+		<pathCost>15</pathCost>
+	</ThingDef>
+
+<ThingDef ParentName="MrXuiryus_ResourceBase">
+    <defName>MrXuiryus_Coal</defName>
+    <label>Coal</label>
+    <description>A fuel source created over thousands of years. Used to fuel the Steam Generator</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/Metal</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <color>(255,255,255)</color>
+    </graphicData>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>1.9</MarketValue>
+      <Mass>0.5</Mass>
+      <SharpDamageMultiplier>1</SharpDamageMultiplier>
+      <BluntDamageMultiplier>1</BluntDamageMultiplier>
+    </statBases>
+    <useHitPoints>false</useHitPoints>
+    <slagDef>ChunkSlagSteel</slagDef>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <deepCommonality>4</deepCommonality>
+    <stuffProps>
+      <categories>
+        <li>Stony</li>
+      </categories>
+      <commonality>1.00</commonality>
+      <constructEffect>ConstructMetal</constructEffect>
+      <color>(102,102,105)</color>
+      <soundImpactStuff>BulletImpactMetal</soundImpactStuff>
+      <soundMeleeHitSharp>MeleeHit_Stone</soundMeleeHitSharp>
+      <soundMeleeHitBlunt>MeleeHit_Stone</soundMeleeHitBlunt>
+      <statFactors>
+        <MaxHitPoints>1</MaxHitPoints>
+        <Beauty>1</Beauty>
+        <Flammability>0.2</Flammability>
+        <MeleeWeapon_Cooldown>1</MeleeWeapon_Cooldown>
+      </statFactors>
+      <smeltable>false</smeltable>
+    </stuffProps>
+  </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_ResourceBase">
+    <defName>MrXuiryus_Brass</defName>
+    <label>Brass</label>
+    <description>A durable alloy used in the creation of various steamworld items.</description>
+    <graphicData>
+      <texPath>Natural/Chunks/BrassChunks</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <color>(255,255,255)</color>
+    </graphicData>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>1.9</MarketValue>
+      <Mass>0.5</Mass>
+      <SharpDamageMultiplier>1</SharpDamageMultiplier>
+      <BluntDamageMultiplier>1</BluntDamageMultiplier>
+    </statBases>
+    <useHitPoints>false</useHitPoints>
+    <slagDef>ChunkSlagSteel</slagDef>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <deepCommonality>4</deepCommonality>
+    <stuffProps>
+      <categories>
+        <li>Metallic</li>
+      </categories>
+      <commonality>1.00</commonality>
+      <constructEffect>ConstructMetal</constructEffect>
+      <color>(154,62,35)</color>
+      <soundImpactStuff>BulletImpactMetal</soundImpactStuff>
+      <soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
+      <soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
+      <statFactors>
+        <MaxHitPoints>1</MaxHitPoints>
+        <Beauty>1</Beauty>
+        <Flammability>0.2</Flammability>
+        <MeleeWeapon_Cooldown>1</MeleeWeapon_Cooldown>
+      </statFactors>
+      <smeltable>false</smeltable>
+    </stuffProps>
+  </ThingDef>
+  
+</Defs>

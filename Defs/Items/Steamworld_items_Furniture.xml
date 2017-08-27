@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <!-- Standard Lamp Base -->
+
+  <ThingDef Abstract="True" Name="MrXuiryus_StandardLampBase">
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <selectable>true</selectable>
+    <fillPercent>0.20</fillPercent>
+    <pathCost>8</pathCost>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <designationCategory>Furniture</designationCategory>
+    <rotatable>false</rotatable>
+    <comps>
+      <li Class="CompProperties_Flickable"/>
+	</comps>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>170</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <researchPrerequisites>
+      <li>MrXuiryus_BrassRefining</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+    <!-- Ceiling Lamp -->
+  
+  <ThingDef ParentName="MrXuiryus_StandardLampBase">
+    <defName>MrXuiryus_CeilingLamp</defName>
+	<altitudeLayer>MoteOverhead</altitudeLayer>
+    <passability>Standable</passability>
+    <label>Ceiling Lamp</label>
+    <description>A ceiling lamp that produces light.</description>
+	<graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+		<texPath>Buildings/walllamp_off</texPath>
+			<shadowData>
+				<volume>(0.3, 0.6, 0.3)</volume>
+				<offset>(0,0,-0.1)</offset>
+			</shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>25</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(217,217,208,0)</glowColor>
+      </li>
+    </comps>
+	<placeWorkers>
+		<li>PlaceWorker_IsUnderRoof</li>
+	</placeWorkers>
+		<costList>
+			<MrXuiryus_Brass>25</MrXuiryus_Brass>
+		</costList>
+  </ThingDef>
+  
+<!-- Standard Lamps -->
+  
+ <ThingDef ParentName="MrXuiryus_StandardLampBase">
+    <defName>MrXuiryus_Lamp_Orange</defName>
+	<altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <label>lamp</label>
+    <description>A standard room lamp.</description>
+	<graphicData>
+	     <texPath>Buildings/lamp/lamp_orange</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+	    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>25</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(232,123,39,0)</glowColor>
+      </li>
+	  <li Class="CompProperties_Flickable"/>
+    </comps>
+    <stuffCategories>
+      <li>Metallic</li>
+	</stuffCategories>
+	<costStuffCount>25</costStuffCount>
+  </ThingDef>
+  
+ <ThingDef ParentName="MrXuiryus_StandardLampBase">
+    <defName>MrXuiryus_Lamp_Blue</defName>
+	<altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <label>lamp (blue)</label>
+    <description>A standard room lamp.</description>
+	<graphicData>
+	     <texPath>Buildings/lamp/lamp_blue</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+	    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>25</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(63,218,184,0)</glowColor>
+      </li>
+	  <li Class="CompProperties_Flickable"/>
+    </comps>
+    <stuffCategories>
+      <li>Metallic</li>
+	</stuffCategories>
+	<costStuffCount>25</costStuffCount>
+  </ThingDef>  
+  
+ <ThingDef ParentName="MrXuiryus_StandardLampBase">
+    <defName>MrXuiryus_Lamp_Purple</defName>
+	<altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <label>lamp (purple)</label>
+    <description>A standard room lamp.</description>
+	<graphicData>
+	     <texPath>Buildings/lamp/lamp_purple</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+	    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>25</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(204,70,183,0)</glowColor>
+      </li>
+	  <li Class="CompProperties_Flickable"/>
+    </comps>
+    <stuffCategories>
+      <li>Metallic</li>
+	</stuffCategories>
+	<costStuffCount>25</costStuffCount>
+  </ThingDef>
+  
+   <ThingDef ParentName="MrXuiryus_StandardLampBase">
+    <defName>MrXuiryus_Lamp_Green</defName>
+	<altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <label>lamp (green)</label>
+    <description>A standard room lamp.</description>
+	<graphicData>
+	     <texPath>Buildings/lamp/lamp_green</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+	    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>25</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(63,218,56,0)</glowColor>
+      </li>
+	  <li Class="CompProperties_Flickable"/>
+    </comps>
+    <stuffCategories>
+      <li>Metallic</li>
+	</stuffCategories>
+	<costStuffCount>25</costStuffCount>
+  </ThingDef> 
+
+   <ThingDef ParentName="MrXuiryus_StandardLampBase">
+    <defName>MrXuiryus_Lamp_Red</defName>
+	<altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <label>lamp (red)</label>
+    <description>A standard room lamp.</description>
+	<graphicData>
+	     <texPath>Buildings/lamp/lamp_red</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+	    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>25</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(215,40,28,0)</glowColor>
+      </li>
+	  <li Class="CompProperties_Flickable"/>
+    </comps>
+    <stuffCategories>
+      <li>Metallic</li>
+	</stuffCategories>
+	<costStuffCount>25</costStuffCount>
+  </ThingDef>  
+
+<!-- Street Lamps -->
+  
+ <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Streetlamp_Orange</defName>
+    <label>street lamp</label>
+    <graphicData>
+      <texPath>Buildings/streetlamp/streetlamp_orange</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8.0,8.0)</drawSize>
+    </graphicData>
+		<uiIconPath>Buildings/streetlamp/streetlamp_orange</uiIconPath>		
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <passability>Impassable</passability>
+	<pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <blockWind>true</blockWind>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <description>A large street lamp that provides light to the area, can only be placed outside.</description>
+    <canOverlapZones>true</canOverlapZones>
+    <size>(1,1)</size>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>5</Steel>
+      <Component>3</Component>	  
+	</costList>	
+    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>100</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>8</glowRadius>
+        <glowColor>(232,123,39,0)</glowColor>
+      </li>
+    </comps>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Furniture</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>		
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+ <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Streetlamp_Blue</defName>
+    <label>street lamp (blue)</label>
+    <graphicData>
+      <texPath>Buildings/streetlamp/streetlamp_blue</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8.0,8.0)</drawSize>
+    </graphicData>
+		<uiIconPath>Buildings/streetlamp/streetlamp_blue</uiIconPath>		
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <passability>Impassable</passability>
+	<pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <blockWind>true</blockWind>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <description>A large street lamp that provides light to the area, can only be placed outside.</description>
+    <canOverlapZones>true</canOverlapZones>
+    <size>(1,1)</size>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>5</Steel>
+      <Component>3</Component>	  
+	</costList>	
+    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>100</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>8</glowRadius>
+        <glowColor>(63,218,184,0)</glowColor>
+      </li>
+    </comps>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Furniture</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>		
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+ <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Streetlamp_Purple</defName>
+    <label>street lamp (purple)</label>
+    <graphicData>
+      <texPath>Buildings/streetlamp/streetlamp_purple</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8.0,8.0)</drawSize>
+    </graphicData>
+		<uiIconPath>Buildings/streetlamp/streetlamp_purple</uiIconPath>		
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <passability>Impassable</passability>
+	<pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <blockWind>true</blockWind>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <description>A large street lamp that provides light to the area, can only be placed outside.</description>
+    <canOverlapZones>true</canOverlapZones>
+    <size>(1,1)</size>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>5</Steel>
+      <Component>3</Component>	  
+	</costList>	
+    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>100</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>8</glowRadius>
+        <glowColor>(204,70,183,0)</glowColor>
+      </li>
+    </comps>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Furniture</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>		
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+<ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Streetlamp_Green</defName>
+    <label>street lamp (green)</label>
+    <graphicData>
+      <texPath>Buildings/streetlamp/streetlamp_green</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8.0,8.0)</drawSize>
+    </graphicData>
+		<uiIconPath>Buildings/streetlamp/streetlamp_green</uiIconPath>		
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <passability>Impassable</passability>
+	<pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <blockWind>true</blockWind>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <description>A large street lamp that provides light to the area, can only be placed outside.</description>
+    <canOverlapZones>true</canOverlapZones>
+    <size>(1,1)</size>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>5</Steel>
+      <Component>3</Component>	  
+	</costList>	
+    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>100</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>8</glowRadius>
+        <glowColor>(63,218,56,0)</glowColor>
+      </li>
+    </comps>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Furniture</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>		
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+<ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Streetlamp_Red</defName>
+    <label>street lamp (red)</label>
+    <graphicData>
+      <texPath>Buildings/streetlamp/streetlamp_red</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8.0,8.0)</drawSize>
+    </graphicData>
+		<uiIconPath>Buildings/streetlamp/streetlamp_red</uiIconPath>		
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <passability>Impassable</passability>
+	<pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <blockWind>true</blockWind>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <description>A large street lamp that provides light to the area, can only be placed outside.</description>
+    <canOverlapZones>true</canOverlapZones>
+    <size>(1,1)</size>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>5</Steel>
+      <Component>3</Component>	  
+	</costList>	
+    <comps>
+	    <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<basePowerConsumption>100</basePowerConsumption>
+			<shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>8</glowRadius>
+        <glowColor>(215,40,28,0)</glowColor>
+      </li>
+    </comps>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Furniture</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>		
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>    
+  
+</ThingDefs>

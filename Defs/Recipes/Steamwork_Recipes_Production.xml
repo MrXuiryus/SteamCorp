@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RecipeDefs>
+
+	<RecipeDef>
+		<defName>MrXuiryus_MakeBrassIngot</defName>
+		<label>Make Brass Ingot</label>
+		<description>Smelt raw brass into a brass ingot</description>
+		<jobString>smelting brass</jobString>
+		<workAmount>200</workAmount>
+		<workSpeedStat>SmeltingSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<workSkillLearnFactor>0.3</workSkillLearnFactor>		
+		<effectWorking>CutStone</effectWorking>
+		<soundWorking>Recipe_MakeStoneBlocks</soundWorking>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>	
+						<li>MrXuiryus_Brass</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<products>
+			<BrassIngot>1</BrassIngot>
+		</products>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MrXuiryus_Brass</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+	
+</RecipeDefs>	
