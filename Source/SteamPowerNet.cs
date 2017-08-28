@@ -62,7 +62,7 @@ namespace SteamCorp
                 this.hasSteamSource = false;
                 for (int j = 0; j < this.transmitters.Count; j++)
                 {
-                    if (this.IsSteamSource(this.transmitters[j]))
+                    if (this.IsSteamPowerSource(this.transmitters[j]))
                     {
                         this.hasSteamSource = true;
                         break;
@@ -70,9 +70,9 @@ namespace SteamCorp
                 }
             }
 
-            private bool IsSteamSource(CompSteam cp)
+            private bool IsSteamPowerSource(CompSteam cp)
             {
-                return cp is CompSteamBattery || (cp is CompSteamTrader && cp.Props.baseSteamConsumption < 0f);
+                return cp is CompSteamBattery || (cp is CompSteamTrader && cp.props.baseSteamConsumption < 0f);
             }
 
             public void RegisterConnector(CompSteam b)
@@ -145,7 +145,7 @@ namespace SteamCorp
                 {
                     if (this.steamComps[i].SteamOn)
                     {
-                        num += this.steamComps[i].EnergyOutputPerTick;
+                        num += this.steamComps[i].SteamEnergyOutputPerTick;
                     }
                 }
                 return num;
@@ -202,10 +202,10 @@ namespace SteamCorp
                             if (Find.TickManager.TicksGame % num4 == 0)
                             {
                                 CompSteamTrader compSteamTrader = SteamNet.partsWantingSteamOn.RandomElement<CompSteamTrader>();
-                                if (num + num2 >= -(compSteamTrader.EnergyOutputPerTick + 1E-07f))
+                                if (num + num2 >= -(compSteamTrader.SteamEnergyOutputPerTick + 1E-07f))
                                 {
                                     compSteamTrader.SteamOn = true;
-                                    num += compSteamTrader.EnergyOutputPerTick;
+                                    num += compSteamTrader.SteamEnergyOutputPerTick;
                                 }
                             }
                         }
@@ -217,7 +217,7 @@ namespace SteamCorp
                     SteamNet.potentialShutdownParts.Clear();
                     for (int j = 0; j < this.steamComps.Count; j++)
                     {
-                        if (this.steamComps[j].SteamOn && this.steamComps[j].EnergyOutputPerTick < 0f)
+                        if (this.steamComps[j].SteamOn && this.steamComps[j].SteamEnergyOutputPerTick < 0f)
                         {
                             SteamNet.potentialShutdownParts.Add(this.steamComps[j]);
                         }

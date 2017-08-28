@@ -20,5 +20,18 @@ namespace SteamCorp
             get => intGridID;
             set => intGridID = value;
         }
+
+        public CompProperties_Steam Props
+        {
+            get => (CompProperties_Steam)props;
+        }
+
+
+        public virtual void SetUpPowerVars()
+        { }
+        public virtual void ResetPowerVars()
+        { }
+        public virtual void LostConnectParent()
+        { }
     }
 }

@@ -8,6 +8,8 @@ namespace SteamCorp
 {
     public class CompSteamPipe : ThingComp
     {
+        public static readonly float WattsToWattDaysPerTick = 1.66666669E-05f;
+
         private int intGridID;
 
         public int GridID

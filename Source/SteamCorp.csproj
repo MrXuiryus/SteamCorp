@@ -53,11 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />
     <Compile Include="CompSteam.cs" />
     <Compile Include="CompSteamBattery.cs" />
     <Compile Include="CompSteamPipe.cs" />
     <Compile Include="CompSteamPlant.cs" />
+    <Compile Include="CompSteamPowerPlant.cs" />
     <Compile Include="CompSteamTrader.cs" />
     <Compile Include="SteamBuilding.cs" />
     <Compile Include="SteamPipeGrid.cs" />

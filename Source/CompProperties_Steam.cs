@@ -7,5 +7,11 @@ namespace SteamCorp
         public bool transmitsSteam;
 
         public float baseSteamConsumption;
+
+        public SoundDef soundPowerOn;
+
+        public SoundDef soundPowerOff;
+
+        public SoundDef soundAmbientPowered;
     }
 }
