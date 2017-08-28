@@ -33,11 +33,12 @@
       <Component>2</Component>
     </costList>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-1000</basePowerConsumption>
-        <transmitsPower>true</transmitsPower>
-      </li>
+      <li Class="CompProperties_Steam">
+        <compClass>CompSteamPlant</compClass>
+        <baseSteamConsumption>-1000</baseSteamConsumption>
+        <transmitsSteam>true</transmitsSteam>
+      
+    </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>22.0</fuelConsumptionRate>
@@ -75,7 +76,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <linkType>Transmitter</linkType>
       <linkFlags>
-        <li>PowerConduit</li>
+        <li>SteamConduit</li>
       </linkFlags>
       <damageData>
         <rect>(0,0.35,1,0.3)</rect>
@@ -106,9 +107,9 @@
       <MrXuiryus_Brass>1</MrXuiryus_Brass>
     </costList>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTransmitter</compClass>
-        <transmitsPower>true</transmitsPower>
+      <li Class="CompProperties_Steam">
+        <compClass>CompSteamTransmitter</compClass>
+        <transmitsSteam>true</transmitsSteam>
       </li>
 	  <li Class="CompProperties_Glower">
         <glowRadius>0.2</glowRadius>
@@ -134,7 +135,7 @@
 <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamvalve</defName>
     <label>steam valve</label>
-    <thingClass>Building_PowerSwitch</thingClass>
+    <thingClass>Building_SteamSwitch</thingClass>
     <category>Building</category>
     <description>Allows or disallows steam to pass through pipes</description>
     <graphicData>
@@ -165,9 +166,9 @@
       <Component>1</Component>
     </costList>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTransmitter</compClass>
-        <transmitsPower>true</transmitsPower>
+      <li Class="CompProperties_Steam">
+        <compClass>CompSteamTransmitter</compClass>
+        <transmitsSteam>true</transmitsSteam>
       </li>
       <li Class="CompProperties_Flickable"/>
     </comps>
