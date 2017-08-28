@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />
     <Compile Include="CompSteam.cs" />
