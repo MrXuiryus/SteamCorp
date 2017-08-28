@@ -54,7 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompProperties_Steam.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CompSteamPipe.cs" />
+    <Compile Include="CompSteamPlant.cs" />
+    <Compile Include="SteamBuilding.cs" />
+    <Compile Include="SteamPipeGrid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

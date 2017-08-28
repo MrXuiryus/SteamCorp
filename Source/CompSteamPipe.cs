@@ -6,7 +6,7 @@ using Verse;
 
 namespace SteamCorp
 {
-    class CompSteamPipe : ThingComp
+    public class CompSteamPipe : ThingComp
     {
         private int intGridID;
 
@@ -14,11 +14,6 @@ namespace SteamCorp
         {
             get => intGridID;
             set => intGridID = value;
-        }
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
         }
     }
 }
