@@ -159,9 +159,9 @@ namespace SteamCorp
             }
         }
 
-        public override void SetUpPowerVars()
+        public override void SetUpSteamPowerVars()
         {
-            base.SetUpPowerVars();
+            base.SetUpSteamPowerVars();
             CompProperties_Steam props = base.Props;
             SteamPowerOutput = -1f * props.baseSteamConsumption;
             powerLastOutputted = (props.baseSteamConsumption <= 0f);
