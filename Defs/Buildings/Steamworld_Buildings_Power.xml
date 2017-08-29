@@ -181,14 +181,14 @@
       <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
   </ThingDef>
-<!-- STEAM BATTERY
+
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamcondenser</defName>
     <label>steam condenser</label>
     <thingClass>Building_Battery</thingClass>
     <graphicData>
-      <texPath>Buildings/Steamcondenser</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Buildings/steamcondenser/steamcondenser</texPath>
+      <graphicClass>Graphic_multi</graphicClass>
       <drawSize>(2,3)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
@@ -223,8 +223,8 @@
     </costList>
     <comps>
       <li Class="CompProperties_Battery">
-        <storedEnergyMax>1000</storedEnergyMax>
-        <efficiency>0.5</efficiency>
+        <storedEnergyMax>2000</storedEnergyMax>
+        <efficiency>0.25</efficiency>
         <startElectricalFires>true</startElectricalFires>
         <transmitsPower>true</transmitsPower>
       </li>
@@ -237,7 +237,8 @@
     <designationHotkey>Misc4</designationHotkey>
     <canOverlapZones>false</canOverlapZones>
     <researchPrerequisites>
-      <li>Batteries</li>
+      <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
-  </ThingDef>  -->
+  </ThingDef>
+  
 </Buildings>

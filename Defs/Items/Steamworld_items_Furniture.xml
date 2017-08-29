@@ -519,4 +519,47 @@
     </researchPrerequisites>
   </ThingDef>    
   
+   <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Mineshaft</defName>
+    <label>Mineshaft</label>
+    <graphicData>
+      <texPath>Buildings/natural/Mineshaft</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8.0,8.0)</drawSize>
+    </graphicData>
+		<uiIconPath>Buildings/natural/Mineshaft</uiIconPath>		
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <passability>Impassable</passability>
+	<pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <blockWind>true</blockWind>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <description>A large street lamp that provides light to the area, can only be placed outside.</description>
+    <canOverlapZones>true</canOverlapZones>
+    <size>(1,1)</size>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>5</Steel>
+      <Component>3</Component>	  
+	</costList>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Furniture</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>		
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>
+  
 </ThingDefs>
