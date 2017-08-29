@@ -57,10 +57,10 @@
         <compClass>CompHeatPusherPowered</compClass>
         <heatPerSecond>4</heatPerSecond>
       </li>
-	  <!-- write this class into all defs -->
       <li Class="SteamCorp.CompProperties_Steam">
-        <compClass>CompSteam</compClass>
+        <compClass>SteamCorp.CompSteam</compClass>
 		<transmitsSteam>true</transmitsSteam>
+		<baseSteamConsumption>-1000</baseSteamConsumption>
       </li>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
@@ -115,7 +115,7 @@
     <comps>
       <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamTransmitter</compClass>
-        <transmitsSteam>true</transmitsSteam>
+		<transmitsSteam>true</transmitsSteam>
       </li>
 	  <li Class="CompProperties_Glower">
         <glowRadius>0.2</glowRadius>
@@ -233,6 +233,7 @@
     </costList>
     <comps>
       <li Class="SteamCorp.CompProperties_SteamBattery">
+        <compClass>SteamCorp.CompSteamBattery</compClass>
         <storedEnergyMax>2000</storedEnergyMax>
         <efficiency>0.5</efficiency>
         <transmitsSteam>true</transmitsSteam>

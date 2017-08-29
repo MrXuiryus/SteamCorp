@@ -63,10 +63,7 @@ namespace SteamCorp
                 {
                     steamNet.SteamNetManager.Notify_TransmitterSpawned(this);
                 }
-                if (Props.connectToSteam)
-                {
-                    steamNet.SteamNetManager.Notify_ConnectorWantsConnect(this);
-                }
+                steamNet.SteamNetManager.Notify_ConnectorWantsConnect(this);
                 SetUpSteamPowerVars();
             }
         }
