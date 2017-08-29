@@ -198,7 +198,7 @@ namespace SteamCorp
             {
                 str = "PowerNeeded".Translate() + ": " + (-SteamPowerOutput).ToString("#####0") + " W";
             }
-            return str + base.CompInspectStringExtra();
+            return str + "\n" +  base.CompInspectStringExtra();
         }
 
         private void StartSustainerPoweredIfInactive()

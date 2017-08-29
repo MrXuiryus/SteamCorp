@@ -34,18 +34,20 @@ namespace SteamCorp
         {
             base.Draw();
             CompSteamBattery comp = base.GetComp<CompSteamBattery>();
-            GenDraw.FillableBarRequest r = default(GenDraw.FillableBarRequest);
-            r.center = DrawPos + Vector3.up * 0.1f;
-            r.size = BarSize;
-            r.fillPercent = comp.StoredSteamEnergy / comp.Props.storedEnergyMax;
-            r.filledMat = BatteryBarFilledMat;
-            r.unfilledMat = BatteryBarUnfilledMat;
-            r.margin = 0.15f;
-            Rot4 rotation = base.Rotation;
+            GenDraw.FillableBarRequest r = new GenDraw.FillableBarRequest
+            {
+                center = DrawPos + Vector3.up * 0.1f,
+                size = BarSize,
+                fillPercent = comp.StoredSteamEnergy / comp.Props.storedEnergyMax,
+                filledMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, Color.cyan),
+                unfilledMat = BatteryBarUnfilledMat,
+                margin = 0.15f
+            };
+            Rot4 rotation = Rotation;
             rotation.Rotate(RotationDirection.Clockwise);
             r.rotation = rotation;
             GenDraw.DrawFillableBar(r);
-            if (ticksToExplode > 0 && base.Spawned)
+            if (ticksToExplode > 0 && Spawned)
             {
                 base.Map.overlayDrawer.DrawOverlay(this, OverlayTypes.BurningWick);
             }
@@ -69,15 +71,15 @@ namespace SteamCorp
                 {
                     IntVec3 randomCell = this.OccupiedRect().RandomCell;
                     float radius = Rand.Range(0.5f, 1f) * 3f;
-                    GenExplosion.DoExplosion(randomCell, base.Map, radius, DamageDefOf.Flame, null, null, null, null, null, 0f, 1, false, null, 0f, 1);
-                    base.GetComp<CompPowerBattery>().DrawPower(400f);
+                    GenExplosion.DoExplosion(randomCell, Map, radius, DamageDefOf.Flame, null, null, null, null, null, 0f, 1, false, null, 0f, 1);
+                    GetComp<CompPowerBattery>().DrawPower(400f);
                 }
             }
         }
 
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-            if (!base.Destroyed && ticksToExplode == 0 && dinfo.Def == DamageDefOf.Flame && Rand.Value < 0.05f && base.GetComp<CompPowerBattery>().StoredEnergy > 500f)
+            if (!Destroyed && ticksToExplode == 0 && dinfo.Def == DamageDefOf.Flame && Rand.Value < 0.05f && GetComp<CompPowerBattery>().StoredEnergy > 500f)
             {
                 ticksToExplode = Rand.Range(70, 150);
                 StartWickSustainer();

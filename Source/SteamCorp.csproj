@@ -68,6 +68,7 @@
     <Compile Include="SteamNetGrid.cs" />
     <Compile Include="SteamNetMaker.cs" />
     <Compile Include="SteamNetManager.cs" />
+    <Compile Include="SteamNetManagerList.cs" />
     <Compile Include="SteamPowerConnectionMaker.cs" />
     <Compile Include="SteamPowerNet.cs" />
   </ItemGroup>

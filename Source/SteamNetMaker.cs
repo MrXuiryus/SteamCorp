@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Verse;
-using RimWorld;
 
 namespace SteamCorp
 {
-    class SteamNetMaker
+    public static class SteamNetMaker
     {
         private static HashSet<Building> closedSet = new HashSet<Building>();
 
@@ -65,8 +62,8 @@ namespace SteamCorp
             return new SteamPowerNet(ContiguousSteamBuildings(root));
         }
 
-        public static void UpdateVisualLinkagesFor(SteamPowerNet net)
+        /*public static void UpdateVisualLinkagesFor(SteamPowerNet net)
         {
-        }
+        }*/
     }
 }
