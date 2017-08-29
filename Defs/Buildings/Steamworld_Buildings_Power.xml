@@ -240,7 +240,7 @@
     <designationHotkey>Misc4</designationHotkey>
     <canOverlapZones>false</canOverlapZones>
     <researchPrerequisites>
-      <li>Batteries</li>
+      <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
   </ThingDef>
 </Buildings>
