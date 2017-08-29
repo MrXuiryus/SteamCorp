@@ -18,12 +18,12 @@ namespace SteamCorp
         {
             public DelayedActionType type;
 
-            public CompSteam steamPower;
+            public CompSteam steamComp;
 
             public DelayedAction(DelayedActionType type, CompSteam steamPower)
             {
                 this.type = type;
-                this.steamPower = steamPower;
+                this.steamComp = steamPower;
             }
         }
 
@@ -33,7 +33,7 @@ namespace SteamCorp
 
         private List<SteamPowerNet> allNets = new List<SteamPowerNet>();
 
-        private List<SteamNetManager.DelayedAction> delayedActions = new List<SteamNetManager.DelayedAction>();
+        private List<DelayedAction> delayedActions = new List<DelayedAction>();
 
         public List<SteamPowerNet> AllNetsListForReading
         {
@@ -54,50 +54,57 @@ namespace SteamCorp
 
         public void Notify_TransmitterSpawned(CompSteam newTransmitter)
         {
-            delayedActions.Add(new SteamNetManager.DelayedAction(DelayedActionType.RegisterTransmitter, newTransmitter));
+            //Log.Message("Notify_TransmitterSpawned \n" + grid.ToString() + "\n" + allNets.Count + "\n" + delayedActions.Count);
+            delayedActions.Add(new DelayedAction(DelayedActionType.RegisterTransmitter, newTransmitter));
             NotifyDrawersForWireUpdate(newTransmitter.parent.Position);
         }
 
         public void Notify_TransmitterDespawned(CompSteam oldTransmitter)
         {
-            delayedActions.Add(new SteamNetManager.DelayedAction(DelayedActionType.DeregisterTransmitter, oldTransmitter));
+            //Log.Message("Notify_TransmitterDespawned");
+            delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterTransmitter, oldTransmitter));
             NotifyDrawersForWireUpdate(oldTransmitter.parent.Position);
         }
 
         public void Notfiy_TransmitterTransmitsPowerNowChanged(CompSteam transmitter)
         {
+            //Log.Message("Notfiy_TransmitterTransmitsPowerNowChanged");
             if (!transmitter.parent.Spawned)
             {
                 return;
             }
-            delayedActions.Add(new SteamNetManager.DelayedAction(DelayedActionType.DeregisterTransmitter, transmitter));
-            delayedActions.Add(new SteamNetManager.DelayedAction(DelayedActionType.RegisterTransmitter, transmitter));
+            delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterTransmitter, transmitter));
+            delayedActions.Add(new DelayedAction(DelayedActionType.RegisterTransmitter, transmitter));
             NotifyDrawersForWireUpdate(transmitter.parent.Position);
         }
 
         public void Notify_ConnectorWantsConnect(CompSteam wantingCon)
         {
+            //Log.Message("Notify_ConnectorWantsConnect");
             if (Scribe.mode == LoadSaveMode.Inactive && !HasRegisterConnectorDuplicate(wantingCon))
             {
-                delayedActions.Add(new SteamNetManager.DelayedAction(DelayedActionType.RegisterConnector, wantingCon));
+                delayedActions.Add(new DelayedAction(DelayedActionType.RegisterConnector, wantingCon));
             }
             NotifyDrawersForWireUpdate(wantingCon.parent.Position);
         }
 
         public void Notify_ConnectorDespawned(CompSteam oldCon)
         {
-            delayedActions.Add(new SteamNetManager.DelayedAction(DelayedActionType.DeregisterConnector, oldCon));
+            //Log.Message("Notify_ConnectorDespawned");
+            delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterConnector, oldCon));
             NotifyDrawersForWireUpdate(oldCon.parent.Position);
         }
 
         public void NotifyDrawersForWireUpdate(IntVec3 root)
         {
+            //Log.Message("NotifyDrawersForWireUpdate");
             Map.mapDrawer.MapMeshDirty(root, MapMeshFlag.Things, true, false);
             Map.mapDrawer.MapMeshDirty(root, MapMeshFlag.PowerGrid, true, false);
         }
 
         public void RegisterPowerNet(SteamPowerNet newNet)
         {
+            Log.Message("RegisterPowerNet");
             allNets.Add(newNet);
             newNet.SteamNetManager = this;
             Grid.Notify_PowerNetCreated(newNet);
@@ -106,6 +113,7 @@ namespace SteamCorp
 
         public void DeletePowerNet(SteamPowerNet oldNet)
         {
+            Log.Message("DeletePowerNet");
             allNets.Remove(oldNet);
             Grid.Notify_PowerNetDeleted(oldNet);
         }
@@ -129,14 +137,14 @@ namespace SteamCorp
                 {
                     if (type == DelayedActionType.DeregisterTransmitter)
                     {
-                        TryDestroyNetAt(delayedAction.steamPower.parent.Position);
-                        SteamPowerConnectionMaker.DisconnectAllFromTransmitterAndSetWantConnect(delayedAction.steamPower, Map, this);
-                        delayedAction.steamPower.ResetPowerVars();
+                        TryDestroyNetAt(delayedAction.steamComp.parent.Position);
+                        SteamPowerConnectionMaker.DisconnectAllFromTransmitterAndSetWantConnect(delayedAction.steamComp, Map, this);
+                        delayedAction.steamComp.ResetPowerVars();
                     }
                 }
                 else
                 {
-                    ThingWithComps parent = delayedAction.steamPower.parent;
+                    ThingWithComps parent = delayedAction.steamComp.parent;
                     if (Grid.TransmittedPowerNetAt(parent.Position) != null)
                     {
                         Log.Warning(string.Concat(new object[]
@@ -148,7 +156,7 @@ namespace SteamCorp
                         ", but there is already a power net here. There can't be two transmitters on the same cell."
                         }));
                     }
-                    delayedAction.steamPower.SetUpSteamPowerVars();
+                    delayedAction.steamComp.SetUpSteamPowerVars();
                     foreach (IntVec3 current in GenAdj.CellsAdjacentCardinal(parent))
                     {
                         TryDestroyNetAt(current);
@@ -157,11 +165,11 @@ namespace SteamCorp
             }
             for (int j = 0; j < count; j++)
             {
-                SteamNetManager.DelayedAction delayedAction2 = delayedActions[j];
+                DelayedAction delayedAction2 = delayedActions[j];
                 if (delayedAction2.type == DelayedActionType.RegisterTransmitter || delayedAction2.type == DelayedActionType.DeregisterTransmitter)
                 {
-                    TryCreateNetAt(delayedAction2.steamPower.parent.Position);
-                    foreach (IntVec3 current2 in GenAdj.CellsAdjacentCardinal(delayedAction2.steamPower.parent))
+                    TryCreateNetAt(delayedAction2.steamComp.parent.Position);
+                    foreach (IntVec3 current2 in GenAdj.CellsAdjacentCardinal(delayedAction2.steamComp.parent))
                     {
                         TryCreateNetAt(current2);
                     }
@@ -175,14 +183,14 @@ namespace SteamCorp
                 {
                     if (type == DelayedActionType.DeregisterConnector)
                     {
-                        SteamPowerConnectionMaker.DisconnectFromSteamNet(delayedAction3.steamPower);
-                        delayedAction3.steamPower.ResetPowerVars();
+                        SteamPowerConnectionMaker.DisconnectFromSteamNet(delayedAction3.steamComp);
+                        delayedAction3.steamComp.ResetPowerVars();
                     }
                 }
                 else
                 {
-                    delayedAction3.steamPower.SetUpSteamPowerVars();
-                    SteamPowerConnectionMaker.TryConnectToAnySteamNet(delayedAction3.steamPower, null);
+                    delayedAction3.steamComp.SetUpSteamPowerVars();
+                    SteamPowerConnectionMaker.TryConnectToAnySteamNet(delayedAction3.steamComp, null);
                 }
             }
             delayedActions.RemoveRange(0, count);
@@ -196,7 +204,7 @@ namespace SteamCorp
         {
             for (int i = delayedActions.Count - 1; i >= 0; i--)
             {
-                if (delayedActions[i].steamPower == steamPower)
+                if (delayedActions[i].steamComp == steamPower)
                 {
                     if (delayedActions[i].type == DelayedActionType.DeregisterConnector)
                     {
@@ -213,16 +221,21 @@ namespace SteamCorp
 
         private void TryCreateNetAt(IntVec3 cell)
         {
+            Log.Message("trying to create net at " + cell);
             if (!cell.InBounds(Map))
             {
+                Log.Message("cell out of bounds");
                 return;
             }
             if (Grid.TransmittedPowerNetAt(cell) == null)
             {
+                Log.Message("Net is null");
                 Building transmitter = cell.GetTransmitter(Map);
-                if (transmitter != null && transmitter.TransmitsPowerNow)
+                Log.Message("Transmitter is " + transmitter);
+                if (transmitter != null)
                 {
                     SteamPowerNet powerNet = SteamNetMaker.NewPowerNetStartingFrom(transmitter);
+                    Log.Message("new net is " + powerNet + ", registering");
                     RegisterPowerNet(powerNet);
                     for (int i = 0; i < powerNet.transmitters.Count; i++)
                     {

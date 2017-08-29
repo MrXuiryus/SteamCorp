@@ -1,8 +1,5 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
 
 namespace SteamCorp
@@ -57,15 +54,14 @@ namespace SteamCorp
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (Props.transmitsSteam || parent.def.ConnectToPower)
+
+            // set static manager to new SteamNetManager if null
+            if (Props.transmitsSteam)
             {
-                if (Props.transmitsSteam)
-                {
-                    steamNet.SteamNetManager.Notify_TransmitterSpawned(this);
-                }
-                steamNet.SteamNetManager.Notify_ConnectorWantsConnect(this);
-                SetUpSteamPowerVars();
+                StaticSteamNetManager.Manager.Notify_TransmitterSpawned(this);
             }
+            StaticSteamNetManager.Manager.Notify_ConnectorWantsConnect(this);
+            SetUpSteamPowerVars();
         }
 
         public override void PostDeSpawn(Map map)
@@ -73,14 +69,11 @@ namespace SteamCorp
             base.PostDeSpawn(map);
             if (Props.transmitsSteam || parent.def.ConnectToPower)
             {
-                if (Props.transmitsSteam)
+                if (Props.transmitsSteam && connectChildren != null)
                 {
-                    if (connectChildren != null)
+                    foreach (CompSteam child in connectChildren)
                     {
-                        foreach (CompSteam child in connectChildren)
-                        {
-                            child.LostConnectParent();
-                        }
+                        child.LostConnectParent();
                     }
                 }
             }

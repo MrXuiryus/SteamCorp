@@ -161,7 +161,7 @@ namespace SteamCorp
         {
             float num = CurrentEnergyGainRate();
             float num2 = CurrentStoredEnergy();
-            if (num2 + num >= -1E-07f && !SteamNetManager.Map.gameConditionManager.ConditionIsActive(GameConditionDefOf.SolarFlare))
+            if (num2 + num >= -1E-07f)
             {
                 float num3;
                 if (batteryComps.Count > 0 && num2 >= 0.1f)

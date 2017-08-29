@@ -36,11 +36,22 @@ namespace SteamCorp
                             List<Thing> thingList = adjacentCell.GetThingList(currentBuilding.Map);
                             for (int i = 0; i < thingList.Count; i++)
                             {
-                                if (thingList[i] is Building building)
+                                if(thingList[i] is SteamBuilding sbuilding)
+                                {
+//                                    Log.Message("Found steambuilding " + sbuilding);
+                                    if (!openSet.Contains(sbuilding) && !currentSet.Contains(sbuilding)
+                                        && !closedSet.Contains(sbuilding))
+                                    {
+                                        openSet.Add(sbuilding);
+                                        break;
+                                    }
+                                }
+                                else if (thingList[i] is Building building)
                                 {
                                     if (building.TransmitsPowerNow)
                                     {
-                                        if (!openSet.Contains(building) && !currentSet.Contains(building) && !closedSet.Contains(building))
+                                        if (!openSet.Contains(building) && !currentSet.Contains(building) 
+                                            && !closedSet.Contains(building))
                                         {
                                             openSet.Add(building);
                                             break;
@@ -59,11 +70,12 @@ namespace SteamCorp
 
         public static SteamPowerNet NewPowerNetStartingFrom(Building root)
         {
+            //Log.Message("Starting new power net from " + root + " at " + root.InteractionCell);
             return new SteamPowerNet(ContiguousSteamBuildings(root));
         }
 
-        /*public static void UpdateVisualLinkagesFor(SteamPowerNet net)
+        public static void UpdateVisualLinkagesFor(SteamPowerNet net)
         {
-        }*/
+        }
     }
 }

@@ -4,7 +4,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamGenerator</defName>
     <label>Steam Generator</label>
-    <thingClass>Building</thingClass>
+    <thingClass>SteamCorp.SteamBuilding</thingClass>
     <graphicData>
       <texPath>Buildings/steamgenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -76,7 +76,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamPipe</defName>
     <label>Steam Pipe</label>
-    <thingClass>Building</thingClass>
+    <thingClass>SteamCorp.SteamBuilding</thingClass>
     <graphicData>
       <texPath>Buildings/Steampipe_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -124,7 +124,7 @@
     </comps>
     <placeWorkers>
 	  <!-- TODO: Change to PlaceWorker_Pipe -->
-      <li>PlaceWorker_Conduit</li>
+      <li>SteamCorp.PlaceWorker_Pipe</li>
     </placeWorkers>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -142,7 +142,7 @@
 <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamvalve</defName>
     <label>steam valve</label>
-    <thingClass>Building</thingClass>
+    <thingClass>SteamCorp.SteamBuilding</thingClass>
     <category>Building</category>
     <description>Allows or disallows steam to pass through pipes</description>
     <graphicData>

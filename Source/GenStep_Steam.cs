@@ -29,17 +29,12 @@ namespace SteamCorp
 
         public override void Generate(Map map)
         {
-            SteamNetManager manager = new SteamNetManager(map, new SteamNetGrid(map));
-            manager.UpdatePowerNetsAndConnections_First();
-            UpdateDesiredPowerOutputForAllGenerators(map);
-            EnsureBatteriesConnectedAndMakeSense(map);
-            EnsurePowerUsersConnected(map);
-            EnsureGeneratorsConnectedAndMakeSense(map);
-            tmpThings.Clear();
+            Generate(map, StaticSteamNetManager.Manager);
         }
 
         public void Generate(Map map, SteamNetManager manager)
         {
+            Log.Message("Generate2");
             manager.UpdatePowerNetsAndConnections_First();
             UpdateDesiredPowerOutputForAllGenerators(map);
             EnsureBatteriesConnectedAndMakeSense(map);
@@ -102,7 +97,7 @@ namespace SteamCorp
                         }
                         else if (canSpawnPowerGenerators && TrySpawnPowerGeneratorNear(compPowerBattery.parent.Position, map, compPowerBattery.parent.Faction, out building2))
                         {
-                        SpawnTransmitters(compPowerBattery.parent.Position, building2.Position, map, compPowerBattery.parent.Faction);
+                            SpawnTransmitters(compPowerBattery.parent.Position, building2.Position, map, compPowerBattery.parent.Faction);
                         }
                     }
                 }
@@ -111,17 +106,17 @@ namespace SteamCorp
 
         private void EnsurePowerUsersConnected(Map map)
         {
-        tmpThings.Clear();
-        tmpThings.AddRange(map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial));
+            tmpThings.Clear();
+            tmpThings.AddRange(map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial));
             for (int i = 0; i < tmpThings.Count; i++)
             {
                 if (IsPowerUser(tmpThings[i]))
                 {
-                    CompSteamTrader powerComp = tmpThings[i].TryGetComp<CompSteamTrader>();
-                    SteamPowerNet powerNet = powerComp.SteamNet;
+                    CompSteamTrader compSteamTrader = tmpThings[i].TryGetComp<CompSteamTrader>();
+                    SteamPowerNet powerNet = compSteamTrader.SteamNet;
                     if (powerNet != null && powerNet.hasSteamSource)
                     {
-                        TryTurnOnImmediately(powerComp, map);
+                        TryTurnOnImmediately(compSteamTrader, map);
                     }
                     else
                     {
@@ -129,7 +124,7 @@ namespace SteamCorp
                         SteamPowerNet powerNet2;
                         IntVec3 dest;
                         Building building;
-                        if (TryFindClosestReachableNet(powerComp.parent.Position, (SteamPowerNet x) => x.CurrentEnergyGainRate() - powerComp.Props.baseSteamConsumption * CompSteam.WattsToWattDaysPerTick > 1E-07f, map, out powerNet2, out dest))
+                        if (TryFindClosestReachableNet(compSteamTrader.parent.Position, (SteamPowerNet x) => x.CurrentEnergyGainRate() - compSteamTrader.Props.baseSteamConsumption * CompSteam.WattsToWattDaysPerTick > 1E-07f, map, out powerNet2, out dest))
                         {
                             map.floodFiller.ReconstructLastFloodFillPath(dest, tmpCells);
                             bool flag = false;
@@ -141,13 +136,13 @@ namespace SteamCorp
                             {
                             SpawnTransmitters(tmpCells, map, tmpThings[i].Faction);
                             }
-                        TryTurnOnImmediately(powerComp, map);
+                        TryTurnOnImmediately(compSteamTrader, map);
                         }
                         else if (canSpawnPowerGenerators && TrySpawnPowerGeneratorAndBatteryIfCanAndConnect(tmpThings[i], map))
                         {
-                        TryTurnOnImmediately(powerComp, map);
+                        TryTurnOnImmediately(compSteamTrader, map);
                         }
-                        else if (TryFindClosestReachableNet(powerComp.parent.Position, (SteamPowerNet x) => x.CurrentStoredEnergy() > 1E-07f, map, out powerNet2, out dest))
+                        else if (TryFindClosestReachableNet(compSteamTrader.parent.Position, (SteamPowerNet x) => x.CurrentStoredEnergy() > 1E-07f, map, out powerNet2, out dest))
                         {
                             map.floodFiller.ReconstructLastFloodFillPath(dest, tmpCells);
                         SpawnTransmitters(tmpCells, map, tmpThings[i].Faction);
@@ -157,7 +152,7 @@ namespace SteamCorp
                         SpawnTransmitters(tmpThings[i].Position, building.Position, map, tmpThings[i].Faction);
                         if (building.GetComp<CompPowerBattery>().StoredEnergy > 0f)
                         {
-                            TryTurnOnImmediately(powerComp, map);
+                            TryTurnOnImmediately(compSteamTrader, map);
                         }
                         }
                     }
@@ -167,8 +162,8 @@ namespace SteamCorp
 
         private void EnsureGeneratorsConnectedAndMakeSense(Map map)
         {
-        tmpThings.Clear();
-        tmpThings.AddRange(map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial));
+            tmpThings.Clear();
+            tmpThings.AddRange(map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial));
             for (int i = 0; i < tmpThings.Count; i++)
             {
                 if (IsPowerGenerator(tmpThings[i]))
@@ -233,7 +228,7 @@ namespace SteamCorp
 
         private bool TryFindClosestReachableNet(IntVec3 root, Predicate<SteamPowerNet> predicate, Map map, out SteamPowerNet foundNet, out IntVec3 closestTransmitter)
         {
-        tmpPowerNetPredicateResults.Clear();
+            tmpPowerNetPredicateResults.Clear();
             SteamPowerNet foundNetLocal = null;
             IntVec3 closestTransmitterLocal = IntVec3.Invalid;
             map.floodFiller.FloodFill(root, (IntVec3 x) => EverPossibleToTransmitPowerAt(x, map), delegate (IntVec3 x)
@@ -258,7 +253,7 @@ namespace SteamCorp
                 }
                 return false;
             }, true);
-        tmpPowerNetPredicateResults.Clear();
+            tmpPowerNetPredicateResults.Clear();
             if (foundNetLocal != null)
             {
                 foundNet = foundNetLocal;

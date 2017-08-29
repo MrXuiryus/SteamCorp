@@ -6,7 +6,7 @@ using Verse.Sound;
 namespace SteamCorp
 {
     [StaticConstructorOnStartup]
-    class Building_SteamBattery : Building
+    class Building_SteamBattery : SteamBuilding
     {
         private const float MinEnergyToExplode = 500f;
 
@@ -39,7 +39,7 @@ namespace SteamCorp
                 center = DrawPos + Vector3.up * 0.1f,
                 size = BarSize,
                 fillPercent = comp.StoredSteamEnergy / comp.Props.storedEnergyMax,
-                filledMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, Color.cyan),
+                filledMat = SolidColorMaterials.SimpleSolidColorMaterial(Color.cyan, false),
                 unfilledMat = BatteryBarUnfilledMat,
                 margin = 0.15f
             };
