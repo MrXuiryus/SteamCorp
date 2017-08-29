@@ -56,6 +56,7 @@ namespace SteamCorp
                 // only trip if steamOn has changed
                 if (steamOn != value)
                 {
+                    Log.Message("Switching SteamOn to " + value);
                     steamOn = value;
                     if (steamOn)
                     {
@@ -72,7 +73,7 @@ namespace SteamCorp
                         {
                             powerStartedAction?.Invoke();
                             parent.BroadcastCompSignal("PowerTurnedOn");
-                            SoundDef soundDef = ((CompProperties_Power)parent.def.CompDefForAssignableFrom<CompPowerTrader>()).soundPowerOn;
+                            SoundDef soundDef = ((CompProperties_Steam)parent.def.CompDefForAssignableFrom<CompSteamTrader>()).soundPowerOn;
                             if (soundDef.NullOrUndefined())
                             {
                                 soundDef = SoundDefOf.PowerOnSmall;
@@ -85,7 +86,7 @@ namespace SteamCorp
                     {
                         powerStoppedAction?.Invoke();
                         parent.BroadcastCompSignal("PowerTurnedOff");
-                        SoundDef soundDef2 = ((CompProperties_Power)parent.def.CompDefForAssignableFrom<CompPowerTrader>()).soundPowerOff;
+                        SoundDef soundDef2 = ((CompProperties_Steam)parent.def.CompDefForAssignableFrom<CompSteamTrader>()).soundPowerOff;
                         if (soundDef2.NullOrUndefined())
                         {
                             soundDef2 = SoundDefOf.PowerOffSmall;
@@ -96,7 +97,7 @@ namespace SteamCorp
                         }
                         EndSustainerPoweredIfActive();
                         }
-                    }
+                }
             }
         }
 

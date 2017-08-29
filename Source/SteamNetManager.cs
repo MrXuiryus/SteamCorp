@@ -138,7 +138,7 @@ namespace SteamCorp
                 else
                 {
                     ThingWithComps parent = delayedAction.steamPower.parent;
-                    if (Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null)
+                    if (Grid.TransmittedPowerNetAt(parent.Position) != null)
                     {
                         Log.Warning(string.Concat(new object[]
                         {
@@ -218,7 +218,7 @@ namespace SteamCorp
             {
                 return;
             }
-            if (Map.powerNetGrid.TransmittedPowerNetAt(cell) == null)
+            if (Grid.TransmittedPowerNetAt(cell) == null)
             {
                 Building transmitter = cell.GetTransmitter(Map);
                 if (transmitter != null && transmitter.TransmitsPowerNow)

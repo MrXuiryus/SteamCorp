@@ -61,7 +61,7 @@ namespace SteamCorp
                     }
                 }
             }
-        hasSteamSource = false;
+            hasSteamSource = false;
             for (int j = 0; j < transmitters.Count; j++)
             {
                 if (IsSteamPowerSource(transmitters[j]))

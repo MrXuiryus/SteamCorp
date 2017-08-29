@@ -27,7 +27,7 @@ namespace SteamCorp
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref this.ticksToExplode, "ticksToExplode", 0, false);
+            Scribe_Values.Look<int>(ref ticksToExplode, "ticksToExplode", 0, false);
         }
 
         public override void Draw()
@@ -35,7 +35,7 @@ namespace SteamCorp
             base.Draw();
             CompSteamBattery comp = base.GetComp<CompSteamBattery>();
             GenDraw.FillableBarRequest r = default(GenDraw.FillableBarRequest);
-            r.center = this.DrawPos + Vector3.up * 0.1f;
+            r.center = DrawPos + Vector3.up * 0.1f;
             r.size = BarSize;
             r.fillPercent = comp.StoredSteamEnergy / comp.Props.storedEnergyMax;
             r.filledMat = BatteryBarFilledMat;
@@ -45,7 +45,7 @@ namespace SteamCorp
             rotation.Rotate(RotationDirection.Clockwise);
             r.rotation = rotation;
             GenDraw.DrawFillableBar(r);
-            if (this.ticksToExplode > 0 && base.Spawned)
+            if (ticksToExplode > 0 && base.Spawned)
             {
                 base.Map.overlayDrawer.DrawOverlay(this, OverlayTypes.BurningWick);
             }
@@ -54,18 +54,18 @@ namespace SteamCorp
         public override void Tick()
         {
             base.Tick();
-            if (this.ticksToExplode > 0)
+            if (ticksToExplode > 0)
             {
-                if (this.wickSustainer == null)
+                if (wickSustainer == null)
                 {
-                    this.StartWickSustainer();
+                    StartWickSustainer();
                 }
                 else
                 {
-                    this.wickSustainer.Maintain();
+                    wickSustainer.Maintain();
                 }
-                this.ticksToExplode--;
-                if (this.ticksToExplode == 0)
+                ticksToExplode--;
+                if (ticksToExplode == 0)
                 {
                     IntVec3 randomCell = this.OccupiedRect().RandomCell;
                     float radius = Rand.Range(0.5f, 1f) * 3f;
@@ -77,17 +77,17 @@ namespace SteamCorp
 
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-            if (!base.Destroyed && this.ticksToExplode == 0 && dinfo.Def == DamageDefOf.Flame && Rand.Value < 0.05f && base.GetComp<CompPowerBattery>().StoredEnergy > 500f)
+            if (!base.Destroyed && ticksToExplode == 0 && dinfo.Def == DamageDefOf.Flame && Rand.Value < 0.05f && base.GetComp<CompPowerBattery>().StoredEnergy > 500f)
             {
-                this.ticksToExplode = Rand.Range(70, 150);
-                this.StartWickSustainer();
+                ticksToExplode = Rand.Range(70, 150);
+                StartWickSustainer();
             }
         }
 
         private void StartWickSustainer()
         {
             SoundInfo info = SoundInfo.InMap(this, MaintenanceType.PerTick);
-            this.wickSustainer = SoundDefOf.HissSmall.TrySpawnSustainer(info);
+            wickSustainer = SoundDefOf.HissSmall.TrySpawnSustainer(info);
         }
     }
 }

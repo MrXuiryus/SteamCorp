@@ -57,6 +57,11 @@
         <compClass>CompHeatPusherPowered</compClass>
         <heatPerSecond>4</heatPerSecond>
       </li>
+	  <!-- write this class into all defs -->
+      <li Class="SteamCorp.CompProperties_Steam">
+        <compClass>CompSteam</compClass>
+		<transmitsSteam>true</transmitsSteam>
+      </li>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
@@ -118,6 +123,7 @@
 	  </li>
     </comps>
     <placeWorkers>
+	  <!-- TODO: Change to PlaceWorker_Pipe -->
       <li>PlaceWorker_Conduit</li>
     </placeWorkers>
     <rotatable>false</rotatable>

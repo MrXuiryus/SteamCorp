@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace SteamCorp
         private SteamPowerNet steamNet;
 
         public SteamPowerNet SteamNet {
-            get => steamNet ?? connectParent.SteamNet;
+            get => steamNet ?? ((connectParent != null) ? connectParent.SteamNet : null);
             set => steamNet = value;
         }
         
@@ -58,6 +59,14 @@ namespace SteamCorp
             base.PostSpawnSetup(respawningAfterLoad);
             if (Props.transmitsSteam || parent.def.ConnectToPower)
             {
+                if (Props.transmitsSteam)
+                {
+                    steamNet.SteamNetManager.Notify_TransmitterSpawned(this);
+                }
+                if (Props.connectToSteam)
+                {
+                    steamNet.SteamNetManager.Notify_ConnectorWantsConnect(this);
+                }
                 SetUpSteamPowerVars();
             }
         }
@@ -84,8 +93,7 @@ namespace SteamCorp
         {
             connectParent = null;
         }
-
-        /* not doing graphics for now
+        
         public override void PostPrintOnto(SectionLayer layer)
         {
             base.PostPrintOnto(layer);
@@ -97,7 +105,7 @@ namespace SteamCorp
 
         public override void CompPrintForPowerGrid(SectionLayer layer)
         {
-            if (this.TransmitsPowerNow)
+            if (TransmitsSteamPowerNow)
             {
                 PowerOverlayMats.LinkedOverlayGraphic.Print(layer, parent);
             }
@@ -109,11 +117,6 @@ namespace SteamCorp
             {
                 PowerNetGraphics.PrintWirePieceConnecting(layer, parent, connectParent.parent, true);
             }
-        }*/
-
-        public bool TransmitsSteamNow
-        {
-            get => ((Building)parent).TransmitsPowerNow;
         }
 
         public bool TransmitsSteamPowerNow
@@ -133,6 +136,21 @@ namespace SteamCorp
             {
                 steamNet.RegisterConnector(this);
             }
+        }
+
+        public override string CompInspectStringExtra()
+        {
+            if (SteamNet == null)
+            {
+                return "PowerNotConnected".Translate();
+            }
+            string text = (SteamNet.CurrentEnergyGainRate() / CompSteam.WattsToWattDaysPerTick).ToString("F0");
+            string text2 = SteamNet.CurrentStoredEnergy().ToString("F0");
+            return "PowerConnectedRateStored".Translate(new object[]
+            {
+                text,
+                text2
+            });
         }
     }
 }

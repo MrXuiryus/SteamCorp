@@ -87,7 +87,7 @@ namespace SteamCorp
             steamNetCells.Remove(deadNet);
         }
 
-        /*public void DrawDebugPowerNetGrid()
+        public void DrawDebugPowerNetGrid()
         {
             if (!DebugViewSettings.drawPowerNetGrid)
             {
@@ -112,6 +112,6 @@ namespace SteamCorp
                 }
             }
             Rand.PopState();
-        }*/
+        }
     }
 }
