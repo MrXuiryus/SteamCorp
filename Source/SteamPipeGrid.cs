@@ -9,20 +9,20 @@ namespace SteamCorp
 {
     public class SteamPipeGrid : MapComponent
     {
-        public List<Thing> cachedPipeUsers;
-        public List<CompSteamPipe> cachedPipes;
+        public List<CompSteam> cachedPipeUsers;
+        public List<CompSteam> cachedPipes;
 
-        private int[] PipeGrid;
+        private SteamPowerNet[] PipeGrid;
 
         private bool isDirty;
         public bool IsDirty { get => isDirty; set => isDirty = value; }
 
-        private int gridCount;
-        public int GridCount { get => gridCount; set => gridCount = value; }
+        private SteamPowerNet currentNetwork;
+        public SteamPowerNet CurrentNetwork { get => currentNetwork; set => currentNetwork = value; }
 
         public SteamPipeGrid(Map map) : base(map)
         {
-            PipeGrid = new int[map.AllCells.Count()];
+            PipeGrid = new SteamPowerNet[map.AllCells.Count()];
             IsDirty = true;
         }
 
@@ -32,19 +32,19 @@ namespace SteamCorp
             return ((CellIndices)((Map)this.map).cellIndices).CellToIndex(pos);
         }
 
-        public bool IsMatch(IntVec3 pos, int ID)
+        public bool IsMatch(IntVec3 pos, SteamPowerNet ID)
         {
             Log.Message("Trying to match " + PipeGrid[IndexOfCellAt(pos)] + " with " + ID);
             return PipeGrid[IndexOfCellAt(pos)] == ID;
         }
 
-        public void SetIDAt(IntVec3 pos, int ID)
+        public void SetIDAt(IntVec3 pos, SteamPowerNet ID)
         {
             Log.Message("Setting ID of " + pos + " to " + ID);
             PipeGrid[IndexOfCellAt(pos)] = ID;
         }
 
-        public int GetIDAt(IntVec3 pos)
+        public SteamPowerNet GetIDAt(IntVec3 pos)
         {
             Log.Message("Getting ID of " + pos + ": " + PipeGrid[IndexOfCellAt(pos)]);
             return PipeGrid[IndexOfCellAt(pos)];
@@ -52,11 +52,11 @@ namespace SteamCorp
 
         public bool ZoneAt(IntVec3 pos)
         {
-            Log.Message("Checking if " + pos + "has a zone already: " + (PipeGrid[IndexOfCellAt(pos)] >= 0));
-            return PipeGrid[IndexOfCellAt(pos)] >= 0;
+            Log.Message("Checking if " + pos + "has a zone already: " + (PipeGrid[IndexOfCellAt(pos)] != null));
+            return PipeGrid[IndexOfCellAt(pos)] != null;
         }
 
-        public void RegisterPipe(CompSteamPipe pipe)
+        public void RegisterPipe(CompSteam pipe)
         {
             Log.Message("Trying to register pipe " + pipe);
             if (!cachedPipes.Contains(pipe))
@@ -67,7 +67,7 @@ namespace SteamCorp
             IsDirty = true;
         }
 
-        public void DeregisterPipe(CompSteamPipe pipe)
+        public void DeregisterPipe(CompSteam pipe)
         {
             Log.Message("Trying to remove pipe " + pipe);
             if (cachedPipes.Contains(pipe))
@@ -78,7 +78,7 @@ namespace SteamCorp
             IsDirty = true;
         }
 
-        public void RegisterPipeUser(Thing user)
+        public void RegisterPipeUser(CompSteam user)
         {
             Log.Message("Trying to register pipe user " + user);
             if (!cachedPipeUsers.Contains(user))
@@ -88,7 +88,7 @@ namespace SteamCorp
             }
         }
 
-        public void DeregisterPipeUser(Thing user)
+        public void DeregisterPipeUser(CompSteam user)
         {
             Log.Message("Trying to remove pipe user " + user);
             if (cachedPipeUsers.Contains(user))
@@ -110,21 +110,21 @@ namespace SteamCorp
         public void RebuildPipeGrid()
         {
             Log.Message("Rebuilding PipeGrid");
-            GridCount = 0;
+            currentNetwork = null;
 
             // Erase all pipe grids
             for(int i = 0; i < PipeGrid.Length; i++)
             {
-                PipeGrid[i] = -1;
-                cachedPipes[i].GridID = -1;
+                PipeGrid[i] = null;
+                cachedPipes[i].SteamNet = null;
             }
             
-            foreach (CompSteamPipe pipe in cachedPipes)
+            foreach (CompSteam pipe in cachedPipes)
             {
-                if (pipe != null && pipe.GridID == -1)
+                if (pipe != null && pipe.SteamNet == null)
                 {
                     //Increment the master ID and assign a new grid
-                    pipe.GridID = GridCount++;
+                    pipe.SteamNet = new SteamPowerNet(new List<CompSteam>());
                     
                     AddCurrentCellAndCheckAdjacent(pipe); 
                 }
@@ -132,34 +132,34 @@ namespace SteamCorp
             IsDirty = false;
         }
 
-        private void AddCurrentCellAndCheckAdjacent(CompSteamPipe pipe)
+        private void AddCurrentCellAndCheckAdjacent(CompSteam pipe)
         {
             Log.Message("Setting pipe on grid " + PipeGrid[IndexOfCellAt(GenAdj.OccupiedRect(pipe.parent).CenterVector3.ToIntVec3())] 
-                + " to " + pipe.GridID);
+                + " to " + pipe.SteamNet);
             //Set the current cell to be in the power grid
-            PipeGrid[IndexOfCellAt(GenAdj.OccupiedRect(pipe.parent).CenterVector3.ToIntVec3())] = pipe.GridID;
+            PipeGrid[IndexOfCellAt(GenAdj.OccupiedRect(pipe.parent).CenterVector3.ToIntVec3())] = pipe.SteamNet;
 
             // Check the edge cells to add into the grid
             foreach (IntVec3 rect in GenAdj.OccupiedRect(pipe.parent).EdgeCells)
             {
-                ScanAdjacentCells(rect, pipe.GridID);
+                ScanAdjacentCells(rect, pipe.SteamNet);
             }
         }
 
-        public void ScanAdjacentCells(IntVec3 pos, int GridID)
+        public void ScanAdjacentCells(IntVec3 pos, SteamPowerNet network)
         {
-            Log.Message("Scanning cells next to " + pos + " and setting to " + GridID);
+            Log.Message("Scanning cells next to " + pos + " and setting to " + network);
             // Get the adjacent tile in each of the Cardinal Directions
             foreach (IntVec3 index in GenAdj.CardinalDirections)
             {
                 //Grab adjacent thing list and filter for a SteamBuilding, then grab Comp properties
-                CompSteamPipe comp = GridsUtility.GetThingList(pos + index, map)
-                    .Where(thing => thing is SteamBuilding).First().TryGetComp<CompSteamPipe>();
+                CompSteam comp = GridsUtility.GetThingList(pos + index, map)
+                    .Where(thing => thing is SteamBuilding).First().TryGetComp<CompSteam>();
                 
                 //if item isn't assigned a grid assign one and expand it
-                if (comp.GridID == -1)
+                if (comp.SteamNet == null)
                 {
-                    comp.GridID = GridID;
+                    comp.SteamNet = network;
                     AddCurrentCellAndCheckAdjacent(comp);
                 }
             }

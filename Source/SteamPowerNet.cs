@@ -1,368 +1,357 @@
-﻿using System;
+﻿using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using Verse;
-using RimWorld;
 
 namespace SteamCorp
 {
     public class SteamPowerNet
+    {
+        private const int MaxRestartTryInterval = 200;
+
+        private const int MinRestartTryInterval = 30;
+
+        private const int ShutdownInterval = 20;
+
+        private const float MinStoredEnergyToTurnOn = 5f;
+
+        private SteamNetManager steamNetManager;
+
+        public bool hasSteamSource;
+
+        public List<CompSteam> connectors = new List<CompSteam>();
+
+        public List<CompSteam> transmitters = new List<CompSteam>();
+
+        public List<CompSteamTrader> steamComps = new List<CompSteamTrader>();
+
+        public List<CompSteamBattery> batteryComps = new List<CompSteamBattery>();
+
+        private float debugLastCreatedEnergy;
+
+        private float debugLastRawStoredEnergy;
+
+        private float debugLastApparentStoredEnergy;
+
+        private static List<CompSteamTrader> partsWantingSteamOn = new List<CompSteamTrader>();
+
+        private static List<CompSteamTrader> potentialShutdownParts = new List<CompSteamTrader>();
+
+        private List<CompSteamBattery> givingBats = new List<CompSteamBattery>();
+
+        private static List<CompSteamBattery> batteriesShuffled = new List<CompSteamBattery>();
+
+        public SteamNetManager SteamNetManager { get => steamNetManager; set => steamNetManager = value; }
+
+        public SteamPowerNet(IEnumerable<CompSteam> newTransmitters)
         {
-            private const int MaxRestartTryInterval = 200;
-
-            private const int MinRestartTryInterval = 30;
-
-            private const int ShutdownInterval = 20;
-
-            private const float MinStoredEnergyToTurnOn = 5f;
-
-            public SteamPipeGrid steamNetManager;
-
-            public bool hasSteamSource;
-
-            public List<CompSteam> connectors = new List<CompSteam>();
-
-            public List<CompSteam> transmitters = new List<CompSteam>();
-
-            public List<CompSteamTrader> steamComps = new List<CompSteamTrader>();
-
-            public List<CompSteamBattery> batteryComps = new List<CompSteamBattery>();
-
-            private float debugLastCreatedEnergy;
-
-            private float debugLastRawStoredEnergy;
-
-            private float debugLastApparentStoredEnergy;
-
-            private static List<CompSteamTrader> partsWantingSteamOn = new List<CompSteamTrader>();
-
-            private static List<CompSteamTrader> potentialShutdownParts = new List<CompSteamTrader>();
-
-            private List<CompSteamBattery> givingBats = new List<CompSteamBattery>();
-
-            private static List<CompSteamBattery> batteriesShuffled = new List<CompSteamBattery>();
-
-            public SteamPowerNet(IEnumerable<CompSteam> newTransmitters)
+            foreach (CompSteam comp in newTransmitters)
             {
-                foreach (CompSteam comp in newTransmitters)
+            transmitters.Add(comp);
+                comp.SteamNet = this;
+            RegisterAllComponentsOf(comp.parent);
+                if (comp.connectChildren != null)
                 {
-                    this.transmitters.Add(comp);
-                    comp.SteamNet = this;
-                    this.RegisterAllComponentsOf(comp.parent);
-                    if (comp.connectChildren != null)
+                    List<CompSteam> connectChildren = comp.connectChildren;
+                    for (int i = 0; i < connectChildren.Count; i++)
                     {
-                        List<CompSteam> connectChildren = comp.connectChildren;
-                        for (int i = 0; i < connectChildren.Count; i++)
-                        {
-                            this.RegisterConnector(connectChildren[i]);
-                        }
-                    }
-                }
-                this.hasSteamSource = false;
-                for (int j = 0; j < this.transmitters.Count; j++)
-                {
-                    if (this.IsSteamPowerSource(this.transmitters[j]))
-                    {
-                        this.hasSteamSource = true;
-                        break;
+                    RegisterConnector(connectChildren[i]);
                     }
                 }
             }
-
-            private bool IsSteamPowerSource(CompSteam cp)
+        hasSteamSource = false;
+            for (int j = 0; j < transmitters.Count; j++)
             {
-                return cp is CompSteamBattery || (cp is CompSteamTrader && cp.props.baseSteamConsumption < 0f);
-            }
-
-            public void RegisterConnector(CompSteam b)
-            {
-                if (this.connectors.Contains(b))
+                if (IsSteamPowerSource(transmitters[j]))
                 {
-                    Log.Error("SteamNet registered connector it already had: " + b);
-                    return;
+                hasSteamSource = true;
+                    break;
                 }
-                this.connectors.Add(b);
-                this.RegisterAllComponentsOf(b.parent);
             }
+        }
 
-            public void DeregisterConnector(CompSteam b)
+        private bool IsSteamPowerSource(CompSteam comp)
+        {
+            return comp is CompSteamBattery || 
+            (comp is CompSteamTrader && ((CompProperties_Steam)comp.props).baseSteamConsumption < 0f);
+        }
+
+        public void RegisterConnector(CompSteam b)
+        {
+            Log.Message("Trying to register connector " + b);
+            if (!connectors.Contains(b))
             {
-                this.connectors.Remove(b);
-                this.DeregisterAllComponentsOf(b.parent);
+                connectors.Add(b);
+                RegisterAllComponentsOf(b.parent);
             }
+        }
 
-            private void RegisterAllComponentsOf(ThingWithComps parentThing)
+        public void DeregisterConnector(CompSteam b)
+        {
+            connectors.Remove(b);
+            DeregisterAllComponentsOf(b.parent);
+        }
+
+        private void RegisterAllComponentsOf(ThingWithComps parentThing)
+        {
+            CompSteamTrader traderComp = parentThing.GetComp<CompSteamTrader>();
+            if (traderComp != null)
             {
-                CompSteamTrader comp = parentThing.GetComp<CompSteamTrader>();
-                if (comp != null)
+                if (!steamComps.Contains(traderComp))
                 {
-                    if (this.steamComps.Contains(comp))
-                    {
-                        Log.Error("SteamNet adding steamComp " + comp + " which it already has.");
-                    }
-                    else
-                    {
-                        this.steamComps.Add(comp);
-                    }
-                }
-                CompSteamBattery comp2 = parentThing.GetComp<CompSteamBattery>();
-                if (comp2 != null)
-                {
-                    if (this.batteryComps.Contains(comp2))
-                    {
-                        Log.Error("SteamNet adding batteryComp " + comp2 + " which it already has.");
-                    }
-                    else
-                    {
-                        this.batteryComps.Add(comp2);
-                    }
+                    steamComps.Add(traderComp);
                 }
             }
 
-            private void DeregisterAllComponentsOf(ThingWithComps parentThing)
+            CompSteamBattery batteryComp = parentThing.GetComp<CompSteamBattery>();
+            if (batteryComp != null)
             {
-                CompSteamTrader comp = parentThing.GetComp<CompSteamTrader>();
-                if (comp != null)
+                if (!batteryComps.Contains(batteryComp))
                 {
-                    this.steamComps.Remove(comp);
-                }
-                CompSteamBattery comp2 = parentThing.GetComp<CompSteamBattery>();
-                if (comp2 != null)
-                {
-                    this.batteryComps.Remove(comp2);
+                    batteryComps.Add(batteryComp);
                 }
             }
+        }
 
-            public float CurrentEnergyGainRate()
+        private void DeregisterAllComponentsOf(ThingWithComps parentThing)
+        {
+            CompSteamTrader traderComp = parentThing.GetComp<CompSteamTrader>();
+            if (traderComp != null)
             {
-                if (DebugSettings.unlimitedSteam)
-                {
-                    return 100000f;
-                }
-                float num = 0f;
-                for (int i = 0; i < this.steamComps.Count; i++)
-                {
-                    if (this.steamComps[i].SteamOn)
-                    {
-                        num += this.steamComps[i].SteamEnergyOutputPerTick;
-                    }
-                }
-                return num;
+                steamComps.Remove(traderComp);
             }
 
-            public float CurrentStoredEnergy()
+            CompSteamBattery batteryComp = parentThing.GetComp<CompSteamBattery>();
+            if (batteryComp != null)
             {
-                float num = 0f;
-                for (int i = 0; i < this.batteryComps.Count; i++)
-                {
-                    num += this.batteryComps[i].StoredSteamEnergy;
-                }
-                return num;
+                batteryComps.Remove(batteryComp);
             }
+        }
 
-            public void SteamNetTick()
+        public float CurrentEnergyGainRate()
+        {
+            if (DebugSettings.unlimitedPower)
             {
-                float num = this.CurrentEnergyGainRate();
-                float num2 = this.CurrentStoredEnergy();
-                if (num2 + num >= -1E-07f && !this.steamNetManager.map.gameConditionManager.ConditionIsActive(GameConditionDefOf.SolarFlare))
+                return 100000f;
+            }
+            float num = 0f;
+            for (int i = 0; i < steamComps.Count; i++)
+            {
+                if (steamComps[i].SteamOn)
                 {
-                    float num3;
-                    if (this.batteryComps.Count > 0 && num2 >= 0.1f)
-                    {
-                        num3 = num2 - 5f;
-                    }
-                    else
-                    {
-                        num3 = num2;
-                    }
-                    if (UnityData.isDebugBuild)
-                    {
-                        this.debugLastApparentStoredEnergy = num3;
-                        this.debugLastCreatedEnergy = num;
-                        this.debugLastRawStoredEnergy = num2;
-                    }
-                    if (num3 + num >= 0f)
-                    {
-                        SteamNet.partsWantingSteamOn.Clear();
-                        for (int i = 0; i < this.steamComps.Count; i++)
-                        {
-                            if (!this.steamComps[i].SteamOn && FlickUtility.WantsToBeOn(this.steamComps[i].parent) && !this.steamComps[i].parent.IsBrokenDown())
-                            {
-                                SteamNet.partsWantingSteamOn.Add(this.steamComps[i]);
-                            }
-                        }
-                        if (SteamNet.partsWantingSteamOn.Count > 0)
-                        {
-                            int num4 = 200 / SteamNet.partsWantingSteamOn.Count;
-                            if (num4 < 30)
-                            {
-                                num4 = 30;
-                            }
-                            if (Find.TickManager.TicksGame % num4 == 0)
-                            {
-                                CompSteamTrader compSteamTrader = SteamNet.partsWantingSteamOn.RandomElement<CompSteamTrader>();
-                                if (num + num2 >= -(compSteamTrader.SteamEnergyOutputPerTick + 1E-07f))
-                                {
-                                    compSteamTrader.SteamOn = true;
-                                    num += compSteamTrader.SteamEnergyOutputPerTick;
-                                }
-                            }
-                        }
-                    }
-                    this.ChangeStoredEnergy(num);
-                }
-                else if (Find.TickManager.TicksGame % 20 == 0)
-                {
-                    SteamNet.potentialShutdownParts.Clear();
-                    for (int j = 0; j < this.steamComps.Count; j++)
-                    {
-                        if (this.steamComps[j].SteamOn && this.steamComps[j].SteamEnergyOutputPerTick < 0f)
-                        {
-                            SteamNet.potentialShutdownParts.Add(this.steamComps[j]);
-                        }
-                    }
-                    if (SteamNet.potentialShutdownParts.Count > 0)
-                    {
-                        SteamNet.potentialShutdownParts.RandomElement<CompSteamTrader>().SteamOn = false;
-                    }
+                    num += steamComps[i].SteamEnergyOutputPerTick;
                 }
             }
+            return num;
+        }
 
-            private void ChangeStoredEnergy(float extra)
+        public float CurrentStoredEnergy()
+        {
+            float num = 0f;
+            for (int i = 0; i < batteryComps.Count; i++)
             {
-                if (extra > 0f)
+                num += batteryComps[i].StoredSteamEnergy;
+            }
+            return num;
+        }
+
+        public void SteamNetTick()
+        {
+            float num = CurrentEnergyGainRate();
+            float num2 = CurrentStoredEnergy();
+            if (num2 + num >= -1E-07f && !SteamNetManager.Map.gameConditionManager.ConditionIsActive(GameConditionDefOf.SolarFlare))
+            {
+                float num3;
+                if (batteryComps.Count > 0 && num2 >= 0.1f)
                 {
-                    this.DistributeEnergyAmongBatteries(extra);
+                    num3 = num2 - 5f;
                 }
                 else
                 {
-                    float num = -extra;
-                    this.givingBats.Clear();
-                    for (int i = 0; i < this.batteryComps.Count; i++)
+                    num3 = num2;
+                }
+                if (UnityData.isDebugBuild)
+                {
+                debugLastApparentStoredEnergy = num3;
+                debugLastCreatedEnergy = num;
+                debugLastRawStoredEnergy = num2;
+                }
+                if (num3 + num >= 0f)
+                {
+                    partsWantingSteamOn.Clear();
+                    for (int i = 0; i < steamComps.Count; i++)
                     {
-                        if (this.batteryComps[i].StoredSteamEnergy > 1E-07f)
+                        if (!steamComps[i].SteamOn && FlickUtility.WantsToBeOn(steamComps[i].parent) && !steamComps[i].parent.IsBrokenDown())
                         {
-                            this.givingBats.Add(this.batteryComps[i]);
+                            partsWantingSteamOn.Add(steamComps[i]);
                         }
                     }
-                    float a = num / (float)this.givingBats.Count;
-                    int num2 = 0;
-                    while (num > 1E-07f)
+                    if (partsWantingSteamOn.Count > 0)
                     {
-                        for (int j = 0; j < this.givingBats.Count; j++)
+                        int num4 = 200 / partsWantingSteamOn.Count;
+                        if (num4 < 30)
                         {
-                            float num3 = Mathf.Min(a, this.givingBats[j].StoredSteamEnergy);
-                            this.givingBats[j].DrawSteam(num3);
-                            num -= num3;
-                            if (num < 1E-07f)
+                            num4 = 30;
+                        }
+                        if (Find.TickManager.TicksGame % num4 == 0)
+                        {
+                            CompSteamTrader compSteamTrader = partsWantingSteamOn.RandomElement<CompSteamTrader>();
+                            if (num + num2 >= -(compSteamTrader.SteamEnergyOutputPerTick + 1E-07f))
                             {
-                                return;
+                                compSteamTrader.SteamOn = true;
+                                num += compSteamTrader.SteamEnergyOutputPerTick;
                             }
                         }
-                        num2++;
-                        if (num2 > 10)
-                        {
-                            break;
-                        }
                     }
-                    if (num > 1E-07f)
+                }
+            ChangeStoredEnergy(num);
+            }
+            else if (Find.TickManager.TicksGame % 20 == 0)
+            {
+                potentialShutdownParts.Clear();
+                for (int j = 0; j < steamComps.Count; j++)
+                {
+                    if (steamComps[j].SteamOn && steamComps[j].SteamEnergyOutputPerTick < 0f)
                     {
-                        Log.Warning("Drew energy from a SteamNet that didn't have it.");
+                        potentialShutdownParts.Add(steamComps[j]);
                     }
+                }
+                if (potentialShutdownParts.Count > 0)
+                {
+                    potentialShutdownParts.RandomElement<CompSteamTrader>().SteamOn = false;
                 }
             }
+        }
 
-            private void DistributeEnergyAmongBatteries(float energy)
+        private void ChangeStoredEnergy(float extra)
+        {
+            if (extra > 0f)
             {
-                if (energy <= 0f || !this.batteryComps.Any<CompSteamBattery>())
+            DistributeEnergyAmongBatteries(extra);
+            }
+            else
+            {
+                float num = -extra;
+            givingBats.Clear();
+                for (int i = 0; i < batteryComps.Count; i++)
                 {
-                    return;
+                    if (batteryComps[i].StoredSteamEnergy > 1E-07f)
+                    {
+                    givingBats.Add(batteryComps[i]);
+                    }
                 }
-                SteamNet.batteriesShuffled.Clear();
-                SteamNet.batteriesShuffled.AddRange(this.batteryComps);
-                SteamNet.batteriesShuffled.Shuffle<CompSteamBattery>();
-                int num = 0;
-                while (true)
+                float a = num / (float)givingBats.Count;
+                int num2 = 0;
+                while (num > 1E-07f)
                 {
-                    num++;
-                    if (num > 10000)
+                    for (int j = 0; j < givingBats.Count; j++)
+                    {
+                        float num3 = Mathf.Min(a, givingBats[j].StoredSteamEnergy);
+                        givingBats[j].DrawSteam(num3);
+                        num -= num3;
+                        if (num < 1E-07f)
+                        {
+                            return;
+                        }
+                    }
+                    num2++;
+                    if (num2 > 10)
                     {
                         break;
                     }
-                    float num2 = 3.40282347E+38f;
-                    for (int i = 0; i < SteamNet.batteriesShuffled.Count; i++)
-                    {
-                        num2 = Mathf.Min(num2, SteamNet.batteriesShuffled[i].AmountCanAccept);
-                    }
-                    if (energy < num2 * (float)SteamNet.batteriesShuffled.Count)
-                    {
-                        goto IL_12F;
-                    }
-                    for (int j = SteamNet.batteriesShuffled.Count - 1; j >= 0; j--)
-                    {
-                        float amountCanAccept = SteamNet.batteriesShuffled[j].AmountCanAccept;
-                        bool flag = amountCanAccept <= 0f || amountCanAccept == num2;
-                        if (num2 > 0f)
-                        {
-                            SteamNet.batteriesShuffled[j].AddEnergy(num2);
-                            energy -= num2;
-                        }
-                        if (flag)
-                        {
-                            SteamNet.batteriesShuffled.RemoveAt(j);
-                        }
-                    }
-                    if (energy < 0.0005f || !SteamNet.batteriesShuffled.Any<CompSteamBattery>())
-                    {
-                        goto IL_196;
-                    }
                 }
-                Log.Error("Too many iterations.");
-                goto IL_1A0;
-                IL_12F:
-                float amount = energy / (float)SteamNet.batteriesShuffled.Count;
-                for (int k = 0; k < SteamNet.batteriesShuffled.Count; k++)
+                if (num > 1E-07f)
                 {
-                    SteamNet.batteriesShuffled[k].AddEnergy(amount);
+                    Log.Warning("Drew energy from a SteamNet that didn't have it.");
                 }
-                energy = 0f;
-                IL_196:
-                IL_1A0:
-                SteamNet.batteriesShuffled.Clear();
-            }
-
-            public string DebugString()
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.AppendLine("POWERNET:");
-                stringBuilder.AppendLine("  Created energy: " + this.debugLastCreatedEnergy);
-                stringBuilder.AppendLine("  Raw stored energy: " + this.debugLastRawStoredEnergy);
-                stringBuilder.AppendLine("  Apparent stored energy: " + this.debugLastApparentStoredEnergy);
-                stringBuilder.AppendLine("  hasSteamSource: " + this.hasSteamSource);
-                stringBuilder.AppendLine("  Connectors: ");
-                foreach (CompSteam current in this.connectors)
-                {
-                    stringBuilder.AppendLine("      " + current.parent);
-                }
-                stringBuilder.AppendLine("  Transmitters: ");
-                foreach (CompSteam current2 in this.transmitters)
-                {
-                    stringBuilder.AppendLine("      " + current2.parent);
-                }
-                stringBuilder.AppendLine("  steamComps: ");
-                foreach (CompSteamTrader current3 in this.steamComps)
-                {
-                    stringBuilder.AppendLine("      " + current3.parent);
-                }
-                stringBuilder.AppendLine("  batteryComps: ");
-                foreach (CompSteamBattery current4 in this.batteryComps)
-                {
-                    stringBuilder.AppendLine("      " + current4.parent);
-                }
-                return stringBuilder.ToString();
             }
         }
+
+        private void DistributeEnergyAmongBatteries(float energy)
+        {
+            if (energy <= 0f || !batteryComps.Any<CompSteamBattery>())
+            {
+                return;
+            }
+
+            batteriesShuffled.Clear();
+            batteriesShuffled.AddRange(batteryComps);
+            batteriesShuffled.Shuffle<CompSteamBattery>();
+
+            //magic numbers imported from rimworld's PowerNet.cs
+            for(int num = 1; num < 10000; num++)
+            {
+                float num2 = 3.40282347E+38f;
+                for (int i = 0; i < batteriesShuffled.Count; i++)
+                {
+                    num2 = Mathf.Min(num2, batteriesShuffled[i].AmountCanAccept);
+                }
+
+                //if energy is less than the least amount acceptable * total batteries:
+                if (energy < num2 * (float)batteriesShuffled.Count)
+                {
+                    float amount = energy / (float)batteriesShuffled.Count;
+                    for (int k = 0; k < batteriesShuffled.Count; k++)
+                    {
+                        batteriesShuffled[k].AddEnergy(amount);
+                    }
+                    energy = 0f;
+                    return;
+                }
+                else
+                {
+                    foreach (CompSteamBattery battery in batteriesShuffled)
+                    {
+                        if (num2 > 0f)
+                        {
+                            battery.AddEnergy(num2);
+                            energy -= num2;
+                        }
+                        if (battery.AmountCanAccept <= 0f || battery.AmountCanAccept == num2)
+                        {
+                            batteriesShuffled.Remove(battery);
+                        }
+                    }
+                    if (energy < 0.0005f || !batteriesShuffled.Any<CompSteamBattery>())
+                    {
+                        batteriesShuffled.Clear();
+                        return;
+                    }
+                }
+            }
+        }
+
+        public string DebugString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("POWERNET:");
+            stringBuilder.AppendLine("  Created energy: " + debugLastCreatedEnergy);
+            stringBuilder.AppendLine("  Raw stored energy: " + debugLastRawStoredEnergy);
+            stringBuilder.AppendLine("  Apparent stored energy: " + debugLastApparentStoredEnergy);
+            stringBuilder.AppendLine("  hasSteamSource: " + hasSteamSource);
+            stringBuilder.AppendLine("  Connectors: ");
+            foreach (CompSteam current in connectors)
+            {
+                stringBuilder.AppendLine("      " + current.parent);
+            }
+            stringBuilder.AppendLine("  Transmitters: ");
+            foreach (CompSteam current2 in transmitters)
+            {
+                stringBuilder.AppendLine("      " + current2.parent);
+            }
+            stringBuilder.AppendLine("  steamComps: ");
+            foreach (CompSteamTrader current3 in steamComps)
+            {
+                stringBuilder.AppendLine("      " + current3.parent);
+            }
+            stringBuilder.AppendLine("  batteryComps: ");
+            foreach (CompSteamBattery current4 in batteryComps)
+            {
+                stringBuilder.AppendLine("      " + current4.parent);
+            }
+            return stringBuilder.ToString();
+        }
     }
-    
 }
