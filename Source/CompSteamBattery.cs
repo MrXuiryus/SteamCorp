@@ -14,7 +14,7 @@ namespace SteamCorp
         public float AmountCanAccept
         {
             get => parent.IsBrokenDown() ? 0f : 
-                (GetProps().storedEnergyMax - storedSteamEnergy) / GetProps().efficiency;
+                (Props.storedEnergyMax - storedSteamEnergy) / Props.efficiency;
         }
 
         public float StoredSteamEnergy
@@ -24,19 +24,19 @@ namespace SteamCorp
 
         public float StoredEnergyPct
         {
-            get => storedSteamEnergy / GetProps().storedEnergyMax;
+            get => storedSteamEnergy / Props.storedEnergyMax;
         }
 
-        public CompProperties_Battery GetProps()
+        public new CompProperties_SteamBattery Props
         {
-            return (CompProperties_SteamBattery)props;
+            get => (CompProperties_SteamBattery)props;
         }
 
         public override void PostExposeData()
         {
             base.PostExposeData();
             Scribe_Values.Look<float>(ref storedSteamEnergy, "storedPower", 0f, false);
-            CompProperties_Battery props = GetProps();
+            CompProperties_SteamBattery props = Props;
             if (storedSteamEnergy > props.storedEnergyMax)
             {
                 storedSteamEnergy = props.storedEnergyMax;
@@ -54,7 +54,7 @@ namespace SteamCorp
             {
                 amount = AmountCanAccept;
             }
-            amount *= GetProps().efficiency;
+            amount *= Props.efficiency;
             storedSteamEnergy += amount;
         }
 
@@ -71,7 +71,7 @@ namespace SteamCorp
         public void SetStoredEnergyPct(float pct)
         {
             pct = Mathf.Clamp01(pct);
-            storedSteamEnergy = GetProps().storedEnergyMax * pct;
+            storedSteamEnergy = Props.storedEnergyMax * pct;
         }
 
         public override void ReceiveCompSignal(string signal)
@@ -84,7 +84,7 @@ namespace SteamCorp
 
         public override string CompInspectStringExtra()
         {
-            CompProperties_Battery props = GetProps();
+            CompProperties_SteamBattery props = Props;
             string text = string.Concat(new string[]
             {
             "PowerBatteryStored".Translate(),
@@ -107,15 +107,9 @@ namespace SteamCorp
             return text + "\n" + base.CompInspectStringExtra();
         }
 
-        [DebuggerHidden]
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        internal void DrawSteam(float num3)
         {
-            CompPowerBattery.< CompGetGizmosExtra > c__IteratorB3 < CompGetGizmosExtra > c__IteratorB = new CompPowerBattery.< CompGetGizmosExtra > c__IteratorB3();
-
-        < CompGetGizmosExtra > c__IteratorB.<> f__this = this;
-            CompPowerBattery.< CompGetGizmosExtra > c__IteratorB3 expr_0E = < CompGetGizmosExtra > c__IteratorB;
-            expr_0E.$PC = -2;
-            return expr_0E;
+            throw new NotImplementedException();
         }
     }
 }

@@ -18,15 +18,7 @@ namespace SteamCorp
             get => steamNet ?? connectParent.SteamNet;
             set => steamNet = value;
         }
-
-        private int intGridID;
-
-        public int GridID
-        {
-            get => intGridID;
-            set => intGridID = value;
-        }
-
+        
         public CompProperties_Steam Props
         {
             get => (CompProperties_Steam)props;

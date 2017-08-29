@@ -21,7 +21,7 @@ namespace SteamCorp
             breakdownableComp = parent.GetComp<CompBreakdownable>();
             if (Props.baseSteamConsumption < 0f && !parent.IsBrokenDown())
             {
-                PowerOn = true;
+                SteamOn = true;
             }
         }
 
@@ -36,7 +36,7 @@ namespace SteamCorp
             if ((breakdownableComp != null && breakdownableComp.BrokenDown) 
                 || (refuelableComp != null && !refuelableComp.HasFuel) 
                 || (flickableComp != null && !flickableComp.SwitchIsOn) 
-                || !PowerOn)
+                || !SteamOn)
             {
                 SteamPowerOutput = 0f;
             }

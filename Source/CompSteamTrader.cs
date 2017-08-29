@@ -16,7 +16,7 @@ namespace SteamCorp
 
         public Action powerStoppedAction;
 
-        private bool powerOn;
+        private bool steamOn;
 
         private float steamPowerOutput;
 
@@ -48,16 +48,16 @@ namespace SteamCorp
             get => SteamPowerOutput * CompPower.WattsToWattDaysPerTick;
         }
 
-        public bool PowerOn
+        public bool SteamOn
         {
-            get => powerOn;
+            get => steamOn;
             set
             {
-                // only trip if powerOn has changed
-                if (powerOn != value)
+                // only trip if steamOn has changed
+                if (steamOn != value)
                 {
-                    powerOn = value;
-                    if (powerOn)
+                    steamOn = value;
+                    if (steamOn)
                     {
                         if (!FlickUtility.WantsToBeOn(parent))
                         {
@@ -106,7 +106,7 @@ namespace SteamCorp
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.AppendLine(parent.LabelCap + " CompPower:");
-                stringBuilder.AppendLine("   PowerOn: " + PowerOn);
+                stringBuilder.AppendLine("   PowerOn: " + SteamOn);
                 stringBuilder.AppendLine("   energyProduction: " + SteamPowerOutput);
                 return stringBuilder.ToString();
             }
@@ -116,11 +116,11 @@ namespace SteamCorp
         {
             if (signal == "FlickedOff" || signal == "ScheduledOff" || signal == "Breakdown")
             {
-                PowerOn = false;
+                SteamOn = false;
             }
             if (signal == "RanOutOfFuel" && powerLastOutputted)
             {
-                PowerOn = false;
+                SteamOn = false;
             }
         }
 
@@ -140,7 +140,7 @@ namespace SteamCorp
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<bool>(ref powerOn, "powerOn", true, false);
+            Scribe_Values.Look<bool>(ref steamOn, "powerOn", true, false);
         }
 
         public override void PostDraw()
@@ -152,7 +152,7 @@ namespace SteamCorp
                 {
                     parent.Map.overlayDrawer.DrawOverlay(parent, OverlayTypes.PowerOff);
                 }
-                else if (FlickUtility.WantsToBeOn(parent) && !PowerOn)
+                else if (FlickUtility.WantsToBeOn(parent) && !SteamOn)
                 {
                     parent.Map.overlayDrawer.DrawOverlay(parent, OverlayTypes.NeedsPower);
                 }
@@ -170,7 +170,7 @@ namespace SteamCorp
         public override void ResetPowerVars()
         {
             base.ResetPowerVars();
-            powerOn = false;
+            steamOn = false;
             steamPowerOutput = 0f;
             powerLastOutputted = false;
             sustainerPowered = null;
@@ -183,7 +183,7 @@ namespace SteamCorp
         public override void LostConnectParent()
         {
             base.LostConnectParent();
-            PowerOn = false;
+            SteamOn = false;
         }
 
         public override string CompInspectStringExtra()
@@ -197,7 +197,7 @@ namespace SteamCorp
             {
                 str = "PowerNeeded".Translate() + ": " + (-SteamPowerOutput).ToString("#####0") + " W";
             }
-            return str + "\n" + base.CompInspectStringExtra();
+            return str + base.CompInspectStringExtra();
         }
 
         private void StartSustainerPoweredIfInactive()

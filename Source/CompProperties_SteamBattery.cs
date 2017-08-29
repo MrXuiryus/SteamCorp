@@ -5,7 +5,7 @@ namespace SteamCorp
 {
     public class CompProperties_SteamBattery : CompProperties_Steam
     {
-        public float storedEnergyMax = 1000f;
+        public float storedEnergyMax = 2000f;
 
         public float efficiency = 0.5f;
 
