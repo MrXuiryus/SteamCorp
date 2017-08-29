@@ -8,13 +8,11 @@ namespace SteamCorp
 {
     public class SteamBuilding : Building
     {
-        private SteamPipeGrid pipeGrid;
-        public SteamPipeGrid PipeGrid { get => pipeGrid; set => pipeGrid = value; }
+        private SteamNetGrid pipeGrid;
+        public SteamNetGrid PipeGrid { get => pipeGrid; set => pipeGrid = value; }
 
-        private CompSteamPipe pipeComp;
-        public CompSteamPipe PipeComp { get => pipeComp; set => pipeComp = value; }
-        
-        public int GridID { get => pipeComp.GridID; set => pipeComp.GridID = value; }
+        private CompSteam pipeComp;
+        public CompSteam PipeComp { get => pipeComp; set => pipeComp = value; }
 
         /* Possibly not useful for now, uncomment to use.
         // Returns true if this SteamBuilding is connected to a pipe

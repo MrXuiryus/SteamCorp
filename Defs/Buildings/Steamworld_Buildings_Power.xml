@@ -4,6 +4,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamGenerator</defName>
     <label>Steam Generator</label>
+    <thingClass>Building</thingClass>
     <graphicData>
       <texPath>Buildings/steamgenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -33,11 +34,10 @@
       <Component>2</Component>
     </costList>
     <comps>
-      <li Class="CompProperties_Steam">
-        <compClass>CompSteamPlant</compClass>
+      <li Class="SteamCorp.CompProperties_Steam">
+        <compClass>SteamCorp.CompSteamPowerPlant</compClass>
         <baseSteamConsumption>-1000</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
-      
     </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Refuelable">
@@ -71,13 +71,13 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamPipe</defName>
     <label>Steam Pipe</label>
-    <thingClass>SteamCorp.PipeBuilding</thingClass>
+    <thingClass>Building</thingClass>
     <graphicData>
       <texPath>Buildings/Steampipe_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <linkType>Transmitter</linkType>
       <linkFlags>
-        <li>SteamConduit</li>
+        <li>PowerConduit</li>
       </linkFlags>
       <damageData>
         <rect>(0,0.35,1,0.3)</rect>
@@ -108,8 +108,8 @@
       <MrXuiryus_Brass>1</MrXuiryus_Brass>
     </costList>
     <comps>
-      <li Class="CompProperties_Steam">
-        <compClass>CompSteamTransmitter</compClass>
+      <li Class="SteamCorp.CompProperties_Steam">
+        <compClass>SteamCorp.CompSteamTransmitter</compClass>
         <transmitsSteam>true</transmitsSteam>
       </li>
 	  <li Class="CompProperties_Glower">
@@ -136,7 +136,7 @@
 <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamvalve</defName>
     <label>steam valve</label>
-    <thingClass>Building_SteamSwitch</thingClass>
+    <thingClass>Building</thingClass>
     <category>Building</category>
     <description>Allows or disallows steam to pass through pipes</description>
     <graphicData>
@@ -167,8 +167,8 @@
       <Component>1</Component>
     </costList>
     <comps>
-      <li Class="CompProperties_Steam">
-        <compClass>CompSteamTransmitter</compClass>
+      <li Class="SteamCorp.CompProperties_Steam">
+        <compClass>SteamCorp.CompSteamTransmitter</compClass>
         <transmitsSteam>true</transmitsSteam>
       </li>
       <li Class="CompProperties_Flickable"/>
@@ -183,14 +183,16 @@
       <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
   </ThingDef>
-<!-- STEAM BATTERY
+  
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamcondenser</defName>
     <label>steam condenser</label>
-    <thingClass>Building_Battery</thingClass>
+    <thingClass>SteamCorp.Building_SteamBattery</thingClass>
     <graphicData>
-      <texPath>Buildings/Steamcondenser</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
+		<!-- changed from steamcondenser to steamgenerator for testing-->
+      <texPath>Buildings/steamgenerator</texPath>
+		<!-- changed from Graphic_Multi to Graphic_Single for testing-->
+      <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(2,3)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
@@ -224,11 +226,10 @@
       <Component>2</Component>
     </costList>
     <comps>
-      <li Class="CompProperties_Battery">
-        <storedEnergyMax>1000</storedEnergyMax>
+      <li Class="SteamCorp.CompProperties_SteamBattery">
+        <storedEnergyMax>2000</storedEnergyMax>
         <efficiency>0.5</efficiency>
-        <startElectricalFires>true</startElectricalFires>
-        <transmitsPower>true</transmitsPower>
+        <transmitsSteam>true</transmitsSteam>
       </li>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
@@ -241,5 +242,5 @@
     <researchPrerequisites>
       <li>Batteries</li>
     </researchPrerequisites>
-  </ThingDef>  -->
+  </ThingDef>
 </Buildings>

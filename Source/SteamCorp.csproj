@@ -53,17 +53,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building_SteamBattery.cs" />
     <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />
     <Compile Include="CompSteam.cs" />
     <Compile Include="CompSteamBattery.cs" />
-    <Compile Include="CompSteamPipe.cs" />
-    <Compile Include="CompSteamPlant.cs" />
     <Compile Include="CompSteamPowerPlant.cs" />
     <Compile Include="CompSteamTrader.cs" />
+    <Compile Include="CompSteamTransmitter.cs" />
+    <Compile Include="GenStep_Steam.cs" />
     <Compile Include="SteamBuilding.cs" />
-    <Compile Include="SteamPipeGrid.cs" />
+    <Compile Include="SteamNetGrid.cs" />
+    <Compile Include="SteamNetMaker.cs" />
+    <Compile Include="SteamNetManager.cs" />
+    <Compile Include="SteamPowerConnectionMaker.cs" />
     <Compile Include="SteamPowerNet.cs" />
   </ItemGroup>
   <ItemGroup>
