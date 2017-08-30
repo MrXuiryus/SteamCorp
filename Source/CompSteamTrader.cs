@@ -64,7 +64,7 @@ namespace SteamCorp
                         {
                             Log.Warning("Tried to power on " + parent + " which did not desire it.");
                         }
-                        else if (parent.IsBrokenDown())
+                        else if (parent.IsSteamBrokenDown())
                         {
                             Log.Warning("Tried to power on " + parent + " which is broken down.");
                             return;
@@ -147,7 +147,7 @@ namespace SteamCorp
         public override void PostDraw()
         {
             base.PostDraw();
-            if (!parent.IsBrokenDown())
+            if (!parent.IsSteamBrokenDown())
             {
                 if (flickableComp != null && !flickableComp.SwitchIsOn)
                 {

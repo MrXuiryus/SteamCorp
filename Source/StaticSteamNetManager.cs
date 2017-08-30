@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Verse;
-using RimWorld;
-
-namespace SteamCorp
+﻿namespace SteamCorp
 {
     public static class StaticSteamNetManager
     {

@@ -57,12 +57,65 @@
         <compClass>CompHeatPusherPowered</compClass>
         <heatPerSecond>4</heatPerSecond>
       </li>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+    </comps>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_SteamCollector</defName>
+    <label>Steam Collector</label>
+    <thingClass>SteamCorp.SteamBuilding</thingClass>
+    <graphicData>
+      <texPath>Buildings/steamgenerator</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <pathCost>150</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>1.0</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <description>Generates steam by burning coal which can be used to power other devices and items.</description>
+    <canOverlapZones>false</canOverlapZones>
+    <size>(2,2)</size>
+    <building>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+    </building>
+    <costList>
+      <MrXuiryus_Brass>100</MrXuiryus_Brass>
+      <Component>2</Component>
+    </costList>
+    <comps>
       <li Class="SteamCorp.CompProperties_Steam">
-        <compClass>SteamCorp.CompSteam</compClass>
-		<transmitsSteam>true</transmitsSteam>
-		<baseSteamConsumption>-1000</baseSteamConsumption>
+        <compClass>SteamCorp.CompSteamPowerPlant</compClass>
+        <baseSteamConsumption>-3600</baseSteamConsumption>
+        <transmitsSteam>true</transmitsSteam>
+    </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>6</glowRadius>
+        <glowColor>(217,112,33,0)</glowColor>
       </li>
-      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>4</heatPerSecond>
+      </li>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <designationCategory>Power</designationCategory>
@@ -237,7 +290,7 @@
         <efficiency>0.5</efficiency>
         <transmitsSteam>true</transmitsSteam>
       </li>
-      <li Class="CompProperties_Breakdownable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <designationCategory>Power</designationCategory>

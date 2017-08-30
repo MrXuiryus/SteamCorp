@@ -1,5 +1,4 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 
 namespace SteamCorp
 {
@@ -19,7 +18,7 @@ namespace SteamCorp
             base.PostSpawnSetup(respawningAfterLoad);
             refuelableComp = parent.GetComp<CompRefuelable>();
             breakdownableComp = parent.GetComp<CompBreakdownable>();
-            if (Props.baseSteamConsumption < 0f && !parent.IsBrokenDown())
+            if (Props.baseSteamConsumption < 0f && !parent.IsSteamBrokenDown())
             {
                 SteamOn = true;
             }

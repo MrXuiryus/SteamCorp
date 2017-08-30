@@ -1,7 +1,4 @@
-﻿using System;
-using RimWorld;
-
-namespace SteamCorp
+﻿namespace SteamCorp
 {
     public class CompProperties_SteamBattery : CompProperties_Steam
     {

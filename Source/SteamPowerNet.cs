@@ -183,7 +183,7 @@ namespace SteamCorp
                     partsWantingSteamOn.Clear();
                     for (int i = 0; i < steamComps.Count; i++)
                     {
-                        if (!steamComps[i].SteamOn && FlickUtility.WantsToBeOn(steamComps[i].parent) && !steamComps[i].parent.IsBrokenDown())
+                        if (!steamComps[i].SteamOn && FlickUtility.WantsToBeOn(steamComps[i].parent) && !steamComps[i].parent.IsSteamBrokenDown())
                         {
                             partsWantingSteamOn.Add(steamComps[i]);
                         }
@@ -284,11 +284,11 @@ namespace SteamCorp
             for(int num = 1; num < 10000; num++)
             {
                 float num2 = 3.40282347E+38f;
-                for (int i = 0; i < batteriesShuffled.Count; i++)
+                foreach (CompSteamBattery battery in batteriesShuffled)
                 {
-                    num2 = Mathf.Min(num2, batteriesShuffled[i].AmountCanAccept);
+                    num2 = Mathf.Min(num2, battery.AmountCanAccept);
                 }
-
+                
                 //if energy is less than the least amount acceptable * total batteries:
                 if (energy < num2 * (float)batteriesShuffled.Count)
                 {

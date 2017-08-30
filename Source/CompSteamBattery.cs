@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using Verse;
 using RimWorld;
@@ -13,7 +11,7 @@ namespace SteamCorp
 
         public float AmountCanAccept
         {
-            get => parent.IsBrokenDown() ? 0f : 
+            get => parent.IsSteamBrokenDown() ? 0f : 
                 (Props.storedEnergyMax - storedSteamEnergy) / Props.efficiency;
         }
 

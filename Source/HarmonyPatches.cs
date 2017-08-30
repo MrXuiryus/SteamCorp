@@ -36,6 +36,7 @@ namespace SteamCorp
         {
             // set manager to new manager if null
             StaticSteamNetManager.Manager = new SteamNetManager(__instance, new SteamNetGrid(__instance));
+            StaticSteamBreakdownManager.Manager = new SteamBreakdownManager(__instance);
         }
     }
 
@@ -151,7 +152,7 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void GetTransmitterPatch(ref Building __result, ref IntVec3 c, ref Map map)
         {
-            if(__result == null)
+            if (__result == null)
             {
                 List<Thing> list = map.thingGrid.ThingsListAt(c);
                 for (int i = 0; i < list.Count; i++)
@@ -160,6 +161,20 @@ namespace SteamCorp
                     {
                         __result = (Building)list[i];
                     }
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(WorkGiver_FixBrokenDownBuilding), "PotentialWorkThingsGlobal")]
+        class WorkGiver_FixBrokenDownBuildingPatch
+        {
+            [HarmonyPostfix]
+            public static void PotentialWorkThingsGlobalPatch(WorkGiver_FixBrokenDownBuilding __instance,
+                ref IEnumerable<Thing> __result, ref Pawn pawn)
+            {
+                foreach (Thing t in StaticSteamBreakdownManager.Manager.BrokenDownThings)
+                {
+                    __result.Add<Thing>(t);
                 }
             }
         }
