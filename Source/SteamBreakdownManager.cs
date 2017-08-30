@@ -5,7 +5,7 @@ namespace SteamCorp
 {
     public class SteamBreakdownManager : MapComponent
     {
-        public const int CheckIntervalTicks = 1;
+        public const int CheckIntervalTicks = 1041;
 
         private List<CompSteamBreakdownable> comps = new List<CompSteamBreakdownable>();
 
