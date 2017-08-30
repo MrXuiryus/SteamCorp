@@ -25,7 +25,6 @@ namespace SteamCorp
         public static void FinalizeInitPatch(Map __instance)
         {
             StaticSteamNetManager.Manager.UpdatePowerNetsAndConnections_First();
-            Log.Message("Updated Power Nets");
         }
     }
 
@@ -37,7 +36,6 @@ namespace SteamCorp
         {
             // set manager to new manager if null
             StaticSteamNetManager.Manager = new SteamNetManager(__instance, new SteamNetGrid(__instance));
-            Log.Message("Manager now is " + StaticSteamNetManager.Manager);
         }
     }
 
@@ -112,6 +110,31 @@ namespace SteamCorp
         }
     }
 
+    [HarmonyPatch(typeof(Graphic_LinkedTransmitter), "ShouldLinkWith")]
+    class Graphic_LinkedTransmitterPatch
+    {
+        [HarmonyPostfix]
+        public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
+        {
+            bool parentIsSteamBuilding = parent is SteamBuilding;
+            bool netAtCIsNull = StaticSteamNetManager.Manager.Grid.TransmittedPowerNetAt(c) == null;
+            //fix steam items trying to link to electricity items
+            if (__result && !netAtCIsNull && !parentIsSteamBuilding)
+            {
+                __result = false;
+            }
+            else if (__result && netAtCIsNull && parentIsSteamBuilding)
+            {
+                __result = false;
+            }
+            //fix steam items not finding other steam items
+            else if (!__result && !netAtCIsNull && parentIsSteamBuilding && c.InBounds(parent.Map))
+            {
+                __result = true;
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(GraphicUtility), "WrapLinked")]
     class GraphicUtilityPatch
     {
@@ -136,7 +159,6 @@ namespace SteamCorp
                     if (list[i].TryGetComp<CompSteam>() != null)
                     {
                         __result = (Building)list[i];
-                        Log.Message("Found building " + __result);
                     }
                 }
             }
