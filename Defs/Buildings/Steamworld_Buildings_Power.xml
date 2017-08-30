@@ -82,7 +82,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <linkType>Transmitter</linkType>
       <linkFlags>
-        <li>PowerConduit</li>
+        <li>Custom1</li>
       </linkFlags>
       <damageData>
         <rect>(0,0.35,1,0.3)</rect>
@@ -123,7 +123,6 @@
 	  </li>
     </comps>
     <placeWorkers>
-	  <!-- TODO: Change to PlaceWorker_Pipe -->
       <li>SteamCorp.PlaceWorker_Pipe</li>
     </placeWorkers>
     <rotatable>false</rotatable>
@@ -199,7 +198,7 @@
       <texPath>Buildings/steamgenerator</texPath>
 		<!-- changed from Graphic_Multi to Graphic_Single for testing-->
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(2,3)</drawSize>
+      <drawSize>(1,2)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
         <cornerTR>Damage/Corner</cornerTR>

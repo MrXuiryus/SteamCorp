@@ -85,15 +85,9 @@ namespace SteamCorp
 
         public void DrawDebugPowerNetGrid()
         {
-            if (!DebugViewSettings.drawPowerNetGrid)
-            {
-                return;
-            }
-            if (Current.ProgramState != ProgramState.Playing)
-            {
-                return;
-            }
-            if (map != Find.VisibleMap)
+            if (!DebugViewSettings.drawPowerNetGrid 
+                || Current.ProgramState != ProgramState.Playing 
+                || map != Find.VisibleMap)
             {
                 return;
             }

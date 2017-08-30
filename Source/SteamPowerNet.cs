@@ -49,15 +49,15 @@ namespace SteamCorp
         {
             foreach (CompSteam comp in newTransmitters)
             {
-            transmitters.Add(comp);
+                transmitters.Add(comp);
                 comp.SteamNet = this;
-            RegisterAllComponentsOf(comp.parent);
+                RegisterAllComponentsOf(comp.parent);
                 if (comp.connectChildren != null)
                 {
                     List<CompSteam> connectChildren = comp.connectChildren;
                     for (int i = 0; i < connectChildren.Count; i++)
                     {
-                    RegisterConnector(connectChildren[i]);
+                        RegisterConnector(connectChildren[i]);
                     }
                 }
             }
@@ -66,7 +66,7 @@ namespace SteamCorp
             {
                 if (IsSteamPowerSource(transmitters[j]))
                 {
-                hasSteamSource = true;
+                    hasSteamSource = true;
                     break;
                 }
             }

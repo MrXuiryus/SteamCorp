@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using RimWorld;
 using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Reflection;
@@ -62,6 +63,62 @@ namespace SteamCorp
             {
                 StaticSteamNetManager.Manager.Grid.DrawDebugPowerNetGrid();
             }
+        }
+    }
+
+    /*[HarmonyPatch(typeof(BuildDesignatorUtility), "TryDrawPowerGridAndAnticipatedConnection")]
+    class BuildDesignatorUtilityPatch
+    {
+        [HarmonyPostfix]
+        public static void TryDrawPowerGridAndAnticipatedConnectionPatch(ref BuildableDef def)
+        {
+            Log.Message("nullcheck");
+            if (def is ThingDef thingDef && thingDef.CompDefFor<CompSteam>() != null)
+            {
+                Log.Message("NOTNULL");
+                OverlayDrawHandler.DrawPowerGridOverlayThisFrame();
+                IntVec3 intVec = UI.MouseCell();
+                CompSteam compPower = SteamPowerConnectionMaker.BestTransmitterForConnector(intVec, Find.VisibleMap, null);
+                if (compPower != null)
+                {
+                    SteamNetGraphics.RenderAnticipatedWirePieceConnecting(intVec, compPower.parent);
+                }
+            }
+        }
+    }*/
+
+    [HarmonyPatch(typeof(Graphic_LinkedTransmitterOverlay), "ShouldLinkWith")]
+    class Graphic_LinkedTransmitterOverlayPatch
+    {
+        [HarmonyPostfix]
+        public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
+        {
+            bool parentIsSteamBuilding = parent is SteamBuilding;
+            bool netAtCIsNull = StaticSteamNetManager.Manager.Grid.TransmittedPowerNetAt(c) == null;
+            //fix steam items trying to link to electricity items
+            if (__result && !netAtCIsNull && !parentIsSteamBuilding)
+            {
+                __result = false;
+            }
+            else if (__result && netAtCIsNull && parentIsSteamBuilding)
+            {
+                __result = false;
+            }
+            //fix steam items not finding other steam items
+            else if (!__result && !netAtCIsNull && parentIsSteamBuilding && c.InBounds(parent.Map))
+            {
+                __result = true;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(GraphicUtility), "WrapLinked")]
+    class GraphicUtilityPatch
+    {
+        [HarmonyPrefix]
+        public static bool WrapLinkedPatch(ref Graphic subGraphic, ref LinkDrawerType linkDrawerType)
+        {
+            return true;
         }
     }
 

@@ -38,7 +38,7 @@ namespace SteamCorp
                         List<Thing> thingList = b.parent.Map.thingGrid.ThingsListAt(c);
                         foreach (Thing thing in thingList)
                         {
-                            if (thing.def.ConnectToPower)
+                            if (thing.def.CompDefFor<CompSteam>() != null)
                             {
                                 yield return ((Building)thing).GetComp<CompSteam>();
                             }

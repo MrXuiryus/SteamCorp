@@ -46,18 +46,6 @@ namespace SteamCorp
                                         break;
                                     }
                                 }
-                                else if (thingList[i] is Building building)
-                                {
-                                    if (building.TransmitsPowerNow)
-                                    {
-                                        if (!openSet.Contains(building) && !currentSet.Contains(building) 
-                                            && !closedSet.Contains(building))
-                                        {
-                                            openSet.Add(building);
-                                            break;
-                                        }
-                                    }
-                                }
                             }
                         }
                     }

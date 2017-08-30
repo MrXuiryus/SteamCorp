@@ -77,6 +77,10 @@ namespace SteamCorp
                     }
                 }
             }
+            if(parent.GetComp<CompGlower>() != null)
+            {
+                parent.GetComp<CompGlower>();
+            }
         }
 
         public virtual void LostConnectParent()
@@ -89,7 +93,7 @@ namespace SteamCorp
             base.PostPrintOnto(layer);
             if (connectParent != null)
             {
-                PowerNetGraphics.PrintWirePieceConnecting(layer, parent, connectParent.parent, false);
+                SteamNetGraphics.PrintWirePieceConnecting(layer, parent, connectParent.parent, false);
             }
         }
 

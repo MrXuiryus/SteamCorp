@@ -104,7 +104,7 @@ namespace SteamCorp
 
         public void RegisterPowerNet(SteamPowerNet newNet)
         {
-            Log.Message("RegisterPowerNet");
+            //Log.Message("RegisterPowerNet");
             allNets.Add(newNet);
             newNet.SteamNetManager = this;
             Grid.Notify_PowerNetCreated(newNet);
@@ -113,7 +113,7 @@ namespace SteamCorp
 
         public void DeletePowerNet(SteamPowerNet oldNet)
         {
-            Log.Message("DeletePowerNet");
+            //Log.Message("DeletePowerNet");
             allNets.Remove(oldNet);
             Grid.Notify_PowerNetDeleted(oldNet);
         }
@@ -221,18 +221,14 @@ namespace SteamCorp
 
         private void TryCreateNetAt(IntVec3 cell)
         {
-            Log.Message("trying to create net at " + cell);
             if (!cell.InBounds(Map))
             {
-                Log.Message("cell out of bounds");
                 return;
             }
             if (Grid.TransmittedPowerNetAt(cell) == null)
             {
-                Log.Message("Net is null");
                 Building transmitter = cell.GetTransmitter(Map);
-                Log.Message("Transmitter is " + transmitter);
-                if (transmitter != null)
+                if (transmitter != null && transmitter is SteamBuilding)
                 {
                     SteamPowerNet powerNet = SteamNetMaker.NewPowerNetStartingFrom(transmitter);
                     Log.Message("new net is " + powerNet + ", registering");
