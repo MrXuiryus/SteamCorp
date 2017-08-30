@@ -302,7 +302,7 @@ namespace SteamCorp
                 }
                 else
                 {
-                    foreach (CompSteamBattery battery in batteriesShuffled)
+                    foreach (CompSteamBattery battery in batteriesShuffled.ToList())
                     {
                         if (num2 > 0f)
                         {
