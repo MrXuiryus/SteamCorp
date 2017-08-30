@@ -14,7 +14,9 @@ namespace SteamCorp
         {
             var harmony = HarmonyInstance.Create("SteamCorp");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+#if DEBUG
             Log.Message("Completed constructing patches");
+#endif
         }
     }
 
@@ -64,27 +66,6 @@ namespace SteamCorp
             }
         }
     }
-
-    /*[HarmonyPatch(typeof(BuildDesignatorUtility), "TryDrawPowerGridAndAnticipatedConnection")]
-    class BuildDesignatorUtilityPatch
-    {
-        [HarmonyPostfix]
-        public static void TryDrawPowerGridAndAnticipatedConnectionPatch(ref BuildableDef def)
-        {
-            Log.Message("nullcheck");
-            if (def is ThingDef thingDef && thingDef.CompDefFor<CompSteam>() != null)
-            {
-                Log.Message("NOTNULL");
-                OverlayDrawHandler.DrawPowerGridOverlayThisFrame();
-                IntVec3 intVec = UI.MouseCell();
-                CompSteam compPower = SteamPowerConnectionMaker.BestTransmitterForConnector(intVec, Find.VisibleMap, null);
-                if (compPower != null)
-                {
-                    SteamNetGraphics.RenderAnticipatedWirePieceConnecting(intVec, compPower.parent);
-                }
-            }
-        }
-    }*/
 
     [HarmonyPatch(typeof(Graphic_LinkedTransmitterOverlay), "ShouldLinkWith")]
     class Graphic_LinkedTransmitterOverlayPatch
@@ -164,18 +145,18 @@ namespace SteamCorp
                 }
             }
         }
+    }
 
-        [HarmonyPatch(typeof(WorkGiver_FixBrokenDownBuilding), "PotentialWorkThingsGlobal")]
-        class WorkGiver_FixBrokenDownBuildingPatch
+    [HarmonyPatch(typeof(WorkGiver_FixBrokenDownBuilding), "PotentialWorkThingsGlobal")]
+    class WorkGiver_FixBrokenDownBuildingPatch
+    {
+        [HarmonyPostfix]
+        public static void PotentialWorkThingsGlobalPatch(WorkGiver_FixBrokenDownBuilding __instance,
+            ref IEnumerable<Thing> __result, ref Pawn pawn)
         {
-            [HarmonyPostfix]
-            public static void PotentialWorkThingsGlobalPatch(WorkGiver_FixBrokenDownBuilding __instance,
-                ref IEnumerable<Thing> __result, ref Pawn pawn)
+            foreach (Thing t in StaticSteamBreakdownManager.Manager.BrokenDownThings)
             {
-                foreach (Thing t in StaticSteamBreakdownManager.Manager.BrokenDownThings)
-                {
-                    __result.Add<Thing>(t);
-                }
+                __result.Add<Thing>(t);
             }
         }
     }

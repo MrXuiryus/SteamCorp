@@ -68,13 +68,16 @@ namespace SteamCorp
 
         public void Notfiy_TransmitterTransmitsPowerNowChanged(CompSteam transmitter)
         {
-            //Log.Message("Notfiy_TransmitterTransmitsPowerNowChanged");
+            Log.Message("Notfiy_TransmitterTransmitsPowerNowChanged");
             if (!transmitter.parent.Spawned)
             {
                 return;
-            }
+            } 
+            Log.Message("Deregistering");
             delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterTransmitter, transmitter));
+            Log.Message("registering");
             delayedActions.Add(new DelayedAction(DelayedActionType.RegisterTransmitter, transmitter));
+            Log.Message("notifying wires");
             NotifyDrawersForWireUpdate(transmitter.parent.Position);
         }
 
@@ -86,7 +89,7 @@ namespace SteamCorp
                 delayedActions.Add(new DelayedAction(DelayedActionType.RegisterConnector, wantingCon));
             }
             NotifyDrawersForWireUpdate(wantingCon.parent.Position);
-        }
+        } 
 
         public void Notify_ConnectorDespawned(CompSteam oldCon)
         {

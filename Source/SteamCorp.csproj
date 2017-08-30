@@ -37,10 +37,6 @@
       <HintPath>..\..\..\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HugsLib">
-      <HintPath>D:\Libraries\Documents\hidden\HugsLib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,7 +53,9 @@
     <Compile Include="Building_SteamSwitch.cs" />
     <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompProperties_SteamBreakdownable.cs" />
+    <Compile Include="CompProperties_SteamFlickable.cs" />
     <Compile Include="CompSteamBreakdownable.cs" />
+    <Compile Include="CompSteamFlickable.cs" />
     <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />
     <Compile Include="CompSteam.cs" />
@@ -83,5 +81,11 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>C:\SteamLibrary\SteamApps\common\Rimworld\RimWorldWin.exe</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -56,7 +56,9 @@ namespace SteamCorp
                 // only trip if steamOn has changed
                 if (steamOn != value)
                 {
+#if DEBUG
                     Log.Message("Switching SteamOn to " + value);
+#endif
                     steamOn = value;
                     if (steamOn)
                     {
@@ -141,7 +143,7 @@ namespace SteamCorp
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<bool>(ref steamOn, "powerOn", true, false);
+            Scribe_Values.Look<bool>(ref steamOn, "steamOn", true, false);
         }
 
         public override void PostDraw()

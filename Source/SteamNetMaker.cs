@@ -38,12 +38,17 @@ namespace SteamCorp
                             {
                                 if(thingList[i] is SteamBuilding sbuilding)
                                 {
-//                                    Log.Message("Found steambuilding " + sbuilding);
-                                    if (!openSet.Contains(sbuilding) && !currentSet.Contains(sbuilding)
-                                        && !closedSet.Contains(sbuilding))
+                                    if (sbuilding.TransmitsPowerNow)
                                     {
-                                        openSet.Add(sbuilding);
-                                        break;
+#if DEBUG
+                                        Log.Message("Found steambuilding " + sbuilding);
+#endif
+                                        if (!openSet.Contains(sbuilding) && !currentSet.Contains(sbuilding)
+                                            && !closedSet.Contains(sbuilding))
+                                        {
+                                            openSet.Add(sbuilding);
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -58,7 +63,10 @@ namespace SteamCorp
 
         public static SteamPowerNet NewPowerNetStartingFrom(Building root)
         {
-            //Log.Message("Starting new power net from " + root + " at " + root.InteractionCell);
+
+#if DEBUG
+            Log.Message("Starting new power net from " + root + " at " + root.InteractionCell);
+#endif
             return new SteamPowerNet(ContiguousSteamBuildings(root));
         }
 

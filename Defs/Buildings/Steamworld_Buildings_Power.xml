@@ -90,7 +90,7 @@
       <Flammability>1.0</Flammability>
     </statBases>
     <tickerType>Normal</tickerType>
-    <description>Generates steam by burning coal which can be used to power other devices and items.</description>
+    <description>Collects steam from geysers which can be used to power other devices and items.</description>
     <canOverlapZones>false</canOverlapZones>
     <size>(2,2)</size>
     <building>
@@ -102,7 +102,7 @@
     </costList>
     <comps>
       <li Class="SteamCorp.CompProperties_Steam">
-        <compClass>SteamCorp.CompSteamPowerPlant</compClass>
+        <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
         <baseSteamConsumption>-3600</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
     </li>
@@ -117,6 +117,9 @@
       </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>
+    <placeWorkers>
+      <li>PlaceWorker_OnSteamGeyser</li>
+    </placeWorkers>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <designationCategory>Power</designationCategory>
     <staticSunShadowHeight>0.5</staticSunShadowHeight>
@@ -168,8 +171,8 @@
     <comps>
       <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamTransmitter</compClass>
-		<transmitsSteam>true</transmitsSteam>
-      </li>
+        <transmitsSteam>true</transmitsSteam>
+	  </li>
 	  <li Class="CompProperties_Glower">
         <glowRadius>0.2</glowRadius>
         <glowColor>(217,112,33,0)</glowColor>
@@ -194,7 +197,7 @@
 <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamvalve</defName>
     <label>steam valve</label>
-    <thingClass>SteamCorp.SteamBuilding</thingClass>
+    <thingClass>SteamCorp.Building_SteamSwitch</thingClass>
     <category>Building</category>
     <description>Allows or disallows steam to pass through pipes</description>
     <graphicData>
@@ -225,11 +228,11 @@
       <Component>1</Component>
     </costList>
     <comps>
+      <li Class="CompProperties_Flickable"/>
       <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamTransmitter</compClass>
-        <transmitsSteam>true</transmitsSteam>
       </li>
-      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -241,6 +244,7 @@
       <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
   </ThingDef>
+  
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamcondenser</defName>
     <label>steam condenser</label>
@@ -248,7 +252,7 @@
     <graphicData>
       <texPath>Buildings/steamcondenser/steamcondenser</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(1,2)</drawSize>
+      <drawSize>(2,3)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
         <cornerTR>Damage/Corner</cornerTR>
@@ -288,6 +292,7 @@
         <transmitsSteam>true</transmitsSteam>
       </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+	  <li Class="CompProperties_Flickable"/>
     </comps>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <designationCategory>Power</designationCategory>

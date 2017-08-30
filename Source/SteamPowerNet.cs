@@ -80,7 +80,6 @@ namespace SteamCorp
 
         public void RegisterConnector(CompSteam b)
         {
-            Log.Message("Trying to register connector " + b);
             if (!connectors.Contains(b))
             {
                 connectors.Add(b);
@@ -181,11 +180,12 @@ namespace SteamCorp
                 if (num3 + num >= 0f)
                 {
                     partsWantingSteamOn.Clear();
-                    for (int i = 0; i < steamComps.Count; i++)
+                    foreach (CompSteamTrader trader in steamComps)
                     {
-                        if (!steamComps[i].SteamOn && FlickUtility.WantsToBeOn(steamComps[i].parent) && !steamComps[i].parent.IsSteamBrokenDown())
+                        if (!trader.SteamOn && FlickUtility.WantsToBeOn(trader.parent) 
+                            && !trader.parent.IsSteamBrokenDown())
                         {
-                            partsWantingSteamOn.Add(steamComps[i]);
+                            partsWantingSteamOn.Add(trader);
                         }
                     }
                     if (partsWantingSteamOn.Count > 0)
@@ -197,7 +197,7 @@ namespace SteamCorp
                         }
                         if (Find.TickManager.TicksGame % num4 == 0)
                         {
-                            CompSteamTrader compSteamTrader = partsWantingSteamOn.RandomElement<CompSteamTrader>();
+                            CompSteamTrader compSteamTrader = partsWantingSteamOn.RandomElement();
                             if (num + num2 >= -(compSteamTrader.SteamEnergyOutputPerTick + 1E-07f))
                             {
                                 compSteamTrader.SteamOn = true;
@@ -220,7 +220,7 @@ namespace SteamCorp
                 }
                 if (potentialShutdownParts.Count > 0)
                 {
-                    potentialShutdownParts.RandomElement<CompSteamTrader>().SteamOn = false;
+                    potentialShutdownParts.RandomElement().SteamOn = false;
                 }
             }
         }

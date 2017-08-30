@@ -29,13 +29,8 @@ namespace SteamCorp
 
         public override void Generate(Map map)
         {
-            Generate(map, StaticSteamNetManager.Manager);
-        }
-
-        public void Generate(Map map, SteamNetManager manager)
-        {
             Log.Message("Generate2");
-            manager.UpdatePowerNetsAndConnections_First();
+            StaticSteamNetManager.Manager.UpdatePowerNetsAndConnections_First();
             UpdateDesiredPowerOutputForAllGenerators(map);
             EnsureBatteriesConnectedAndMakeSense(map);
             EnsurePowerUsersConnected(map);

@@ -28,7 +28,7 @@ namespace SteamCorp
             }
             else
             {
-                CellRect rect = b.parent.OccupiedRect().ExpandedBy(6).ClipInsideMap(b.parent.Map);
+                CellRect rect = b.parent.OccupiedRect().ExpandedBy(ConnectMaxDist).ClipInsideMap(b.parent.Map);
                 for (int z = rect.minZ; z <= rect.maxZ; z++)
                 {
                     for (int x = rect.minX; x <= rect.maxX; x++)
@@ -114,7 +114,7 @@ namespace SteamCorp
         public static CompSteam BestTransmitterForConnector(IntVec3 connectorPos, Map map, List<SteamPowerNet> disallowedNets = null)
         {
             //Log.Message("BestTransmitterForConnector");
-            CellRect cellRect = CellRect.SingleCell(connectorPos).ExpandedBy(6).ClipInsideMap(map);
+            CellRect cellRect = CellRect.SingleCell(connectorPos).ExpandedBy(ConnectMaxDist).ClipInsideMap(map);
             cellRect.ClipInsideMap(map);
             float num = 999999f;
             CompSteam result = null;

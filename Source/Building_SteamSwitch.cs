@@ -14,22 +14,22 @@ namespace SteamCorp
         {
             get
             {
+#if DEBUG
+                Log.Message("TransmitsPowerNow " + FlickUtility.WantsToBeOn(this));
+#endif
                 return FlickUtility.WantsToBeOn(this);
             }
         }
 
         public override Graphic Graphic
         {
-            get
-            {
-                return this.flickableComp.CurrentGraphic;
-            }
+            get { return flickableComp.CurrentGraphic; }
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.flickableComp = base.GetComp<CompFlickable>();
+            flickableComp = GetComp<CompFlickable>();
         }
 
         public override void ExposeData()
@@ -37,12 +37,12 @@ namespace SteamCorp
             base.ExposeData();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (this.flickableComp == null)
+                if (flickableComp == null)
                 {
-                    this.flickableComp = base.GetComp<CompFlickable>();
+                    flickableComp = GetComp<CompFlickable>();
                 }
-                this.wantsOnOld = !FlickUtility.WantsToBeOn(this);
-                this.UpdatePowerGrid();
+                wantsOnOld = !FlickUtility.WantsToBeOn(this);
+                UpdatePowerGrid();
             }
         }
 
@@ -50,7 +50,7 @@ namespace SteamCorp
         {
             if (signal == "FlickedOff" || signal == "FlickedOn" || signal == "ScheduledOn" || signal == "ScheduledOff")
             {
-                this.UpdatePowerGrid();
+                UpdatePowerGrid();
             }
         }
 
@@ -76,13 +76,13 @@ namespace SteamCorp
 
         private void UpdatePowerGrid()
         {
-            if (FlickUtility.WantsToBeOn(this) != this.wantsOnOld)
+            if (FlickUtility.WantsToBeOn(this) != wantsOnOld)
             {
-                if (base.Spawned)
+                if (Spawned)
                 {
-                    StaticSteamNetManager.Manager.Notfiy_TransmitterTransmitsPowerNowChanged(base.GetComp<CompSteam>());
+                    StaticSteamNetManager.Manager.Notfiy_TransmitterTransmitsPowerNowChanged(GetComp<CompSteam>());
                 }
-                this.wantsOnOld = FlickUtility.WantsToBeOn(this);
+                wantsOnOld = FlickUtility.WantsToBeOn(this);
             }
         }
     }
