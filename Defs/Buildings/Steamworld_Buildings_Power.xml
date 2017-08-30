@@ -241,16 +241,13 @@
       <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
   </ThingDef>
-  
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamcondenser</defName>
     <label>steam condenser</label>
     <thingClass>SteamCorp.Building_SteamBattery</thingClass>
     <graphicData>
-		<!-- changed from steamcondenser to steamgenerator for testing-->
-      <texPath>Buildings/steamgenerator</texPath>
-		<!-- changed from Graphic_Multi to Graphic_Single for testing-->
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Buildings/steamcondenser/steamcondenser</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(1,2)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
@@ -287,7 +284,7 @@
       <li Class="SteamCorp.CompProperties_SteamBattery">
         <compClass>SteamCorp.CompSteamBattery</compClass>
         <storedEnergyMax>2000</storedEnergyMax>
-        <efficiency>0.5</efficiency>
+        <efficiency>0.25</efficiency>
         <transmitsSteam>true</transmitsSteam>
       </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
