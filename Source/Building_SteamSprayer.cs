@@ -22,7 +22,7 @@ namespace SteamCorp
                 endSprayCallback = new Action(EndSpray)
             };
         }
-         
+
         private void StartSpray()
         { 
             spraySustainer = SoundDefOf.GeyserSpray.TrySpawnSustainer(new TargetInfo(Position, Map, false));
