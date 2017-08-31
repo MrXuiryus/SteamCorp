@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef ParentName="ResourceBase">
+  <ThingDef ParentName="MrXuiryus_ResourceBase">
     <defName>BrassIngot</defName>
     <label>Brass Ingot</label>
     <description>Refined brass ignot used to created steamworld items.</description>
