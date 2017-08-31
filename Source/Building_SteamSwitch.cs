@@ -4,14 +4,14 @@ using Verse;
 
 namespace SteamCorp
 {
-    class Building_SteamSwitch : SteamBuilding
+    class Building_SteamSwitch : Building_Steam
     {
         private bool wantsOnOld = true;
 
         private CompFlickable flickableComp;
 
         public override bool TransmitsPowerNow
-        {
+        { 
             get
             {
 #if DEBUG
@@ -44,7 +44,7 @@ namespace SteamCorp
                 wantsOnOld = !FlickUtility.WantsToBeOn(this);
                 UpdatePowerGrid();
             }
-        }
+        } 
 
         protected override void ReceiveCompSignal(string signal)
         {

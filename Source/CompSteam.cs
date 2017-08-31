@@ -22,7 +22,7 @@ namespace SteamCorp
             get => (CompProperties_Steam)props;
         }
 
-
+        
         public virtual void SetUpSteamPowerVars()
         { }
 
@@ -54,7 +54,7 @@ namespace SteamCorp
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-
+            parent.Map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
             // set static manager to new SteamNetManager if null
             if (Props.transmitsSteam)
             {
@@ -79,8 +79,16 @@ namespace SteamCorp
             }
             if(parent.GetComp<CompGlower>() != null)
             {
-                parent.GetComp<CompGlower>();
+#if DEBUG
+                Log.Message("deregistering glower");
+#endif
+                parent.Map.glowGrid.DeRegisterGlower(parent.GetComp<CompGlower>());
+#if DEBUG
+                Log.Message("done deregistering glower");
+#endif
             }
+
+            map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
         }
 
         public virtual void LostConnectParent()
@@ -93,7 +101,7 @@ namespace SteamCorp
             base.PostPrintOnto(layer);
             if (connectParent != null)
             {
-                SteamNetGraphics.PrintWirePieceConnecting(layer, parent, connectParent.parent, false);
+                SteamNetGraphics.PrintWirePieceConnecting(layer, parent, connectParent.parent, true);
             }
         }
 

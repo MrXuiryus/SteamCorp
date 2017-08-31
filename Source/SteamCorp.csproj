@@ -53,9 +53,7 @@
     <Compile Include="Building_SteamSwitch.cs" />
     <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompProperties_SteamBreakdownable.cs" />
-    <Compile Include="CompProperties_SteamFlickable.cs" />
     <Compile Include="CompSteamBreakdownable.cs" />
-    <Compile Include="CompSteamFlickable.cs" />
     <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />
     <Compile Include="CompSteam.cs" />
@@ -70,7 +68,7 @@
     <Compile Include="StaticSteamNetManager.cs" />
     <Compile Include="SteamBreakdownableUtility.cs" />
     <Compile Include="SteamBreakdownManager.cs" />
-    <Compile Include="SteamBuilding.cs" />
+    <Compile Include="Building_Steam.cs" />
     <Compile Include="SteamNetGraphics.cs" />
     <Compile Include="SteamNetGrid.cs" />
     <Compile Include="SteamNetMaker.cs" />

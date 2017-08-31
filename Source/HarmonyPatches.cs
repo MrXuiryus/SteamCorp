@@ -73,16 +73,16 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
-            bool parentIsSteamBuilding = parent is SteamBuilding;
+            bool parentIsSteamBuilding = parent is Building_Steam;
             bool netAtCIsNull = StaticSteamNetManager.Manager.Grid.TransmittedPowerNetAt(c) == null;
             //fix steam items trying to link to electricity items
-            if (__result && !netAtCIsNull && !parentIsSteamBuilding)
+            if (__result)
             {
-                __result = false;
-            }
-            else if (__result && netAtCIsNull && parentIsSteamBuilding)
-            {
-                __result = false;
+                if ((netAtCIsNull && !parentIsSteamBuilding)
+                    || (netAtCIsNull && parentIsSteamBuilding))
+                {
+                    __result = false;
+                }
             }
             //fix steam items not finding other steam items
             else if (!__result && !netAtCIsNull && parentIsSteamBuilding && c.InBounds(parent.Map))
@@ -98,16 +98,16 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
-            bool parentIsSteamBuilding = parent is SteamBuilding;
+            bool parentIsSteamBuilding = parent is Building_Steam;
             bool netAtCIsNull = StaticSteamNetManager.Manager.Grid.TransmittedPowerNetAt(c) == null;
             //fix steam items trying to link to electricity items
-            if (__result && !netAtCIsNull && !parentIsSteamBuilding)
+            if (__result)
             {
-                __result = false;
-            }
-            else if (__result && netAtCIsNull && parentIsSteamBuilding)
-            {
-                __result = false;
+                if ((netAtCIsNull && !parentIsSteamBuilding)
+                    || (netAtCIsNull && parentIsSteamBuilding))
+                {
+                    __result = false;
+                }
             }
             //fix steam items not finding other steam items
             else if (!__result && !netAtCIsNull && parentIsSteamBuilding && c.InBounds(parent.Map))

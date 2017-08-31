@@ -36,9 +36,9 @@ namespace SteamCorp
                             List<Thing> thingList = adjacentCell.GetThingList(currentBuilding.Map);
                             for (int i = 0; i < thingList.Count; i++)
                             {
-                                if(thingList[i] is SteamBuilding sbuilding)
+                                if(thingList[i] is Building_Steam sbuilding)
                                 {
-                                    if (sbuilding.TransmitsPowerNow)
+                                    if (sbuilding.TransmitsSteamPowerNow)
                                     {
 #if DEBUG
                                         Log.Message("Found steambuilding " + sbuilding);

@@ -6,7 +6,7 @@ using Verse.Sound;
 namespace SteamCorp
 {
     [StaticConstructorOnStartup]
-    class Building_SteamBattery : SteamBuilding
+    class Building_SteamBattery : Building_Steam
     {
         private const float MinEnergyToExplode = 500f;
 

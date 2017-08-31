@@ -102,7 +102,7 @@ namespace SteamCorp
             (props.efficiency * 100f).ToString("F0"),
             "%"
             });
-            return text + "\n" + base.CompInspectStringExtra();
+            return /*text + "\n" + */base.CompInspectStringExtra();
         }
 
         internal void DrawSteam(float num3)

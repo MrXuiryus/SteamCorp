@@ -4,7 +4,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamGenerator</defName>
     <label>Steam Generator</label>
-    <thingClass>SteamCorp.SteamBuilding</thingClass>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
     <graphicData>
       <texPath>Buildings/steamgenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -71,7 +71,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamCollector</defName>
     <label>Steam Collector</label>
-    <thingClass>SteamCorp.SteamBuilding</thingClass>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
     <graphicData>
       <texPath>Buildings/steamgenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -132,7 +132,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamPipe</defName>
     <label>Steam Pipe</label>
-    <thingClass>SteamCorp.SteamBuilding</thingClass>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
     <graphicData>
       <texPath>Buildings/Steampipe_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -231,6 +231,7 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamTransmitter</compClass>
+        <transmitsSteam>true</transmitsSteam>
       </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>
@@ -293,6 +294,10 @@
       </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
 	  <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_Steam">
+        <compClass>SteamCorp.CompSteamTransmitter</compClass>
+        <transmitsSteam>true</transmitsSteam>
+      </li>
     </comps>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <designationCategory>Power</designationCategory>
