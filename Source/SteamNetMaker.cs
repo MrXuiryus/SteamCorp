@@ -38,7 +38,7 @@ namespace SteamCorp
                             {
                                 if(thingList[i] is Building_Steam sbuilding)
                                 {
-                                    if (sbuilding.TransmitsSteamPowerNow)
+                                    if (sbuilding.TransmitsSteamPower)
                                     {
 #if DEBUG
                                         Log.Message("Found steambuilding " + sbuilding);

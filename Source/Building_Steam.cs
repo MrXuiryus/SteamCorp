@@ -10,7 +10,7 @@ namespace SteamCorp
         private CompSteam pipeComp;
         public CompSteam PipeComp { get => pipeComp; set => pipeComp = value; }
 
-        public virtual bool TransmitsSteamPowerNow
+        public virtual bool TransmitsSteamPower
         {
             get
             {

@@ -14,6 +14,8 @@ namespace SteamCorp
 
         private int MaxSprayDuration;
 
+        private float PressureCutoff;
+
         private float SmokeAmount;
 
         private const float SprayThickness = 0.6f;
@@ -29,7 +31,7 @@ namespace SteamCorp
         public Action endSprayCallback;
 
         public SteamSprayer(Thing parent, int minTicks = 500, int maxTicks = 2000, 
-            int minDuration = 200, int maxDuration = 500, float smokeAmount = 2)
+            int minDuration = 200, int maxDuration = 500, float smokeAmount = .5f, float steamSprayCutoff = 1800f)
         {
             this.parent = parent;
             MinTicksBetweenSprays = minTicks;
@@ -37,6 +39,7 @@ namespace SteamCorp
             MinSprayDuration = minDuration;
             MaxSprayDuration = maxDuration;
             SmokeAmount = smokeAmount;
+            PressureCutoff = steamSprayCutoff;
         }
 
         public void SteamSprayerTick()
@@ -44,7 +47,8 @@ namespace SteamCorp
             if (sprayTicksLeft > 0)
             {
                 sprayTicksLeft--;
-                if (Rand.Value < 0.6f)
+                CompSteam comp = parent.TryGetComp<CompSteam>();
+                if (Rand.Value < 0.6f && comp != null && comp.SteamNet.CurrentStoredEnergy() >= PressureCutoff)
                 {
                     MoteMaker.ThrowSmoke(parent.TrueCenter(), parent.Map, SmokeAmount);
                     MoteMaker.ThrowAirPuffUp(parent.TrueCenter(), parent.Map);

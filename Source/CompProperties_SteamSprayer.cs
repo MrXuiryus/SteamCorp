@@ -11,5 +11,7 @@
         public int MaxSprayDuration;
 
         public int SmokeAmount;
+
+        public int PressureCutoff;
     }
 }

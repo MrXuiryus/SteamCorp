@@ -47,6 +47,7 @@
 		<MinSprayDuration>10</MinSprayDuration>
 		<MaxSprayDuration>120</MaxSprayDuration>
 		<SmokeAmount>2</SmokeAmount>
+		<PressureCutoff>100</PressureCutoff>
 	  </li>
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>22.0</fuelConsumptionRate>
@@ -121,6 +122,7 @@
 		<MinSprayDuration>240</MinSprayDuration>
 		<MaxSprayDuration>480</MaxSprayDuration>
 		<SmokeAmount>2</SmokeAmount>
+		<PressureCutoff>100</PressureCutoff>
 	  </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Glower">
@@ -193,6 +195,15 @@
         <glowRadius>0.2</glowRadius>
         <glowColor>(217,112,33,0)</glowColor>
 	  </li>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamSprayer</compClass>
+		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>1000</MaxTicksBetweenSprays>
+		<MinSprayDuration>40</MinSprayDuration>
+		<MaxSprayDuration>120</MaxSprayDuration>
+		<SmokeAmount>1</SmokeAmount>
+		<PressureCutoff>10000</PressureCutoff>
+	  </li>
     </comps>
     <placeWorkers>
       <li>SteamCorp.PlaceWorker_Pipe</li>
@@ -249,6 +260,15 @@
         <compClass>SteamCorp.CompSteamTransmitter</compClass>
         <transmitsSteam>true</transmitsSteam>
       </li>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamSprayer</compClass>
+		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>1000</MaxTicksBetweenSprays>
+		<MinSprayDuration>240</MinSprayDuration>
+		<MaxSprayDuration>480</MaxSprayDuration>
+		<SmokeAmount>1</SmokeAmount>
+		<PressureCutoff>4000</PressureCutoff>
+	  </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>
     <rotatable>false</rotatable>
@@ -317,6 +337,7 @@
 		<MinSprayDuration>40</MinSprayDuration>
 		<MaxSprayDuration>240</MaxSprayDuration>
 		<SmokeAmount>1</SmokeAmount>
+		<PressureCutoff>2000</PressureCutoff>
 	  </li>
       <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamTransmitter</compClass>

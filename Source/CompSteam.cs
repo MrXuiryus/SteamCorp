@@ -53,19 +53,14 @@ namespace SteamCorp
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            Log.Message("1");
             base.PostSpawnSetup(respawningAfterLoad);
-            Log.Message("2");
             parent.Map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
             // set static manager to new SteamNetManager if null
             if (Props.transmitsSteam)
             {
-                Log.Message("3");
                 StaticSteamNetManager.Manager.Notify_TransmitterSpawned(this);
             }
-            Log.Message("4");
             StaticSteamNetManager.Manager.Notify_ConnectorWantsConnect(this);
-            Log.Message("5");
             SetUpSteamPowerVars();
         }
 
@@ -87,13 +82,14 @@ namespace SteamCorp
 #if DEBUG
                 Log.Message("deregistering glower");
 #endif
-                parent.Map.glowGrid.DeRegisterGlower(parent.GetComp<CompGlower>());
+                Log.Message(parent.GetComp<CompGlower>()?.ToString());
+                Find.VisibleMap.glowGrid.DeRegisterGlower(parent.GetComp<CompGlower>());
 #if DEBUG
                 Log.Message("done deregistering glower");
 #endif
             }
 
-            map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
+            Find.VisibleMap.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
         }
 
         public virtual void LostConnectParent()
