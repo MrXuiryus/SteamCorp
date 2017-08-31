@@ -6,7 +6,7 @@ using Verse.Sound;
 namespace SteamCorp
 {
     [StaticConstructorOnStartup]
-    class Building_SteamBattery : Building_Steam
+    class Building_SteamBattery : Building_SteamSprayer
     {
         private const float MinEnergyToExplode = 500f;
 
@@ -33,7 +33,7 @@ namespace SteamCorp
         public override void Draw()
         {
             base.Draw();
-            CompSteamBattery comp = base.GetComp<CompSteamBattery>();
+            CompSteamBattery comp = GetComp<CompSteamBattery>();
             GenDraw.FillableBarRequest r = new GenDraw.FillableBarRequest
             {
                 center = DrawPos + Vector3.up * 0.1f,

@@ -53,14 +53,19 @@ namespace SteamCorp
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
+            Log.Message("1");
             base.PostSpawnSetup(respawningAfterLoad);
+            Log.Message("2");
             parent.Map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
             // set static manager to new SteamNetManager if null
             if (Props.transmitsSteam)
             {
+                Log.Message("3");
                 StaticSteamNetManager.Manager.Notify_TransmitterSpawned(this);
             }
+            Log.Message("4");
             StaticSteamNetManager.Manager.Notify_ConnectorWantsConnect(this);
+            Log.Message("5");
             SetUpSteamPowerVars();
         }
 

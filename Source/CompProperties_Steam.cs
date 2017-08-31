@@ -13,5 +13,10 @@ namespace SteamCorp
         public SoundDef soundPowerOff;
 
         public SoundDef soundAmbientPowered;
+
+        public CompProperties_Steam()
+        {
+            compClass = typeof(CompSteam);
+        }
     }
 }

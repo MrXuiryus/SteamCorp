@@ -2,7 +2,7 @@
 
 namespace SteamCorp
 {
-    public class CompProperties_SteamBreakdownable : CompProperties
+    public class CompProperties_SteamBreakdownable : CompProperties_Steam
     {
         public CompProperties_SteamBreakdownable()
         {
