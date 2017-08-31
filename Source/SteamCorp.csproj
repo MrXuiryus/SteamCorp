@@ -54,12 +54,14 @@
     <Compile Include="Building_SteamSwitch.cs" />
     <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompProperties_SteamBreakdownable.cs" />
+    <Compile Include="CompProperties_SteamSprayer.cs" />
     <Compile Include="CompSteamBreakdownable.cs" />
     <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />
     <Compile Include="CompSteam.cs" />
     <Compile Include="CompSteamBattery.cs" />
     <Compile Include="CompSteamPowerPlant.cs" />
+    <Compile Include="CompSteamSprayer.cs" />
     <Compile Include="CompSteamTrader.cs" />
     <Compile Include="CompSteamTransmitter.cs" />
     <Compile Include="GenStep_Steam.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="SteamNetManager.cs" />
     <Compile Include="SteamPowerConnectionMaker.cs" />
     <Compile Include="SteamPowerNet.cs" />
+    <Compile Include="SteamSprayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

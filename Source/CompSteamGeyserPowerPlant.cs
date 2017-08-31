@@ -30,7 +30,7 @@ namespace SteamCorp
                 steamSprayer.SteamSprayerTick();
             }
         }
-
+         
         public override void PostDeSpawn(Map map)
         {
             base.PostDeSpawn(map);

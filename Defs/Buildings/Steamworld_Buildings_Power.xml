@@ -40,6 +40,14 @@
         <transmitsSteam>true</transmitsSteam>
     </li>
       <li Class="CompProperties_Flickable" />
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamSprayer</compClass>
+		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
+		<MinSprayDuration>10</MinSprayDuration>
+		<MaxSprayDuration>120</MaxSprayDuration>
+		<SmokeAmount>2</SmokeAmount>
+	  </li>
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>22.0</fuelConsumptionRate>
         <fuelCapacity>75.0</fuelCapacity>
@@ -106,6 +114,14 @@
         <baseSteamConsumption>-3600</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
     </li>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamSprayer</compClass>
+		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
+		<MinSprayDuration>240</MinSprayDuration>
+		<MaxSprayDuration>480</MaxSprayDuration>
+		<SmokeAmount>2</SmokeAmount>
+	  </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Glower">
         <glowRadius>6</glowRadius>
@@ -294,6 +310,14 @@
       </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
 	  <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamSprayer</compClass>
+		<MinTicksBetweenSprays>5000</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
+		<MinSprayDuration>40</MinSprayDuration>
+		<MaxSprayDuration>240</MaxSprayDuration>
+		<SmokeAmount>1</SmokeAmount>
+	  </li>
       <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamTransmitter</compClass>
         <transmitsSteam>true</transmitsSteam>
