@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+  <ThingDef Abstract="True" Name="MrXuiryus_OrganicProductBase" ParentName="MrXuiryus_ResourceBase">
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>6</DeteriorationRate>
+			<Mass>0.03</Mass>
+    </statBases>
+    <tickerType>Rare</tickerType>
+  </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_OrganicProductBase" Name="MrXuiryus_RoughPlantBase" Abstract="True">
+    <ingestible>
+      <foodType>Plant</foodType>
+      <preferability>DesperateOnly</preferability>
+      <nutrition>0.05</nutrition>
+    </ingestible>
+  </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_RoughPlantBase">
+    <defName>MrXuiryus_Raw_Tea</defName>
+    <label>tealeaves</label>
+    <description>Fresh tealeaves that can be brewed into a relaxing cup of tea</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>30</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+    <thingCategories>
+      <li>PlantMatter</li>
+    </thingCategories>
+  </ThingDef> 
+  
+</Defs>  
