@@ -73,9 +73,9 @@
     <label>Steam Collector</label>
     <thingClass>SteamCorp.Building_SteamSprayer</thingClass>
     <graphicData>
-      <texPath>Buildings/steamgenerator</texPath>
+      <texPath>Buildings/steamcollector</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(2,2)</drawSize>
+      <drawSize>(2,3)</drawSize>
     </graphicData>
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>

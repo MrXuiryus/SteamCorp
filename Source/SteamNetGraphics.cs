@@ -27,7 +27,7 @@ namespace SteamCorp
             float rot = v.AngleFlat();
             Printer_Plane.PrintPlane(layer, center, size, mat, rot, false, null, null, 0.01f);
         }
-
+         
         public static void RenderAnticipatedWirePieceConnecting(IntVec3 userPos, Thing transmitter)
         {
             Vector3 vector = userPos.ToVector3ShiftedWithAltitude(AltitudeLayer.WorldDataOverlay);
