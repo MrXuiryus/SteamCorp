@@ -4,7 +4,7 @@ using Verse;
 
 namespace SteamCorp
 {
-    class Building_SteamSwitch : Building_Steam
+    class Building_SteamSwitch : Building_SteamSprayer
     {
         private bool wantsOnOld = true;
 

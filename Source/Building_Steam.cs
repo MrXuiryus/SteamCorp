@@ -18,5 +18,11 @@ namespace SteamCorp
                 return powerComp != null && powerComp.Props.transmitsSteam;
             }
         }
+
+        public override void Tick()
+        {
+            base.Tick();
+            SnowUtility.AddSnowRadial(this.OccupiedRect().RandomCell, Map, 4f, -0.06f);
+        }
     }
 }
