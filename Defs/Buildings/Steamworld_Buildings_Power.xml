@@ -224,7 +224,7 @@
 <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamvalve</defName>
     <label>steam valve</label>
-    <thingClass>SteamCorp.Building_SteamSwitch</thingClass>
+    <thingClass>SteamCorp.Building_SteamValve</thingClass>
     <category>Building</category>
     <description>Allows or disallows steam to pass through pipes</description>
     <graphicData>

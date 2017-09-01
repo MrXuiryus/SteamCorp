@@ -40,15 +40,19 @@ namespace SteamCorp
             MaxSprayDuration = maxDuration;
             SmokeAmount = smokeAmount;
             PressureCutoff = steamSprayCutoff;
+            Log.Message("minTicks: " + minTicks + "\ncutoff" + steamSprayCutoff);
         }
 
-        public void SteamSprayerTick()
+        public void SteamSprayerTick() 
         {
             if (sprayTicksLeft > 0)
             {
                 sprayTicksLeft--;
                 CompSteam comp = parent.TryGetComp<CompSteam>();
-                if (Rand.Value < 0.6f && comp != null && comp.SteamNet.CurrentStoredEnergy() >= PressureCutoff)
+                if (Rand.Value < 0.6f
+                    && (comp != null && comp.SteamNet.CurrentStoredEnergy() >= PressureCutoff)
+                    && (parent.TryGetComp<CompFlickable>() == null || FlickUtility.WantsToBeOn(parent))
+                    && (parent.TryGetComp<CompRefuelable>() == null || parent.TryGetComp<CompRefuelable>().HasFuel))
                 {
                     MoteMaker.ThrowSmoke(parent.TrueCenter(), parent.Map, SmokeAmount);
                     MoteMaker.ThrowAirPuffUp(parent.TrueCenter(), parent.Map);

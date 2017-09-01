@@ -12,6 +12,11 @@
 
         public int SmokeAmount;
 
-        public int PressureCutoff;
+        public float PressureCutoff;
+
+        public CompProperties_SteamSprayer()
+        {
+            compClass = typeof(CompSteamSprayer);
+        }
     }
 }

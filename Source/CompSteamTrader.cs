@@ -58,6 +58,11 @@ namespace SteamCorp
                 {
 #if DEBUG
                     Log.Message("Switching SteamOn to " + value);
+                    if(parent == null)
+                    {
+                        Log.Warning("parent is null!");
+                        return;
+                    }
 #endif
                     steamOn = value;
                     if (steamOn)

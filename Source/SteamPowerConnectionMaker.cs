@@ -70,11 +70,7 @@ namespace SteamCorp
         public static void TryConnectToAnySteamNet(CompSteam pc, List<SteamPowerNet> disallowedNets = null)
         {
             //Log.Message("TryConnectToAnySteamNet");
-            if (pc.connectParent != null)
-            {
-                return;
-            }
-            if (!pc.parent.Spawned)
+            if (pc.connectParent != null || !pc.parent.Spawned)
             {
                 return;
             }
@@ -127,7 +123,7 @@ namespace SteamCorp
                     if (transmitter != null && !transmitter.Destroyed)
                     {
                         CompSteam steamComp = transmitter.GetComp<CompSteam>();
-                        if (steamComp != null && steamComp.TransmitsSteamPowerNow && (transmitter.def.building == null || transmitter.def.building.allowWireConnection))
+                        if (steamComp != null && steamComp.TransmitsSteamPower && (transmitter.def.building == null || transmitter.def.building.allowWireConnection))
                         {
                             if (disallowedNets == null || !disallowedNets.Contains(steamComp.SteamNet))
                             {

@@ -108,7 +108,7 @@ namespace SteamCorp
 
         public override void CompPrintForPowerGrid(SectionLayer layer)
         {
-            if (TransmitsSteamPowerNow)
+            if (TransmitsSteamPower)
             {
                 PowerOverlayMats.LinkedOverlayGraphic.Print(layer, parent);
             }
@@ -122,13 +122,13 @@ namespace SteamCorp
             }
         }
 
-        public bool TransmitsSteamPowerNow
+        public bool TransmitsSteamPower
         {
             get => Props.transmitsSteam;
         }
 
         public void ConnectToTransmitter(CompSteam transmitter, bool reconnectingAfterLoading = false)
-        {
+        { 
             connectParent = transmitter;
             if (connectParent.connectChildren == null)
             {

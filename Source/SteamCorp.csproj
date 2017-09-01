@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Building_SteamBattery.cs" />
     <Compile Include="Building_SteamSprayer.cs" />
-    <Compile Include="Building_SteamSwitch.cs" />
+    <Compile Include="Building_SteamValve.cs" />
     <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompProperties_SteamBreakdownable.cs" />
     <Compile Include="CompProperties_SteamSprayer.cs" />

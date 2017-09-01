@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
@@ -38,7 +39,9 @@ namespace SteamCorp
                             {
                                 if(thingList[i] is Building_Steam sbuilding)
                                 {
-                                    if (sbuilding.TransmitsSteamPower)
+                                    if (sbuilding.TransmitsSteamPower && 
+                                        (sbuilding.GetComp<CompFlickable>() == null 
+                                        || sbuilding.GetComp<CompFlickable>().SwitchIsOn))
                                     {
 #if DEBUG
                                         Log.Message("Found steambuilding " + sbuilding);
