@@ -153,7 +153,7 @@ namespace SteamCorp
             }
             string text = (SteamNet.CurrentEnergyGainRate() / WattsToWattDaysPerTick).ToString("F0");
             string text2 = SteamNet.CurrentStoredEnergy().ToString("F0");
-            return "PowerConnectedRateStored".Translate(new object[]
+            return "Steam " + "PowerConnectedRateStored".Translate(new object[]
             {
                 text,
                 text2

@@ -112,7 +112,6 @@ namespace SteamCorp
 
         public void DeletePowerNet(SteamPowerNet oldNet)
         {
-            //Log.Message("DeletePowerNet");
             allNets.Remove(oldNet);
             Grid.Notify_PowerNetDeleted(oldNet);
         }

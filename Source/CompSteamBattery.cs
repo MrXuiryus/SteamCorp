@@ -84,7 +84,7 @@ namespace SteamCorp
         {
             string text = string.Concat(new string[]
             {
-            "PowerBatteryStored".Translate(),
+             "Steam " + "PowerBatteryStored".Translate(),
             ": ",
             storedSteamEnergy.ToString("F0"),
             " / ",
@@ -96,7 +96,7 @@ namespace SteamCorp
             {
             text2,
             "\n",
-            "PowerBatteryEfficiency".Translate(),
+             "Steam " + "PowerBatteryEfficiency".Translate(),
             ": ",
             (Props.efficiency * 100f).ToString("F0"),
             "%"

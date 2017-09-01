@@ -61,8 +61,10 @@ namespace SteamCorp
 
         public static SteamPowerNet NewPowerNetStartingFrom(Building root)
         {
+            // return new net from contiguous buildings if flicked on (or not flickable) and steam building
             return (root is Building_Steam && FlickUtility.WantsToBeOn(root)) 
-                ? new SteamPowerNet(ContiguousSteamBuildings(root)) 
+                ? new SteamPowerNet(ContiguousSteamBuildings(root))
+                // if the building is an off valve, return the net at root's position, or if null build a new net at root
                 : new SteamPowerNet(root.GetComps<CompSteam>());
         }
 

@@ -12,13 +12,7 @@ namespace SteamCorp
 
         public override bool TransmitsPowerNow
         { 
-            get
-            {
-#if DEBUG
-                Log.Message("TransmitsPowerNow " + FlickUtility.WantsToBeOn(this));
-#endif
-                return FlickUtility.WantsToBeOn(this);
-            }
+            get => FlickUtility.WantsToBeOn(this);
         }
 
         public override Graphic Graphic

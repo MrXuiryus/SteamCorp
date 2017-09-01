@@ -151,7 +151,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamPipe</defName>
     <label>Steam Pipe</label>
-    <thingClass>SteamCorp.Building_Steam</thingClass>
+    <thingClass>SteamCorp.Building_SteamSprayer</thingClass>
     <graphicData>
       <texPath>Buildings/Steampipe_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -198,8 +198,8 @@
 	  </li>
       <li Class="SteamCorp.CompProperties_SteamSprayer">
         <compClass>SteamCorp.CompSteamSprayer</compClass>
-		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
-		<MaxTicksBetweenSprays>1000</MaxTicksBetweenSprays>
+		<MinTicksBetweenSprays>1800</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>10000</MaxTicksBetweenSprays>
 		<MinSprayDuration>40</MinSprayDuration>
 		<MaxSprayDuration>120</MaxSprayDuration>
 		<SmokeAmount>1</SmokeAmount>
@@ -218,6 +218,71 @@
     <designationHotKey>Misc1</designationHotKey>
 	<researchPrerequisites>
       <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
+  </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_SteamAlternator</defName>
+    <label>Steam Alternator</label>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
+    <graphicData>
+      <texPath>Buildings/walllamp_off</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0,0.35,1,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <blueprintGraphicData>
+      <texPath>Buildings/walllamp_off</texPath>
+    </blueprintGraphicData>
+    <uiIconPath>Buildings/walllamp_off</uiIconPath>
+    <building>
+			<ai_chillDestination>false</ai_chillDestination>
+			<isInert>true</isInert>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+      <isEdifice>false</isEdifice>
+    </building>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToBuild>35</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-2</Beauty>
+    </statBases>
+    <description>A steam alternator to turn mechanical energy into power.</description>
+    <placingDraggableDimensions>0</placingDraggableDimensions>
+    <costList>
+      <MrXuiryus_Brass>100</MrXuiryus_Brass>
+      <MrXuiryus_Coal>2</MrXuiryus_Coal>
+	  <Component>1</Component>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-1000</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+      </li>
+	  <li Class="CompProperties_Glower">
+        <glowRadius>0.2</glowRadius>
+        <glowColor>(217,112,33,0)</glowColor>
+	  </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamAlternator">
+        <compClass>SteamCorp.CompSteamAlternator</compClass>
+        <wattsOfSteamIn>1500</wattsOfSteamIn>
+      </li>
+    </comps>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <constructEffect>ConstructMetal</constructEffect>
+	<researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+      <li>Electricity</li>
     </researchPrerequisites>
   </ThingDef>
 

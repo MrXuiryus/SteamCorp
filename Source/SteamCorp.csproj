@@ -52,9 +52,11 @@
     <Compile Include="Building_SteamBattery.cs" />
     <Compile Include="Building_SteamSprayer.cs" />
     <Compile Include="Building_SteamValve.cs" />
+    <Compile Include="CompProperties_SteamAlternator.cs" />
     <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompProperties_SteamBreakdownable.cs" />
     <Compile Include="CompProperties_SteamSprayer.cs" />
+    <Compile Include="CompSteamAlternator.cs" />
     <Compile Include="CompSteamBreakdownable.cs" />
     <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />

@@ -198,11 +198,11 @@ namespace SteamCorp
             string str;
             if (powerLastOutputted)
             {
-                str = "PowerOutput".Translate() + ": " + SteamPowerOutput.ToString("#####0") + " W";
+                str = "Steam " + "PowerOutput".Translate() + ": " + SteamPowerOutput.ToString("#####0") + " W";
             }
             else
             {
-                str = "PowerNeeded".Translate() + ": " + (-SteamPowerOutput).ToString("#####0") + " W";
+                str = "Steam " + "PowerNeeded".Translate() + ": " + (-SteamPowerOutput).ToString("#####0") + " W";
             }
             return str + "\n" +  base.CompInspectStringExtra();
         }
