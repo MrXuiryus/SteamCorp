@@ -92,14 +92,21 @@ namespace SteamCorp
                     else
                     {
                         powerStoppedAction?.Invoke();
-                        parent.BroadcastCompSignal("PowerTurnedOff");
-                        SoundDef soundDef2 = ((CompProperties_Steam)parent.def.CompDefForAssignableFrom<CompSteamTrader>()).soundPowerOff;
-                        if (soundDef2.NullOrUndefined())
+                        try
                         {
+                            parent?.BroadcastCompSignal("PowerTurnedOff");
+                        }
+                        catch (NullReferenceException e)
+                        {
+#if DEBUG
+                            Log.Message(e.ToString());
+#endif
+                        }
+                        SoundDef soundDef2 = ((CompProperties_Steam)parent.def.CompDefForAssignableFrom<CompSteamTrader>()).soundPowerOff;
+                        if (soundDef2.NullOrUndefined()) {
                             soundDef2 = SoundDefOf.PowerOffSmall;
                         }
-                        if (parent.Spawned)
-                        {
+                        if (parent.Spawned) {
                             soundDef2.PlayOneShot(new TargetInfo(parent.Position, parent.Map, false));
                         }
                         EndSustainerPoweredIfActive();

@@ -80,7 +80,7 @@ namespace SteamCorp
             {
                 if (Spawned)
                 {
-                    StaticSteamNetManager.Manager.Notfiy_TransmitterTransmitsPowerNowChanged(GetComp<CompSteam>());
+                    StaticManager.Net.Notfiy_TransmitterTransmitsPowerNowChanged(GetComp<CompSteam>());
                 }
                 wantsOnOld = FlickUtility.WantsToBeOn(this);
             }

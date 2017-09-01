@@ -40,7 +40,6 @@ namespace SteamCorp
             MaxSprayDuration = maxDuration;
             SmokeAmount = smokeAmount;
             PressureCutoff = steamSprayCutoff;
-            Log.Message("minTicks: " + minTicks + "\ncutoff" + steamSprayCutoff);
         }
 
         public void SteamSprayerTick() 

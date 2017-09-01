@@ -66,11 +66,9 @@ namespace SteamCorp
 
         public static SteamPowerNet NewPowerNetStartingFrom(Building root)
         {
-
-#if DEBUG
-            Log.Message("Starting new power net from " + root + " at " + root.InteractionCell);
-#endif
-            return new SteamPowerNet(ContiguousSteamBuildings(root));
+            return (root is Building_Steam) 
+                ? new SteamPowerNet(ContiguousSteamBuildings(root)) 
+                : new SteamPowerNet(new List<CompSteam>());
         }
 
         public static void UpdateVisualLinkagesFor(SteamPowerNet net)

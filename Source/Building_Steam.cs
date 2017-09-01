@@ -25,4 +25,4 @@ namespace SteamCorp
             SnowUtility.AddSnowRadial(this.OccupiedRect().RandomCell, Map, 4f, -0.06f);
         }
     }
-}
+} 

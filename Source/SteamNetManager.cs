@@ -68,16 +68,12 @@ namespace SteamCorp
 
         public void Notfiy_TransmitterTransmitsPowerNowChanged(CompSteam transmitter)
         {
-            Log.Message("Notfiy_TransmitterTransmitsPowerNowChanged");
             if (!transmitter.parent.Spawned)
             {
                 return;
             } 
-            Log.Message("Deregistering");
             delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterTransmitter, transmitter));
-            Log.Message("registering");
             delayedActions.Add(new DelayedAction(DelayedActionType.RegisterTransmitter, transmitter));
-            Log.Message("notifying wires");
             NotifyDrawersForWireUpdate(transmitter.parent.Position);
         }
 
@@ -234,7 +230,6 @@ namespace SteamCorp
                 if (transmitter != null && transmitter is Building_Steam)
                 {
                     SteamPowerNet powerNet = SteamNetMaker.NewPowerNetStartingFrom(transmitter);
-                    Log.Message("new net is " + powerNet + ", registering");
                     RegisterPowerNet(powerNet);
                     for (int i = 0; i < powerNet.transmitters.Count; i++)
                     {

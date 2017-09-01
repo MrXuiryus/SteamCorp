@@ -5,7 +5,7 @@ namespace SteamCorp
 {
     public class SteamPowerConnectionMaker
     {
-        private const int ConnectMaxDist = 1;
+        private const int ConnectMaxDist = 0;
 
         public static void ConnectAllConnectorsToTransmitter(CompSteam newTransmitter)
         {
@@ -123,7 +123,9 @@ namespace SteamCorp
                     if (transmitter != null && !transmitter.Destroyed)
                     {
                         CompSteam steamComp = transmitter.GetComp<CompSteam>();
-                        if (steamComp != null && steamComp.TransmitsSteamPower && (transmitter.def.building == null || transmitter.def.building.allowWireConnection))
+                        if (steamComp != null && steamComp.TransmitsSteamPower 
+                            && (transmitter.GetComp<CompSteam>() != null 
+                                || transmitter.GetComp<CompSteam>().Props.allowPipeConnection))
                         {
                             if (disallowedNets == null || !disallowedNets.Contains(steamComp.SteamNet))
                             {

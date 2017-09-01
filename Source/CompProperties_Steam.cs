@@ -14,6 +14,8 @@ namespace SteamCorp
 
         public SoundDef soundAmbientPowered;
 
+        public bool allowPipeConnection;
+
         public CompProperties_Steam()
         {
             compClass = typeof(CompSteam);

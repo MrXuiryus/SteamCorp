@@ -67,8 +67,7 @@
     <Compile Include="GenStep_Steam.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="PlaceWorker_Pipe.cs" />
-    <Compile Include="StaticSteamBreakdownManager.cs" />
-    <Compile Include="StaticSteamNetManager.cs" />
+    <Compile Include="StaticManager.cs" />
     <Compile Include="SteamBreakdownableUtility.cs" />
     <Compile Include="SteamBreakdownManager.cs" />
     <Compile Include="Building_Steam.cs" />

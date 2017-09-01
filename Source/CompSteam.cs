@@ -58,9 +58,9 @@ namespace SteamCorp
             // set static manager to new SteamNetManager if null
             if (Props.transmitsSteam)
             {
-                StaticSteamNetManager.Manager.Notify_TransmitterSpawned(this);
+                StaticManager.Net.Notify_TransmitterSpawned(this);
             }
-            StaticSteamNetManager.Manager.Notify_ConnectorWantsConnect(this);
+            StaticManager.Net.Notify_ConnectorWantsConnect(this);
             SetUpSteamPowerVars();
         }
 
@@ -88,8 +88,6 @@ namespace SteamCorp
                 Log.Message("done deregistering glower");
 #endif
             }
-
-            Find.VisibleMap.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
         }
 
         public virtual void LostConnectParent()
@@ -114,11 +112,11 @@ namespace SteamCorp
             }
             if (parent.def.ConnectToPower)
             {
-                PowerNetGraphics.PrintOverlayConnectorBaseFor(layer, parent);
+                SteamNetGraphics.PrintOverlayConnectorBaseFor(layer, parent);
             }
             if (connectParent != null)
             {
-                PowerNetGraphics.PrintWirePieceConnecting(layer, parent, connectParent.parent, true);
+                SteamNetGraphics.PrintWirePieceConnecting(layer, parent, connectParent.parent, true);
             }
         }
 

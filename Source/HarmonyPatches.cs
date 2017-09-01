@@ -26,7 +26,7 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void FinalizeInitPatch(Map __instance)
         {
-            StaticSteamNetManager.Manager.UpdatePowerNetsAndConnections_First();
+            StaticManager.Net.UpdatePowerNetsAndConnections_First();
         }
     }
 
@@ -37,8 +37,8 @@ namespace SteamCorp
         public static void ConstructComponentsPatch(Map __instance)
         {
             // set manager to new manager if null
-            StaticSteamNetManager.Manager = new SteamNetManager(__instance, new SteamNetGrid(__instance));
-            StaticSteamBreakdownManager.Manager = new SteamBreakdownManager(__instance);
+            StaticManager.Net = new SteamNetManager(__instance, new SteamNetGrid(__instance));
+            StaticManager.Breakdowns = new SteamBreakdownManager(__instance);
         }
     }
 
@@ -49,7 +49,7 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void MapPostTickPatch(Map __instance)
         {
-            StaticSteamNetManager.Manager.PowerNetsTick();
+            StaticManager.Net.PowerNetsTick();
         }
     }
 
@@ -59,10 +59,10 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void MapUpdatePatch(Map __instance)
         {
-            StaticSteamNetManager.Manager.UpdatePowerNetsAndConnections_First();
+            StaticManager.Net.UpdatePowerNetsAndConnections_First();
             if (!WorldRendererUtility.WorldRenderedNow && Find.VisibleMap == __instance)
             {
-                StaticSteamNetManager.Manager.Grid.DrawDebugPowerNetGrid();
+                StaticManager.Net.Grid.DrawDebugPowerNetGrid();
             }
         }
     }
@@ -74,7 +74,7 @@ namespace SteamCorp
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
             bool parentIsSteamBuilding = parent is Building_Steam;
-            bool netAtCIsNull = StaticSteamNetManager.Manager.Grid.TransmittedPowerNetAt(c) == null;
+            bool netAtCIsNull = StaticManager.Net.Grid.TransmittedPowerNetAt(c) == null;
             //fix steam items trying to link to electricity items
             if (__result)
             {
@@ -99,7 +99,7 @@ namespace SteamCorp
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
             bool parentIsSteamBuilding = parent is Building_Steam;
-            bool netAtCIsNull = StaticSteamNetManager.Manager.Grid.TransmittedPowerNetAt(c) == null;
+            bool netAtCIsNull = StaticManager.Net.Grid.TransmittedPowerNetAt(c) == null;
             //fix steam items trying to link to electricity items
             if (__result)
             {
@@ -154,7 +154,7 @@ namespace SteamCorp
         public static void PotentialWorkThingsGlobalPatch(WorkGiver_FixBrokenDownBuilding __instance,
             ref IEnumerable<Thing> __result, ref Pawn pawn)
         {
-            foreach (Thing t in StaticSteamBreakdownManager.Manager.BrokenDownThings)
+            foreach (Thing t in StaticManager.Breakdowns.BrokenDownThings)
             {
                 __result.Add<Thing>(t);
             }

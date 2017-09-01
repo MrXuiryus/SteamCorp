@@ -38,6 +38,7 @@
         <compClass>SteamCorp.CompSteamPowerPlant</compClass>
         <baseSteamConsumption>-1000</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
+        <allowPipeConnection>true</allowPipeConnection>
     </li>
       <li Class="CompProperties_Flickable" />
       <li Class="SteamCorp.CompProperties_SteamSprayer">

@@ -72,7 +72,7 @@ namespace SteamCorp
         {
             brokenDownInt = true;
             parent.BroadcastCompSignal("Breakdown");
-            StaticSteamBreakdownManager.Manager.Notify_BrokenDown(parent);
+            StaticManager.Breakdowns.Notify_BrokenDown(parent);
             if (parent.Faction == Faction.OfPlayer)
             {
                 Find.LetterStack.ReceiveLetter("LetterLabelBuildingBrokenDown".Translate(new object[]
