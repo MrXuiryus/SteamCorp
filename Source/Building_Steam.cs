@@ -13,11 +13,15 @@ namespace SteamCorp
         //delete pipes already installed underneath building
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            foreach (Thing building in map.thingGrid.ThingsListAt(PositionHeld).ToArray())
+            foreach (IntVec3 cell in this.OccupiedRect().Cells)
             {
-                if (building.Label == "Steam Pipe" && building.Label != Label)
+                foreach (Thing t in map.thingGrid.ThingsAt(cell))
                 {
-                    building.DeSpawn();
+                    Building building = t as Building;
+                    if (building != null && building.Label == "Steam Pipe" && building.Label != Label)
+                    {
+                        building.DeSpawn();
+                    }
                 }
             }
             base.SpawnSetup(map, respawningAfterLoad);

@@ -269,9 +269,11 @@
         <glowColor>(217,112,33,0)</glowColor>
 	  </li>
       <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
       <li Class="SteamCorp.CompProperties_SteamAlternator">
         <compClass>SteamCorp.CompSteamAlternator</compClass>
-        <wattsOfSteamIn>1500</wattsOfSteamIn>
+        <baseSteamConsumption>2000</baseSteamConsumption>
+        <wattsOfPowerOut>1500</wattsOfPowerOut>
       </li>
     </comps>
     <rotatable>false</rotatable>
