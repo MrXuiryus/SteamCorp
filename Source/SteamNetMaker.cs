@@ -35,17 +35,12 @@ namespace SteamCorp
                         if (adjacentCell.InBounds(currentBuilding.Map))
                         {
                             List<Thing> thingList = adjacentCell.GetThingList(currentBuilding.Map);
-                            for (int i = 0; i < thingList.Count; i++)
+                            foreach (Thing thing in thingList)
                             {
-                                if(thingList[i] is Building_Steam sbuilding)
+                                if(thing is Building_Steam sbuilding)
                                 {
-                                    if (sbuilding.TransmitsSteamPower && 
-                                        (sbuilding.GetComp<CompFlickable>() == null 
-                                        || sbuilding.GetComp<CompFlickable>().SwitchIsOn))
+                                    if (sbuilding.TransmitsSteamPower && FlickUtility.WantsToBeOn(sbuilding))
                                     {
-#if DEBUG
-                                        Log.Message("Found steambuilding " + sbuilding);
-#endif
                                         if (!openSet.Contains(sbuilding) && !currentSet.Contains(sbuilding)
                                             && !closedSet.Contains(sbuilding))
                                         {
@@ -66,9 +61,9 @@ namespace SteamCorp
 
         public static SteamPowerNet NewPowerNetStartingFrom(Building root)
         {
-            return (root is Building_Steam) 
+            return (root is Building_Steam && FlickUtility.WantsToBeOn(root)) 
                 ? new SteamPowerNet(ContiguousSteamBuildings(root)) 
-                : new SteamPowerNet(new List<CompSteam>());
+                : new SteamPowerNet(root.GetComps<CompSteam>());
         }
 
         public static void UpdateVisualLinkagesFor(SteamPowerNet net)

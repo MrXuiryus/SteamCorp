@@ -63,6 +63,7 @@ namespace SteamCorp
 
         public void Notify_PowerNetDeleted(SteamPowerNet deadNet)
         {
+            // deadNet.Delete(); may solve Multiple nets on same cell Warning
             if (!steamNetCells.TryGetValue(deadNet, out List<IntVec3> list))
             {
                 Log.Warning("Net " + deadNet + " does not exist in PowerNetGrid's dictionary.");

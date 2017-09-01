@@ -71,7 +71,7 @@ namespace SteamCorp
             if (!transmitter.parent.Spawned)
             {
                 return;
-            } 
+            }
             delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterTransmitter, transmitter));
             delayedActions.Add(new DelayedAction(DelayedActionType.RegisterTransmitter, transmitter));
             NotifyDrawersForWireUpdate(transmitter.parent.Position);
@@ -241,14 +241,13 @@ namespace SteamCorp
 
         private void TryDestroyNetAt(IntVec3 cell)
         {
-            if (!cell.InBounds(Map))
+            if (cell.InBounds(Map))
             {
-                return;
-            }
-            SteamPowerNet powerNet = Grid.TransmittedPowerNetAt(cell);
-            if (powerNet != null)
-            {
-                DeletePowerNet(powerNet);
+                SteamPowerNet powerNet = Grid.TransmittedPowerNetAt(cell);
+                if (powerNet != null)
+                {
+                    DeletePowerNet(powerNet);
+                }
             }
         }
 

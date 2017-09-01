@@ -151,7 +151,7 @@ namespace SteamCorp
             {
                 return "PowerNotConnected".Translate();
             }
-            string text = (SteamNet.CurrentEnergyGainRate() / CompSteam.WattsToWattDaysPerTick).ToString("F0");
+            string text = (SteamNet.CurrentEnergyGainRate() / WattsToWattDaysPerTick).ToString("F0");
             string text2 = SteamNet.CurrentStoredEnergy().ToString("F0");
             return "PowerConnectedRateStored".Translate(new object[]
             {

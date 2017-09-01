@@ -82,14 +82,13 @@ namespace SteamCorp
 
         public override string CompInspectStringExtra()
         {
-            CompProperties_SteamBattery props = Props;
             string text = string.Concat(new string[]
             {
             "PowerBatteryStored".Translate(),
             ": ",
             storedSteamEnergy.ToString("F0"),
             " / ",
-            props.storedEnergyMax.ToString("F0"),
+            Props.storedEnergyMax.ToString("F0"),
             " Wd"
             });
             string text2 = text;
@@ -99,7 +98,7 @@ namespace SteamCorp
             "\n",
             "PowerBatteryEfficiency".Translate(),
             ": ",
-            (props.efficiency * 100f).ToString("F0"),
+            (Props.efficiency * 100f).ToString("F0"),
             "%"
             });
             return text;
