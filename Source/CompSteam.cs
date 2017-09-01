@@ -88,6 +88,12 @@ namespace SteamCorp
                 Log.Message("done deregistering glower");
 #endif
             }
+            if (Props.transmitsSteam)
+            {
+                StaticManager.Net.Notify_TransmitterDespawned(this);
+            }
+            StaticManager.Net.Notify_ConnectorDespawned(this);
+            map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
         }
 
         public virtual void LostConnectParent()

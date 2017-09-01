@@ -99,7 +99,7 @@ namespace SteamCorp
 
     [HarmonyPatch(typeof(Graphic_LinkedTransmitter), "ShouldLinkWith")]
     class Graphic_LinkedTransmitterPatch
-    {
+    { 
         [HarmonyPostfix]
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
