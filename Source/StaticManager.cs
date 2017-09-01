@@ -6,7 +6,6 @@ namespace SteamCorp
     {
         private static SteamNetManager net;
         private static SteamBreakdownManager breakdowns;
-        private static GenStep_Steam genStep_Steam;
 
         public static SteamNetManager Net
         {
@@ -18,12 +17,6 @@ namespace SteamCorp
         {
             get => breakdowns ?? (breakdowns = new SteamBreakdownManager(Find.VisibleMap));
             set => breakdowns = value;
-        }
-
-        public static GenStep_Steam GenStep
-        {
-            get => genStep_Steam ?? (genStep_Steam = new GenStep_Steam());
-            set => genStep_Steam = value;
         }
     }
 }

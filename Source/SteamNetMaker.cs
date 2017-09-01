@@ -72,7 +72,6 @@ namespace SteamCorp
         }
 
         public static void UpdateVisualLinkagesFor(SteamPowerNet net)
-        {
-        }
+        { }
     }
 }

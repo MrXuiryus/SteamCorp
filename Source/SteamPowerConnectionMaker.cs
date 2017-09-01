@@ -125,7 +125,7 @@ namespace SteamCorp
                         CompSteam steamComp = transmitter.GetComp<CompSteam>();
                         if (steamComp != null && steamComp.TransmitsSteamPower 
                             && (transmitter.GetComp<CompSteam>() != null 
-                                || transmitter.GetComp<CompSteam>().Props.allowPipeConnection))
+                                || transmitter.GetComp<CompSteam>().Props.allowPipeUnderneath))
                         {
                             if (disallowedNets == null || !disallowedNets.Contains(steamComp.SteamNet))
                             {

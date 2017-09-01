@@ -14,11 +14,11 @@ namespace SteamCorp
 
         public SoundDef soundAmbientPowered;
 
-        public bool allowPipeConnection;
+        public bool allowPipeUnderneath;
 
         public CompProperties_Steam()
         {
             compClass = typeof(CompSteam);
-        }
+        } 
     }
 }

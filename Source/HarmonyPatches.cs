@@ -74,21 +74,26 @@ namespace SteamCorp
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
             bool parentIsSteamBuilding = parent is Building_Steam;
-            bool netAtCIsNull = StaticManager.Net.Grid.TransmittedPowerNetAt(c) == null;
-            //fix steam items trying to link to electricity items
-            if (__result)
+            bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t is Building_Steam);
+            bool powerNetExistsAtC = parent.Map.powerNetGrid.TransmittedPowerNetAt(c) != null;
+            bool powerNetExistsAtParent = parent.Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null;
+
+            //check if both points are in bounds
+            if (c.InBounds(parent.Map) && parent.Position.InBounds(parent.Map))
             {
-                if ((netAtCIsNull && !parentIsSteamBuilding)
-                    || (netAtCIsNull && parentIsSteamBuilding))
+                // if both items are electric grid return true
+                if (powerNetExistsAtC && powerNetExistsAtParent)
                 {
-                    __result = false;
+                    __result = true;
+                    return;
+                }
+                else if (parentIsSteamBuilding && cHasSteamBuilding)
+                {
+                    __result = true;
+                    return;
                 }
             }
-            //fix steam items not finding other steam items
-            else if (!__result && !netAtCIsNull && parentIsSteamBuilding && c.InBounds(parent.Map))
-            {
-                __result = true;
-            }
+            __result = false;
         }
     }
 
@@ -99,31 +104,26 @@ namespace SteamCorp
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
             bool parentIsSteamBuilding = parent is Building_Steam;
-            bool netAtCIsNull = StaticManager.Net.Grid.TransmittedPowerNetAt(c) == null;
-            //fix steam items trying to link to electricity items
-            if (__result)
+            bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t is Building_Steam);
+            bool powerNetExistsAtC = parent.Map.powerNetGrid.TransmittedPowerNetAt(c) != null;
+            bool powerNetExistsAtParent = parent.Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null;
+
+            //check if both points are in bounds
+            if (c.InBounds(parent.Map) && parent.Position.InBounds(parent.Map))
             {
-                if ((netAtCIsNull && !parentIsSteamBuilding)
-                    || (netAtCIsNull && parentIsSteamBuilding))
+                // if both items are electric grid return true
+                if (powerNetExistsAtC && powerNetExistsAtParent)
                 {
-                    __result = false;
+                    __result = true;
+                    return;
+                }
+                else if (parentIsSteamBuilding && cHasSteamBuilding)
+                {
+                    __result = true;
+                    return;
                 }
             }
-            //fix steam items not finding other steam items
-            else if (!__result && !netAtCIsNull && parentIsSteamBuilding && c.InBounds(parent.Map))
-            {
-                __result = true;
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(GraphicUtility), "WrapLinked")]
-    class GraphicUtilityPatch
-    {
-        [HarmonyPrefix]
-        public static bool WrapLinkedPatch(ref Graphic subGraphic, ref LinkDrawerType linkDrawerType)
-        {
-            return true;
+            __result = false;
         }
     }
 
