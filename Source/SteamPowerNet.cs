@@ -229,17 +229,17 @@ namespace SteamCorp
         {
             if (extra > 0f)
             {
-            DistributeEnergyAmongBatteries(extra);
+                DistributeEnergyAmongBatteries(extra);
             }
             else
             {
                 float num = -extra;
-            givingBats.Clear();
+                givingBats.Clear();
                 for (int i = 0; i < batteryComps.Count; i++)
                 {
                     if (batteryComps[i].StoredSteamEnergy > 1E-07f)
                     {
-                    givingBats.Add(batteryComps[i]);
+                        givingBats.Add(batteryComps[i]);
                     }
                 }
                 float a = num / (float)givingBats.Count;
@@ -249,7 +249,6 @@ namespace SteamCorp
                     for (int j = 0; j < givingBats.Count; j++)
                     {
                         float num3 = Mathf.Min(a, givingBats[j].StoredSteamEnergy);
-                        givingBats[j].DrawSteam(num3);
                         num -= num3;
                         if (num < 1E-07f)
                         {

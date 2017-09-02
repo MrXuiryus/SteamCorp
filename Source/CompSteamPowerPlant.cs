@@ -30,7 +30,7 @@ namespace SteamCorp
             UpdateDesiredPowerOutput();
         }
 
-        public void UpdateDesiredPowerOutput()
+        public virtual void UpdateDesiredPowerOutput()
         {
             if ((breakdownableComp != null && breakdownableComp.BrokenDown) 
                 || (refuelableComp != null && !refuelableComp.HasFuel) 

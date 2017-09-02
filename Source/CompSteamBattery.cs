@@ -103,10 +103,5 @@ namespace SteamCorp
             });
             return text;
         }
-
-        internal void DrawSteam(float num3)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -8,7 +8,7 @@ namespace SteamCorp
     class CompSteamSprayer : CompSteam
     {
         private SteamSprayer steamSprayer;
-
+         
         private Sustainer spraySustainer;
 
         private int spraySustainerStartTick = -999;
@@ -16,7 +16,7 @@ namespace SteamCorp
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (Props != null)
+            if (Props != null) 
             {
                 steamSprayer = new SteamSprayer(parent, Props.MinTicksBetweenSprays, Props.MaxTicksBetweenSprays,
                     Props.MinSprayDuration, Props.MaxSprayDuration, Props.SmokeAmount, Props.PressureCutoff)
@@ -24,8 +24,8 @@ namespace SteamCorp
                     startSprayCallback = new Action(StartSpray),
                     endSprayCallback = new Action(EndSpray)
                 }; 
-            }
-            else
+            } 
+            else 
             {
                 steamSprayer = new SteamSprayer(this.parent)
                 {
