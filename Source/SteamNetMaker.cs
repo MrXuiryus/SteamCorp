@@ -31,7 +31,7 @@ namespace SteamCorp
                 foreach (Building currentBuilding in currentSet)
                 {
                     foreach (IntVec3 adjacentCell in GenAdj.CellsAdjacentCardinal(currentBuilding))
-                    {
+                    { 
                         if (adjacentCell.InBounds(currentBuilding.Map))
                         {
                             List<Thing> thingList = adjacentCell.GetThingList(currentBuilding.Map);
@@ -63,7 +63,7 @@ namespace SteamCorp
         public static SteamPowerNet NewPowerNetStartingFrom(Building root)
         {
             // return new net from contiguous buildings if flicked on (or not flickable) and steam building
-            return (root is Building_Steam && FlickUtility.WantsToBeOn(root)) 
+            return (root.TryGetComp<CompSteam>() != null && FlickUtility.WantsToBeOn(root)) 
                 ? new SteamPowerNet(ContiguousSteamBuildings(root))
                 // if the building is an off valve, return the net at root's position, or if null build a new net at root
                 : new SteamPowerNet(root.GetComps<CompSteam>());

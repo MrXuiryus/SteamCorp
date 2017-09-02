@@ -73,8 +73,8 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
-            bool parentIsSteamBuilding = parent is Building_Steam;
-            bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t is Building_Steam);
+            bool parentIsSteamBuilding = parent.TryGetComp<CompSteam>() != null;
+            bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t.TryGetComp<CompSteam>() != null);
             bool powerNetExistsAtC = parent.Map.powerNetGrid.TransmittedPowerNetAt(c) != null;
             bool powerNetExistsAtParent = parent.Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null;
 
@@ -103,8 +103,8 @@ namespace SteamCorp
         [HarmonyPostfix]
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
-            bool parentIsSteamBuilding = parent is Building_Steam;
-            bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t is Building_Steam);
+            bool parentIsSteamBuilding = parent.TryGetComp<CompSteam>() != null;
+            bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t.TryGetComp<CompSteam>() != null);
             bool powerNetExistsAtC = parent.Map.powerNetGrid.TransmittedPowerNetAt(c) != null;
             bool powerNetExistsAtParent = parent.Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null;
 
