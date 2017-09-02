@@ -116,7 +116,6 @@
 		<MinSprayDuration>240</MinSprayDuration>
 		<MaxSprayDuration>480</MaxSprayDuration>
 		<SmokeAmount>2</SmokeAmount>
-    <tickerType>Normal</tickerType>
 		<PressureCutoff>100</PressureCutoff>
         <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
         <baseSteamConsumption>-3600</baseSteamConsumption>
