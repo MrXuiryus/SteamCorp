@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+  
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Steamtrap</defName>
+    <label>steam trap</label>
+    <thingClass>Building_TrapRearmable</thingClass>
+    <graphicData>
+      <texPath>Buildings/steamvent</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0,0,1,0.15)</rect>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <drawerType>RealtimeOnly</drawerType>
+    <rotatable>false</rotatable>
+    <tickerType>Normal</tickerType>
+    <stealable>false</stealable>
+    <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
+      <WorkToBuild>2000</WorkToBuild>
+      <Beauty>-4</Beauty>
+      <TrapMeleeDamage>60</TrapMeleeDamage>
+      <TrapSpringChance>0.8</TrapSpringChance>
+    </statBases>
+    <description>A trap that burns victims with high temperature steam, watch your step.</description>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>70</costStuffCount>
+    <designationCategory>Security</designationCategory>
+    <designationHotKey>Misc6</designationHotKey>
+    <building>
+      <isTrap>true</isTrap>
+      <trapDamageCategory>Sharp</trapDamageCategory>
+    </building>
+    <comps>
+		<li Class="SteamCorp.CompProperties_Steam">
+				<compClass>SteamCorp.CompSteamTrader</compClass>
+				<baseSteamConsumption>100</baseSteamConsumption>
+		</li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+    </comps>	
+  </ThingDef>
+  
+</ThingDefs>  
