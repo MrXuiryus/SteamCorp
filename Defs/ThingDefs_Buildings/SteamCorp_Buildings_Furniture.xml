@@ -23,7 +23,7 @@
       <Flammability>1.0</Flammability>
     </statBases>
     <researchPrerequisites>
-      <li>MrXuiryus_BrassRefining</li>
+      <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
   </ThingDef>
 

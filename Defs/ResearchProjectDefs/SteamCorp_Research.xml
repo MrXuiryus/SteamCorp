@@ -22,122 +22,16 @@
 	<!-- Metal Refinement -->
 	
 	<ResearchProjectDef>
-		<defName>MrXuiryus_BrassRefining</defName>
-		<label>Brass Refining</label>
-		<description>Allows the refining of brass alloy.</description>
+		<defName>MrXuiryus_Drilling</defName>
+		<label>Steam-Powered Drills</label>
+		<description>Build special drills dedicated to collecting coal and brass.</description>
 		<baseCost>500</baseCost>
 		<techLevel>Industrial</techLevel>
 		<prerequisites>
 			<li>MrXuiryus_SteamPower</li>
 		</prerequisites>
-		<researchViewX>1</researchViewX>
-		<researchViewY>0</researchViewY>
-		<tab>SteamCorp</tab>
-	</ResearchProjectDef>
-
-	<!-- Clockwork Components -->
-	
-	<ResearchProjectDef>
-		<defName>MrXuiryus_ClockworkComponents</defName>
-		<label>Clockwork Components</label>
-		<description>Allows the refining of brass alloy.</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>MrXuiryus_BrassRefining</li>
-		</prerequisites>
-		<researchViewX>2</researchViewX>
-		<researchViewY>0</researchViewY>
-		<tab>SteamCorp</tab>
-	</ResearchProjectDef>
-	
-	<ResearchProjectDef>
-		<defName>MrXuiryus_ComplexClockworkComponents</defName>
-		<label>Complex Clockwork Components</label>
-		<description>Small complex components used in complicated devices</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>MrXuiryus_ClockworkComponents</li>
-		</prerequisites>
-		<researchViewX>3</researchViewX>
-		<researchViewY>0</researchViewY>
-		<tab>SteamCorp</tab>		
-	</ResearchProjectDef>
-
-	<!-- Apparel and Biotics -->	
-	
-	<ResearchProjectDef>
-		<defName>MrXuiryus_SteampunkApparel</defName>
-		<label>Steampunk Apparel</label>
-		<description>The most basic of Steampunk designs</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>MrXuiryus_BrassRefining</li>
-		</prerequisites>
-		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
-		<tab>SteamCorp</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>MrXuiryus_SteampunkArmour</defName>
-		<label>Steampunk Armour</label>
-		<description>More advanced armours made of brass</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>MrXuiryus_SteampunkApparel</li>
-			<li>MrXuiryus_ClockworkComponents</li>
-		</prerequisites>
-		<researchViewX>3</researchViewX>
-		<researchViewY>1</researchViewY>
-		<tab>SteamCorp</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>MrXuiryus_SteampunkProstheics</defName>
-		<label>Steampunk Prostheics</label>
-		<description>Prostheics made from brass and inticate clockwork components</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>MrXuiryus_SteampunkArmour</li>
-			<li>MrXuiryus_ComplexClockworkComponents</li>
-		</prerequisites>
-		<researchViewX>4</researchViewX>
-		<researchViewY>1</researchViewY>
-		<tab>SteamCorp</tab>
-	</ResearchProjectDef>		
-
-	<!-- Weaponry -->
-	
-	<ResearchProjectDef>
-		<defName>MrXuiryus_PressurisedChamber</defName>
-		<label>Pressurised Chamber</label>
-		<description>Allows crafting the Presurised Chamber the base requirement of all Steam pressurised weapons.</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>MrXuiryus_ClockworkComponents</li>
-		</prerequisites>
-		<researchViewX>3</researchViewX>
-		<researchViewY>2</researchViewY>
-		<tab>SteamCorp</tab>
-	</ResearchProjectDef>
-	
-	<ResearchProjectDef>
-		<defName>MrXuiryus_PressurisedWeaponry</defName>
-		<label>Pressurised Weaponry</label>
-		<description>Craft basic steam pressurised weapons.</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>MrXuiryus_PressurisedChamber</li>
-		</prerequisites>
 		<researchViewX>4</researchViewX>
 		<researchViewY>2</researchViewY>
 		<tab>SteamCorp</tab>
-	</ResearchProjectDef>		
+	</ResearchProjectDef>	
 </Defs>
