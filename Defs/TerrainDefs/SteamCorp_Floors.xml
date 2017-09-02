@@ -35,7 +35,6 @@
     </CostList>
     <constructEffect>ConstructMetal</constructEffect>
     <designationHotkey>Misc1</designationHotkey>
-	<researchPrerequisites><li>MrXuiryus_BrassRefining</li></researchPrerequisites>
   </TerrainDef>
 
 	<TerrainDef ParentName="MrXuiryus_FloorBase">
@@ -54,7 +53,6 @@
     </CostList>
     <constructEffect>ConstructMetal</constructEffect>
     <designationHotkey>Misc1</designationHotkey>
-	<researchPrerequisites><li>MrXuiryus_BrassRefining</li></researchPrerequisites>
   </TerrainDef>
 
 	<TerrainDef ParentName="MrXuiryus_FloorBase">
@@ -73,7 +71,6 @@
     </CostList>
     <constructEffect>ConstructMetal</constructEffect>
     <designationHotkey>Misc1</designationHotkey>
-	<researchPrerequisites><li>MrXuiryus_BrassRefining</li></researchPrerequisites>
   </TerrainDef>   
   
 </TerrainDefs>  

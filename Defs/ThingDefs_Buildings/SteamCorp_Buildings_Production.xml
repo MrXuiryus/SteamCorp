@@ -18,13 +18,15 @@
 			<li>PlaceWorker_ReportWorkSpeedPenalties</li>
 		</placeWorkers>
   </ThingDef>
+
+<!--Teapot-->  
   
   <ThingDef ParentName="MrXuiryus_BenchBase">
     <DefName>MrXuiryus_Teapot</DefName>
     <label>Teapot</label>
     <Description>Brew a nice cup of tea and relax.</Description>
     <graphicData>
-      <texPath>Buildings/Joy/teapot/texPath>
+      <texPath>Buildings/joy/teapot</texPath>
       <graphicClass>Graphic_single</graphicClass>
       <drawSize>(1,1)</drawSize>
     </graphicData>
@@ -75,7 +77,181 @@
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
       <heatPerTickWhileWorking>0.32</heatPerTickWhileWorking>
     </building>
-    <researchPrerequisites><li>MrXuiryus_ClockworkComponents</li></researchPrerequisites>
+  </ThingDef>
+  
+<!--Drills-->
+
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Coaldrill</defName>
+    <label>coal drill</label>
+    <description>A drill that reliably and continually provides coal when worked</description>
+    <size>(1,1)</size>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <fillPercent>0.5</fillPercent>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <hasInteractionCell>true</hasInteractionCell>
+    <designationCategory>Production</designationCategory>
+    <designationHotKey>Misc12</designationHotKey>
+    <specialDisplayRadius>1.5</specialDisplayRadius>
+    <rotatable>true</rotatable>
+    <costList>
+      <MrXuiryus_Brass>100</MrXuiryus_Brass>
+      <Component>3</Component>
+    </costList>
+    <placeWorkers>
+      <li>PlaceWorker_ShowDeepResources</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <researchPrerequisites>
+      <li>MrXuiryus_Drilling</li>
+    </researchPrerequisites>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <WorkToBuild>5000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-25</Beauty>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>250</basePowerConsumption>
+        <startElectricalFires>true</startElectricalFires>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li>
+        <compClass>CompDeepDrill</compClass>
+      </li>
+    </comps>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Building/Production/DeepDrill</texPath>
+      <drawSize>(2,2)</drawSize>
+      <drawRotated>false</drawRotated>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_Brassdrill</defName>
+    <label>brass drill</label>
+    <description>A drill that reliably and continually provides brass when worked</description>
+    <size>(1,1)</size>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <fillPercent>0.5</fillPercent>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <hasInteractionCell>true</hasInteractionCell>
+    <designationCategory>Production</designationCategory>
+    <designationHotKey>Misc12</designationHotKey>
+    <specialDisplayRadius>1.5</specialDisplayRadius>
+    <rotatable>true</rotatable>
+    <costList>
+      <MrXuiryus_Brass>100</MrXuiryus_Brass>
+      <Component>3</Component>
+    </costList>
+    <placeWorkers>
+      <li>PlaceWorker_ShowDeepResources</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <researchPrerequisites>
+      <li>MrXuiryus_Drilling</li>
+    </researchPrerequisites>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <WorkToBuild>5000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-25</Beauty>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>250</basePowerConsumption>
+        <startElectricalFires>true</startElectricalFires>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li>
+        <compClass>CompDeepDrill</compClass>
+      </li>
+    </comps>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Building/Production/DeepDrill</texPath>
+      <drawSize>(2,2)</drawSize>
+      <drawRotated>false</drawRotated>
+    </graphicData>
+  </ThingDef>    
+
+<!--Stove-->
+
+ <ThingDef ParentName="MrXuiryus_BenchBase">
+    <defName>MrXuiryus_Steamstove</defName>
+    <label>steam stove</label>
+    <ThingClass>Building_WorkTable_HeatPush</ThingClass>
+    <Description>A stove powered by steam that can be used to prepare and cook meals.</Description>
+    <graphicData>
+      <texPath>Things/Building/Production/TableStoveElectric</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3.5,1.5)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <constructEffect>ConstructMetal</constructEffect>
+    <CostList>
+      <MrXuiryus_Brass>80</MrXuiryus_Brass>
+      <Component>2</Component>
+    </CostList>
+    <AltitudeLayer>Building</AltitudeLayer>
+    <fillPercent>0.5</fillPercent>
+    <useHitPoints>True</useHitPoints>
+    <statBases>
+      <WorkToBuild>2000</WorkToBuild>
+      <MaxHitPoints>180</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <Size>(3,1)</Size>
+    <DesignationCategory>Production</DesignationCategory>
+    <Passability>PassThroughOnly</Passability>
+    <pathCost>70</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <recipes>
+      <li>CookMealSimple</li>
+      <li>CookMealFine</li>
+      <li>CookMealLavish</li>
+      <li>CookMealSurvival</li>
+      <li>MakePemmican</li>
+    </recipes>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <comps>
+		<li Class="SteamCorp.CompProperties_SteamPower">
+				<compClass>SteamCorp.CompSteamPowerTrader</compClass>
+				<baseSteamConsumption>350</baseSteamConsumption>
+		</li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+    </comps>
+    <building>
+      <isMealSource>true</isMealSource>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <heatPerTickWhileWorking>0.10</heatPerTickWhileWorking>
+    </building>
+    <designationHotKey>Misc8</designationHotKey>
+    <researchPrerequisites>
+      <li>MrXuiryus_SteamPower</li>
+    </researchPrerequisites>
   </ThingDef>
   
 </ThingDefs>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{31AC9FC3-16F0-4C14-9E23-5C329460577A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SteamCorp</RootNamespace>
+    <AssemblyName>SteamCorp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\FNotAgain Mod\Assemblies\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\RimWorldWin_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Building_SteamBattery.cs" />
+    <Compile Include="Building_SteamSprayer.cs" />
+    <Compile Include="Building_SteamValve.cs" />
+    <Compile Include="CompProperties_SteamAlternator.cs" />
+    <Compile Include="CompProperties_SteamBattery.cs" />
+    <Compile Include="CompProperties_SteamBreakdownable.cs" />
+    <Compile Include="CompProperties_SteamSprayer.cs" />
+    <Compile Include="CompSteamAlternator.cs" />
+    <Compile Include="CompSteamBreakdownable.cs" />
+    <Compile Include="CompSteamGeyserPowerPlant.cs" />
+    <Compile Include="CompProperties_Steam.cs" />
+    <Compile Include="CompSteam.cs" />
+    <Compile Include="CompSteamBattery.cs" />
+    <Compile Include="CompSteamPowerPlant.cs" />
+    <Compile Include="CompSteamSprayer.cs" />
+    <Compile Include="CompSteamTrader.cs" />
+    <Compile Include="CompSteamTransmitter.cs" />
+    <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="PlaceWorker_Pipe.cs" />
+    <Compile Include="StaticManager.cs" />
+    <Compile Include="SteamBreakdownableUtility.cs" />
+    <Compile Include="SteamBreakdownManager.cs" />
+    <Compile Include="Building_Steam.cs" />
+    <Compile Include="SteamNetGraphics.cs" />
+    <Compile Include="SteamNetGrid.cs" />
+    <Compile Include="SteamNetMaker.cs" />
+    <Compile Include="SteamNetManager.cs" />
+    <Compile Include="SteamPowerConnectionMaker.cs" />
+    <Compile Include="SteamPowerNet.cs" />
+    <Compile Include="SteamSprayer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>C:\SteamLibrary\SteamApps\common\Rimworld\RimWorldWin.exe</PostBuildEvent>
+  </PropertyGroup>
+</Project>
