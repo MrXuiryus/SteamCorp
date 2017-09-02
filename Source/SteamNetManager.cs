@@ -226,7 +226,7 @@ namespace SteamCorp
             if (Grid.TransmittedPowerNetAt(cell) == null)
             {
                 Building transmitter = cell.GetTransmitter(Map);
-                if (transmitter != null && transmitter is Building_Steam)
+                if (transmitter != null && transmitter.TryGetComp<CompSteam>() != null)
                 {
                     SteamPowerNet powerNet = SteamNetMaker.NewPowerNetStartingFrom(transmitter);
                     RegisterPowerNet(powerNet);

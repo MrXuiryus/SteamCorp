@@ -53,13 +53,21 @@ namespace SteamCorp
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
+            //delete pipes already installed underneath building
+            foreach (IntVec3 cell in parent.OccupiedRect().Cells)
+            {
+                foreach (Thing t in parent.Map.thingGrid.ThingsAt(cell))
+                {
+                    Building building = t as Building;
+                    if (building != null && building.Label == "Steam Pipe" && building.Label != parent.Label)
+                    {
+                        building.DeSpawn();
+                    }
+                }
+            }
             base.PostSpawnSetup(respawningAfterLoad);
             parent.Map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
-            // set static manager to new SteamNetManager if null
-            if (Props.transmitsSteam)
-            {
-                StaticManager.Net.Notify_TransmitterSpawned(this);
-            }
+            StaticManager.Net.Notify_TransmitterSpawned(this);
             StaticManager.Net.Notify_ConnectorWantsConnect(this);
             SetUpSteamPowerVars();
         }
