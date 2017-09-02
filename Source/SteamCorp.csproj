@@ -88,6 +88,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>C:\SteamLibrary\SteamApps\common\Rimworld\RimWorldWin.exe</PostBuildEvent>
+    <PostBuildEvent>C:\Users\nrayf\SteamLibrary\SteamApps\common\Rimworld\RimWorldWin.exe</PostBuildEvent>
   </PropertyGroup>
 </Project>

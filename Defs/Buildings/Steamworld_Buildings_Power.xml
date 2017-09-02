@@ -116,6 +116,7 @@
 		<MinSprayDuration>240</MinSprayDuration>
 		<MaxSprayDuration>480</MaxSprayDuration>
 		<SmokeAmount>2</SmokeAmount>
+    <tickerType>Normal</tickerType>
 		<PressureCutoff>100</PressureCutoff>
         <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
         <baseSteamConsumption>-3600</baseSteamConsumption>
@@ -244,6 +245,7 @@
       <Flammability>1.0</Flammability>
       <Beauty>-2</Beauty>
     </statBases>
+    <tickerType>Normal</tickerType>
     <description>A steam alternator to turn mechanical energy into power.</description>
     <placingDraggableDimensions>0</placingDraggableDimensions>
     <costList>
