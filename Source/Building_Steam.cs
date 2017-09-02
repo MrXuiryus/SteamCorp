@@ -19,6 +19,11 @@ namespace SteamCorp
             }
         }
 
+        public override bool TransmitsPowerNow
+        {
+            get => false;
+        }
+
         public override void Tick()
         {
             base.Tick();

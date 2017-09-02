@@ -14,9 +14,6 @@ namespace SteamCorp
         {
             var harmony = HarmonyInstance.Create("SteamCorp");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-#if DEBUG
-            Log.Message("Completed constructing patches");
-#endif
         }
     }
 
@@ -74,7 +71,9 @@ namespace SteamCorp
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
             bool parentIsSteamBuilding = parent.TryGetComp<CompSteam>() != null;
+            bool parentIsAlternator = parent.TryGetComp<CompSteamAlternator>() != null;
             bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t.TryGetComp<CompSteam>() != null);
+            bool cHasAlternator = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t.TryGetComp<CompSteamAlternator>() != null);
             bool powerNetExistsAtC = parent.Map.powerNetGrid.TransmittedPowerNetAt(c) != null;
             bool powerNetExistsAtParent = parent.Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null;
 
@@ -84,7 +83,15 @@ namespace SteamCorp
                 // if both items are electric grid return true
                 if (powerNetExistsAtC && powerNetExistsAtParent)
                 {
-                    __result = true;
+                    //but only if it's not an alternator
+                    if (cHasAlternator || parentIsAlternator)
+                    {
+                        __result = false;
+                    }
+                    else
+                    {
+                        __result = true;
+                    }
                     return;
                 }
                 else if (parentIsSteamBuilding && cHasSteamBuilding)
@@ -104,7 +111,9 @@ namespace SteamCorp
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
             bool parentIsSteamBuilding = parent.TryGetComp<CompSteam>() != null;
+            bool parentIsAlternator = parent.TryGetComp<CompSteamAlternator>() != null;
             bool cHasSteamBuilding = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t.TryGetComp<CompSteam>() != null);
+            bool cHasAlternator = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t.TryGetComp<CompSteamAlternator>() != null);
             bool powerNetExistsAtC = parent.Map.powerNetGrid.TransmittedPowerNetAt(c) != null;
             bool powerNetExistsAtParent = parent.Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null;
 
@@ -114,7 +123,15 @@ namespace SteamCorp
                 // if both items are electric grid return true
                 if (powerNetExistsAtC && powerNetExistsAtParent)
                 {
-                    __result = true;
+                    //but only if it's not an alternator
+                    if (cHasAlternator || parentIsAlternator)
+                    {
+                        __result = false;
+                    }
+                    else
+                    {
+                        __result = true;
+                    }
                     return;
                 }
                 else if (parentIsSteamBuilding && cHasSteamBuilding)

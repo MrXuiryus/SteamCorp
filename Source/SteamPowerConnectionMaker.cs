@@ -84,7 +84,7 @@ namespace SteamCorp
                 pc.connectParent = null;
             }
         }
-
+         
         public static void DisconnectFromSteamNet(CompSteam pc)
         {
             //Log.Message("DisconnectFromSteamNet");

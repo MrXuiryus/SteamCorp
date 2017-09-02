@@ -13,7 +13,7 @@ namespace SteamCorp
         private SteamPowerNet steamNet;
 
         public SteamPowerNet SteamNet {
-            get => steamNet ?? ((connectParent != null) ? connectParent.SteamNet : null);
+            get => steamNet ?? (connectParent?.SteamNet);
             set => steamNet = value;
         }
         
@@ -167,5 +167,5 @@ namespace SteamCorp
                 text2
             });
         }
-    }
+    } 
 }
