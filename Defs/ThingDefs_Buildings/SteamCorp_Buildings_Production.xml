@@ -236,8 +236,8 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-		<li Class="SteamCorp.CompProperties_SteamPower">
-				<compClass>SteamCorp.CompSteamPowerTrader</compClass>
+		<li Class="SteamCorp.CompProperties_Steam">
+				<compClass>SteamCorp.CompSteamTrader</compClass>
 				<baseSteamConsumption>350</baseSteamConsumption>
 		</li>
       <li Class="CompProperties_Flickable"/>
