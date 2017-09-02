@@ -37,9 +37,10 @@ namespace SteamCorp
                             List<Thing> thingList = adjacentCell.GetThingList(currentBuilding.Map);
                             foreach (Thing thing in thingList)
                             {
-                                if(thing is Building_Steam sbuilding)
+                                if(thing.TryGetComp<CompSteam>() != null)
                                 {
-                                    if (sbuilding.TransmitsSteamPower && FlickUtility.WantsToBeOn(sbuilding))
+                                    Building sbuilding = (Building)thing;
+                                    if (FlickUtility.WantsToBeOn(sbuilding))
                                     {
                                         if (!openSet.Contains(sbuilding) && !currentSet.Contains(sbuilding)
                                             && !closedSet.Contains(sbuilding))
