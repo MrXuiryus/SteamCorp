@@ -24,16 +24,16 @@
   <ThingDef ParentName="MrXuiryus_BenchBase">
     <DefName>MrXuiryus_Teapot</DefName>
     <label>Teapot</label>
-    <Description>Brew a nice cup of tea and relax.</Description>
+    <Description>A teapot used to brew and serve fresh cups of tea.</Description>
     <graphicData>
       <texPath>Buildings/joy/teapot</texPath>
       <graphicClass>Graphic_single</graphicClass>
-      <drawSize>(1,1)</drawSize>
+      <drawSize>(1,2)</drawSize>
     </graphicData>
     <constructEffect>ConstructMetal</constructEffect>
     <CostList>
-      <Steel>170</Steel>
-      <Component>2</Component>
+      <MrXuiryus_Brass>170</MrXuiryus_Brass>
+      <Component>1</Component>
     </CostList>
     <AltitudeLayer>Building</AltitudeLayer>
     <fillPercent>0.5</fillPercent>
@@ -43,7 +43,7 @@
       <MaxHitPoints>180</MaxHitPoints>
       <Flammability>1.0</Flammability>
     </statBases>
-    <Size>(3,1)</Size>
+    <Size>(1,1)</Size>
     <DesignationCategory>Joy</DesignationCategory>
     <Passability>PassThroughOnly</Passability>
     <pathCost>70</pathCost>
@@ -51,31 +51,17 @@
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
     <recipes>
-      <li>MrXuiryus_MakeBrassIngot</li>
+      <li>MrXuiryus_CupOfTea</li>
     </recipes>
     <inspectorTabs>
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>700</basePowerConsumption>
-        <startElectricalFires>true</startElectricalFires>
-      </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Glower">
-        <glowRadius>6</glowRadius>
-        <glowColor>(217,112,33,0)</glowColor>
-      </li>
-      <li Class="CompProperties_HeatPusher">
-        <compClass>CompHeatPusherPowered</compClass>
-        <heatPerSecond>12</heatPerSecond>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
+
     </comps>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
-      <heatPerTickWhileWorking>0.32</heatPerTickWhileWorking>
+      <heatPerTickWhileWorking>0.1</heatPerTickWhileWorking>
     </building>
   </ThingDef>
   

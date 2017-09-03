@@ -2,16 +2,16 @@
 <RecipeDefs>
 
 	<RecipeDef>
-		<defName>MrXuiryus_MakeBrassIngot</defName>
-		<label>Make Brass Ingot</label>
-		<description>Smelt raw brass into a brass ingot</description>
-		<jobString>smelting brass</jobString>
-		<workAmount>200</workAmount>
-		<workSpeedStat>SmeltingSpeed</workSpeedStat>
-		<workSkill>Crafting</workSkill>
-		<workSkillLearnFactor>0.3</workSkillLearnFactor>		
-		<effectWorking>CutStone</effectWorking>
-		<soundWorking>Recipe_MakeStoneBlocks</soundWorking>
+		<defName>MrXuiryus_CupOfTea</defName>
+		<label>Make a Cup of Tea</label>
+		<description>Brew tealeaves into a cup of tea.</description>
+		<jobString>making tea</jobString>
+		<workAmount>100</workAmount>
+		<workSkill>Cooking</workSkill>
+		<workSpeedStat>CookSpeed</workSpeedStat>
+		<requiredGiverWorkType>Cooking</requiredGiverWorkType>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
 		<ingredients>
 			<li>
 				<filter>

@@ -216,19 +216,16 @@
   
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamAlternator</defName>
-    <label>Steam Alternator</label>
+    <label>Sciencebox</label>
     <thingClass>SteamCorp.Building_Steam</thingClass>
     <graphicData>
-      <texPath>Buildings/walllamp_off</texPath>
+      <texPath>Buildings/sciencebox/sciencebox</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>Transparent</shaderType>
       <damageData>
         <rect>(0,0.35,1,0.3)</rect>
       </damageData>
     </graphicData>
-    <blueprintGraphicData>
-      <texPath>Buildings/walllamp_off</texPath>
-    </blueprintGraphicData>
-    <uiIconPath>Buildings/walllamp_off</uiIconPath>
     <building>
 			<ai_chillDestination>false</ai_chillDestination>
 			<isInert>true</isInert>
@@ -264,8 +261,8 @@
         <transmitsSteam>true</transmitsSteam>
       </li>
 	  <li Class="CompProperties_Glower">
-        <glowRadius>0.2</glowRadius>
-        <glowColor>(217,112,33,0)</glowColor>
+        <glowRadius>2</glowRadius>
+        <glowColor>(4,222,212,0)</glowColor>
 	  </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
