@@ -18,6 +18,12 @@ namespace SteamCorp
                 return powerComp != null && powerComp.Props.transmitsSteam;
             }
         }
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+        }
+
+        public override bool TransmitsPowerNow => false;
 
         public override void Tick()
         {

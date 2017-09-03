@@ -253,15 +253,15 @@
 	  <Component>1</Component>
     </costList>
     <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-1000</basePowerConsumption>
+        <transmitsPower>false</transmitsPower>
+      </li>
       <li Class="SteamCorp.CompProperties_SteamAlternator">
         <compClass>SteamCorp.CompSteamAlternator</compClass>
         <baseSteamConsumption>2000</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
-      </li>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-1000</basePowerConsumption>
-        <transmitsPower>true</transmitsPower>
       </li>
 	  <li Class="CompProperties_Glower">
         <glowRadius>0.2</glowRadius>

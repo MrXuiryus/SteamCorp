@@ -249,6 +249,7 @@ namespace SteamCorp
                     for (int j = 0; j < givingBats.Count; j++)
                     {
                         float num3 = Mathf.Min(a, givingBats[j].StoredSteamEnergy);
+                        this.givingBats[j].DrawPower(num3);
                         num -= num3;
                         if (num < 1E-07f)
                         {

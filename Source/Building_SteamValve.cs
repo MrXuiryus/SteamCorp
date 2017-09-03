@@ -10,8 +10,8 @@ namespace SteamCorp
 
         private CompFlickable flickableComp;
 
-        public override bool TransmitsPowerNow
-        { 
+        public bool TransmitsSteamNow
+        {
             get => FlickUtility.WantsToBeOn(this);
         }
 

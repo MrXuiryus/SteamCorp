@@ -54,14 +54,12 @@ namespace SteamCorp
 
         public void Notify_TransmitterSpawned(CompSteam newTransmitter)
         {
-            //Log.Message("Notify_TransmitterSpawned \n" + grid.ToString() + "\n" + allNets.Count + "\n" + delayedActions.Count);
             delayedActions.Add(new DelayedAction(DelayedActionType.RegisterTransmitter, newTransmitter));
             NotifyDrawersForWireUpdate(newTransmitter.parent.Position);
         }
 
         public void Notify_TransmitterDespawned(CompSteam oldTransmitter)
         {
-            //Log.Message("Notify_TransmitterDespawned");
             delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterTransmitter, oldTransmitter));
             NotifyDrawersForWireUpdate(oldTransmitter.parent.Position);
         }
@@ -79,7 +77,6 @@ namespace SteamCorp
 
         public void Notify_ConnectorWantsConnect(CompSteam wantingCon)
         {
-            //Log.Message("Notify_ConnectorWantsConnect");
             if (Scribe.mode == LoadSaveMode.Inactive && !HasRegisterConnectorDuplicate(wantingCon))
             {
                 delayedActions.Add(new DelayedAction(DelayedActionType.RegisterConnector, wantingCon));
@@ -89,21 +86,18 @@ namespace SteamCorp
 
         public void Notify_ConnectorDespawned(CompSteam oldCon)
         {
-            //Log.Message("Notify_ConnectorDespawned");
             delayedActions.Add(new DelayedAction(DelayedActionType.DeregisterConnector, oldCon));
             NotifyDrawersForWireUpdate(oldCon.parent.Position);
         }
 
         public void NotifyDrawersForWireUpdate(IntVec3 root)
         {
-            //Log.Message("NotifyDrawersForWireUpdate");
             Map.mapDrawer.MapMeshDirty(root, MapMeshFlag.Things, true, false);
             Map.mapDrawer.MapMeshDirty(root, MapMeshFlag.PowerGrid, true, false);
         }
 
         public void RegisterPowerNet(SteamPowerNet newNet)
         {
-            //Log.Message("RegisterPowerNet");
             allNets.Add(newNet);
             newNet.SteamNetManager = this;
             Grid.Notify_PowerNetCreated(newNet);
