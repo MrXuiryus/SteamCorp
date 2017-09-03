@@ -40,7 +40,6 @@ namespace SteamCorp
             MaxSprayDuration = maxDuration;
             SmokeAmount = smokeAmount;
             PressureCutoff = steamSprayCutoff;
-            Log.Message("Cutoff is " + PressureCutoff);
         }
 
         public void SteamSprayerTick() 
@@ -49,7 +48,6 @@ namespace SteamCorp
             {
                 sprayTicksLeft--;
                 CompSteam comp = parent.TryGetComp<CompSteam>();
-                Log.Message(""+ ((comp != null ) ? "pass": "fail") + ((Math.Round(comp.SteamNet.CurrentStoredEnergy()) +" " + Math.Round(PressureCutoff)) ) + (FlickUtility.WantsToBeOn(parent) ? "pass" : "fail"));
                 if (Rand.Value < 0.6f
                     && (comp != null && comp.SteamNet.CurrentStoredEnergy() >= PressureCutoff)
                     && (parent.TryGetComp<CompFlickable>() == null || FlickUtility.WantsToBeOn(parent)))
