@@ -33,7 +33,11 @@
     <designationHotKey>Misc6</designationHotKey>
     <building>
       <isTrap>true</isTrap>
-      <trapDamageCategory>Sharp</trapDamageCategory>
+      <trapDamageCategory>Heat</trapDamageCategory>
+      <trapUnarmedGraphicData>
+        <texPath>Buildings/steamvent</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </trapUnarmedGraphicData>
     </building>
     <comps>
 		<li Class="SteamCorp.CompProperties_Steam">

@@ -102,6 +102,6 @@ namespace SteamCorp
             "%"
             });
             return text + "\n" + base.CompInspectStringExtra();
-        }
+        } 
     }
-}
+} 

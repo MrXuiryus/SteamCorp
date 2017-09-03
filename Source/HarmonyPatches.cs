@@ -18,6 +18,27 @@ namespace SteamCorp
         }
     }
 
+    [HarmonyPatch(typeof(Thing), "TakeDamage")]
+    class ThingPatch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(Thing __instance, ref DamageInfo dinfo)
+        {
+            try
+            {
+                if (dinfo.Instigator?.def?.defName == "MrXuiryus_Steamtrap")
+                {
+                    dinfo = new DamageInfo(DamageDefOf.Burn, dinfo.Amount, dinfo.Angle, dinfo.Instigator, dinfo.ForceHitPart, dinfo.WeaponGear, dinfo.Category);
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Message(e.ToString());
+            }
+        }
+    }
+
+
     [HarmonyPatch(typeof(Map), "FinalizeInit")]
     class MapInitPatch
     {
