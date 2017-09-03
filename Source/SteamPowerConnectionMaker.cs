@@ -9,7 +9,6 @@ namespace SteamCorp
 
         public static void ConnectAllConnectorsToTransmitter(CompSteam newTransmitter)
         {
-            //Log.Message("ConnectAllConnectorsToTransmitter");
             foreach (CompSteam current in PotentialConnectorsForTransmitter(newTransmitter))
             {
                 if (current.connectParent == null)
@@ -21,7 +20,6 @@ namespace SteamCorp
         
 		private static IEnumerable<CompSteam> PotentialConnectorsForTransmitter(CompSteam b)
         {
-            //Log.Message("PotentialConnectorsForTransmitter");
             if (!b.parent.Spawned)
             {
                 Log.Warning("Can't check potential connectors for " + b + " because it's unspawned.");
@@ -49,7 +47,6 @@ namespace SteamCorp
 
         public static void DisconnectAllFromTransmitterAndSetWantConnect(CompSteam deadPc, Map map, SteamNetManager steamNetManager)
         {
-            //Log.Message("DisconnectAllFromTransmitterAndSetWantConnect");
             if (deadPc.connectChildren == null)
             {
                 return;
@@ -69,7 +66,6 @@ namespace SteamCorp
 
         public static void TryConnectToAnySteamNet(CompSteam pc, List<SteamPowerNet> disallowedNets = null)
         {
-            //Log.Message("TryConnectToAnySteamNet");
             if (pc.connectParent != null || !pc.parent.Spawned)
             {
                 return;
@@ -87,7 +83,6 @@ namespace SteamCorp
          
         public static void DisconnectFromSteamNet(CompSteam pc)
         {
-            //Log.Message("DisconnectFromSteamNet");
             if (pc.connectParent == null)
             {
                 return;
@@ -109,7 +104,6 @@ namespace SteamCorp
 
         public static CompSteam BestTransmitterForConnector(IntVec3 connectorPos, Map map, List<SteamPowerNet> disallowedNets = null)
         {
-            //Log.Message("BestTransmitterForConnector");
             CellRect cellRect = CellRect.SingleCell(connectorPos).ExpandedBy(ConnectMaxDist).ClipInsideMap(map);
             cellRect.ClipInsideMap(map);
             float num = 999999f;

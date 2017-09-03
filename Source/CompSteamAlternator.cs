@@ -21,8 +21,14 @@ namespace SteamCorp
 
         public override void PostDeSpawn(Map map)
         {
+            int a = 0;
             base.PostDeSpawn(map);
-            foreach(CompPower child in parent.GetComp<CompPower>().connectChildren)
+            if (parent.GetComp<CompPower>() == null)
+            {
+                return;
+            }
+
+            foreach (CompPower child in parent.GetComp<CompPower>().connectChildren)
             {
                 child.LostConnectParent();
             }

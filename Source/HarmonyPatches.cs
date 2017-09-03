@@ -156,7 +156,6 @@ namespace SteamCorp
                 CompPower compPower = PowerConnectionMaker.BestTransmitterForConnector(intVec, Find.VisibleMap, null);
                 if (compPower != null)
                 {
-                    Log.Message("fu");
                     PowerNetGraphics.RenderAnticipatedWirePieceConnecting(intVec, compPower.parent);
                 }
             }

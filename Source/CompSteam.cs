@@ -85,8 +85,7 @@ namespace SteamCorp
                 }
             }
             if(parent.GetComp<CompGlower>() != null)
-            {
-                Log.Message(parent.GetComp<CompGlower>()?.ToString());
+            {               
                 Find.VisibleMap.glowGrid.DeRegisterGlower(parent.GetComp<CompGlower>());
             }
             if (Props.transmitsSteam)
