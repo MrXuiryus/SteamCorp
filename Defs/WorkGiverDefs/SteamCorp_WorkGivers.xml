@@ -23,7 +23,7 @@
     <label>brew some tea</label>
     <giverClass>WorkGiver_DoBill</giverClass>
     <workType>Cooking</workType>
-    <priorityInType>100</priorityInType>
+    <priorityInType>50</priorityInType>
     <fixedBillGiverDefs>
       <li>MrXuiryus_Teapot</li>
     </fixedBillGiverDefs>
@@ -33,6 +33,7 @@
       <li>Manipulation</li>
     </requiredCapacities>
     <prioritizeSustains>true</prioritizeSustains>
-  </WorkGiverDef>  
+  </WorkGiverDef> 
+  <WorkGiverDef>
   
 </WorkGivers>  

@@ -16,7 +16,7 @@ namespace SteamCorp
             var harmony = HarmonyInstance.Create("SteamCorp");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
-    }
+    } 
 
     [HarmonyPatch(typeof(Thing), "TakeDamage")]
     class ThingPatch
@@ -37,7 +37,7 @@ namespace SteamCorp
             }
         }
     }
-
+     
 
     [HarmonyPatch(typeof(Map), "FinalizeInit")]
     class MapInitPatch
