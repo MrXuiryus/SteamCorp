@@ -169,7 +169,7 @@ namespace SteamCorp
         [HarmonyPrefix]
         public static bool Prefix(PowerNet __instance)
         {
-            if (__instance.connectors.Any(connector => connector.parent.GetComp<CompSteamAlternator>() != null))
+            if (__instance.transmitters.Any(connector => connector.parent.GetComp<CompSteamAlternator>() != null))
             {
                 float num = __instance.CurrentEnergyGainRate();
                 float num2 = __instance.CurrentStoredEnergy();
