@@ -56,13 +56,11 @@
     <inspectorTabs>
       <li>ITab_Bills</li>
     </inspectorTabs>
-    <comps>
-
-    </comps>
     <building>
+      <isMealSource>true</isMealSource>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
-      <heatPerTickWhileWorking>0.1</heatPerTickWhileWorking>
-    </building>
+      <heatPerTickWhileWorking>0.10</heatPerTickWhileWorking>
+    </building>	
   </ThingDef>
   
 <!--Drills-->

@@ -4,9 +4,9 @@
 	<ThingDef ParentName="MrXuiryus_Plant_Base">
 		<defName>MrXuiryus_Plant_Tea</defName>
 		<label>tea plant</label>
-		<description>Raw tea leaves</description>
+		<description>A tealeaf plant</description>
 		<statBases>
-			<MaxHitPoints>85</MaxHitPoints>
+			<MaxHitPoints>60</MaxHitPoints>
 		</statBases>
 		<graphicData>
 			<texPath>Natural/Plants/tea</texPath>
@@ -19,13 +19,13 @@
 		</ingestible>
 		<plant>
 			<fertilitySensitivity>1.0</fertilitySensitivity>
-			<growDays>7.50</growDays>
+			<growDays>10</growDays>
 			<dieIfLeafless>true</dieIfLeafless>
 			<reproduces>false</reproduces>
 			<harvestTag>Standard</harvestTag>
-			<harvestedThingDef>MrXuiryus_Raw_Tea</harvestedThingDef>
-			<harvestYield>11</harvestYield>
-			<sowMinSkill>4</sowMinSkill>
+			<harvestedThingDef>MrXuiryus_Tealeaves</harvestedThingDef>
+			<harvestYield>20</harvestYield>
+			<sowMinSkill>6</sowMinSkill>
 			<sowTags>
 				<li>Ground</li>
 				<li>Hydroponic</li>

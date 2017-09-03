@@ -24,18 +24,18 @@
   </ThingDef>
   
   <ThingDef ParentName="MrXuiryus_RoughPlantBase">
-    <defName>MrXuiryus_Raw_Tea</defName>
+    <defName>MrXuiryus_Tealeaves</defName>
     <label>tealeaves</label>
     <description>Fresh tealeaves that can be brewed into a relaxing cup of tea</description>
     <graphicData>
-      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+      <texPath>Natural/Plants/picked/teapicked</texPath>
     </graphicData>
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
     <comps>
       <li Class="CompProperties_Rottable">
-        <daysToRotStart>30</daysToRotStart>
+        <daysToRotStart>5</daysToRotStart>
         <rotDestroys>true</rotDestroys>
       </li>
     </comps>

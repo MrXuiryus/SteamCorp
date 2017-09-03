@@ -16,18 +16,18 @@
 			<li>
 				<filter>
 					<thingDefs>	
-						<li>MrXuiryus_Brass</li>
+						<li>MrXuiryus_Tealeaves</li>
 					</thingDefs>
 				</filter>
-				<count>1</count>
+				<count>3</count>
 			</li>
 		</ingredients>
 		<products>
-			<BrassIngot>1</BrassIngot>
+			<MrXuiryus_CupOfTea>1</MrXuiryus_CupOfTea>
 		</products>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>MrXuiryus_Brass</li>
+				<li>MrXuiryus_Tealeaves</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 	</RecipeDef>
