@@ -4,7 +4,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamGenerator</defName>
     <label>Steam Generator</label>
-    <thingClass>SteamCorp.Building_SteamSprayer</thingClass>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
     <graphicData>
       <texPath>Buildings/steamgenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -35,17 +35,19 @@
     </costList>
     <comps>
       <li Class="CompProperties_Flickable" />
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
+      <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamPowerPlant</compClass>
-		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
         <baseSteamConsumption>-1000</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
-        <allowPipeUnderneath>true</allowPipeUnderneath>
+	  </li>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>10</MinSprayDuration>
 		<MaxSprayDuration>120</MaxSprayDuration>
 		<SmokeAmount>2</SmokeAmount>
 		<PressureCutoff>100</PressureCutoff>
+		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
 	  </li>
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>22.0</fuelConsumptionRate>
@@ -78,7 +80,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamCollector</defName>
     <label>Steam Collector</label>
-    <thingClass>SteamCorp.Building_SteamSprayer</thingClass>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
     <graphicData>
       <texPath>Buildings/steamcollector</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -109,17 +111,18 @@
     </costList>
     <comps>
       <li Class="SteamCorp.CompProperties_Steam">
-    </li>
+        <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
+        <baseSteamConsumption>-3600</baseSteamConsumption>
+        <transmitsSteam>true</transmitsSteam>
+	  </li>
       <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>240</MinSprayDuration>
 		<MaxSprayDuration>480</MaxSprayDuration>
 		<SmokeAmount>2</SmokeAmount>
 		<PressureCutoff>100</PressureCutoff>
-        <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
-        <baseSteamConsumption>-3600</baseSteamConsumption>
-        <transmitsSteam>true</transmitsSteam>
 	  </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Glower">
@@ -147,7 +150,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamPipe</defName>
     <label>Steam Pipe</label>
-    <thingClass>SteamCorp.Building_SteamSprayer</thingClass>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
     <graphicData>
       <texPath>Buildings/Steampipe_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>

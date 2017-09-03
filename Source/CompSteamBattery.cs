@@ -4,7 +4,7 @@ using Verse;
 using RimWorld;
 
 namespace SteamCorp
-{
+{ 
     public class CompSteamBattery : CompSteam
     {
         private float storedSteamEnergy;
@@ -15,13 +15,13 @@ namespace SteamCorp
                 (Props.storedEnergyMax - storedSteamEnergy) / Props.efficiency;
         }
 
-        public float StoredSteamEnergy
+        public float StoredSteamEnergy 
         {
             get => storedSteamEnergy;
         }
 
         public float StoredEnergyPct
-        {
+        { 
             get => storedSteamEnergy / Props.storedEnergyMax;
         }
 

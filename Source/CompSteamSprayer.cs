@@ -6,7 +6,7 @@ using Verse.Sound;
 namespace SteamCorp
 {
     class CompSteamSprayer : CompSteam
-    {
+    { 
         private SteamSprayer steamSprayer;
          
         private Sustainer spraySustainer;
@@ -16,7 +16,7 @@ namespace SteamCorp
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (Props != null) 
+            if (Props != null)  
             {
                 steamSprayer = new SteamSprayer(parent, Props.MinTicksBetweenSprays, Props.MaxTicksBetweenSprays,
                     Props.MinSprayDuration, Props.MaxSprayDuration, Props.SmokeAmount, Props.PressureCutoff)
