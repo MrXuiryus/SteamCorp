@@ -197,7 +197,7 @@ namespace SteamCorp
                         if (partsWantingPowerOn.Count > 0)
                         {
                             int num4 = 200 / partsWantingPowerOn.Count;
-                            if (num4 < 30)
+                            if (num4 < 30) 
                             {
                                 num4 = 30;
                             }

@@ -1,6 +1,6 @@
 ﻿namespace SteamCorp
 {
-    public class CompProperties_SteamBattery : CompProperties_Steam
+    public class CompProperties_SteamBattery : CompProperties_SteamSprayer
     {
         public float storedEnergyMax = 2000f;
 

@@ -39,13 +39,13 @@ namespace SteamCorp
                             {
                                 if(thing.TryGetComp<CompSteam>() != null)
                                 {
-                                    Building sbuilding = (Building)thing;
-                                    if (FlickUtility.WantsToBeOn(sbuilding))
+                                    Building building = (Building)thing;
+                                    if (FlickUtility.WantsToBeOn(building))
                                     {
-                                        if (!openSet.Contains(sbuilding) && !currentSet.Contains(sbuilding)
-                                            && !closedSet.Contains(sbuilding))
+                                        if (!openSet.Contains(building) && !currentSet.Contains(building)
+                                            && !closedSet.Contains(building))
                                         {
-                                            openSet.Add(sbuilding);
+                                            openSet.Add(building);
                                             break;
                                         }
                                     }

@@ -24,7 +24,7 @@ namespace SteamCorp
 
         private int ticksUntilSpray = 500;
 
-        private int sprayTicksLeft;
+        private int sprayTicksLeft = 0;
 
         public Action startSprayCallback;
 
@@ -50,8 +50,7 @@ namespace SteamCorp
                 CompSteam comp = parent.TryGetComp<CompSteam>();
                 if (Rand.Value < 0.6f
                     && (comp != null && comp.SteamNet.CurrentStoredEnergy() >= PressureCutoff)
-                    && (parent.TryGetComp<CompFlickable>() == null || FlickUtility.WantsToBeOn(parent))
-                    && (parent.TryGetComp<CompRefuelable>() == null || parent.TryGetComp<CompRefuelable>().HasFuel))
+                    && (parent.TryGetComp<CompFlickable>() == null || FlickUtility.WantsToBeOn(parent)))
                 {
                     MoteMaker.ThrowSmoke(parent.TrueCenter(), parent.Map, SmokeAmount);
                     MoteMaker.ThrowAirPuffUp(parent.TrueCenter(), parent.Map);
