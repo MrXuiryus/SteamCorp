@@ -68,7 +68,6 @@ namespace SteamCorp
             base.PostSpawnSetup(respawningAfterLoad);
             parent.Map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.PowerGrid, true, false);
             StaticManager.Net.Notify_TransmitterSpawned(this);
-            StaticManager.Net.Notify_ConnectorWantsConnect(this);
             SetUpSteamPowerVars();
         }
 
@@ -87,14 +86,8 @@ namespace SteamCorp
             }
             if(parent.GetComp<CompGlower>() != null)
             {
-#if DEBUG
-                Log.Message("deregistering glower");
-#endif
                 Log.Message(parent.GetComp<CompGlower>()?.ToString());
                 Find.VisibleMap.glowGrid.DeRegisterGlower(parent.GetComp<CompGlower>());
-#if DEBUG
-                Log.Message("done deregistering glower");
-#endif
             }
             if (Props.transmitsSteam)
             {

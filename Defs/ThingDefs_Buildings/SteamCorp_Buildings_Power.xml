@@ -256,7 +256,7 @@
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
         <basePowerConsumption>-1000</basePowerConsumption>
-        <transmitsPower>true</transmitsPower>
+        <transmitsPower>false</transmitsPower>
       </li>
       <li Class="SteamCorp.CompProperties_SteamAlternator">
         <compClass>SteamCorp.CompSteamAlternator</compClass>
