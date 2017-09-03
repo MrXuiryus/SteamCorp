@@ -163,6 +163,79 @@ namespace SteamCorp
     }
 
 
+    [HarmonyPatch(typeof(PowerNet), "PowerNetTick")]
+    class PowerNetTickPatch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(PowerNet __instance)
+        {
+            if (__instance.connectors.Any(connector => connector.parent.GetComp<CompSteamAlternator>() != null))
+            {
+                float num = __instance.CurrentEnergyGainRate();
+                float num2 = __instance.CurrentStoredEnergy();
+                if (num2 + num >= -1E-07f)
+                {
+                    float num3;
+                    if (__instance.batteryComps.Count > 0 && num2 >= 0.1f)
+                    {
+                        num3 = num2 - 5f;
+                    }
+                    else
+                    {
+                        num3 = num2;
+                    }
+                    if (num3 + num >= 0f)
+                    {
+                        List<CompPowerTrader> partsWantingPowerOn = new List<CompPowerTrader>();
+                        for (int i = 0; i < __instance.powerComps.Count; i++)
+                        {
+                            if (!__instance.powerComps[i].PowerOn && FlickUtility.WantsToBeOn(__instance.powerComps[i].parent) && !__instance.powerComps[i].parent.IsBrokenDown())
+                            {
+                                partsWantingPowerOn.Add(__instance.powerComps[i]);
+                            }
+                        }
+                        if (partsWantingPowerOn.Count > 0)
+                        {
+                            int num4 = 200 / partsWantingPowerOn.Count;
+                            if (num4 < 30)
+                            {
+                                num4 = 30;
+                            }
+                            if (Find.TickManager.TicksGame % num4 == 0)
+                            {
+                                CompPowerTrader compPowerTrader = partsWantingPowerOn.RandomElement();
+                                if (num + num2 >= -(compPowerTrader.EnergyOutputPerTick + 1E-07f))
+                                {
+                                    compPowerTrader.PowerOn = true;
+                                    num += compPowerTrader.EnergyOutputPerTick;
+                                }
+                            }
+                        }
+                    }
+                    Traverse.Create(__instance).Method("ChangeStoredEnergy", num).GetValue();
+                }
+                else if (Find.TickManager.TicksGame % 20 == 0)
+                {
+                    List<CompPowerTrader> potentialShutdownParts = new List<CompPowerTrader>();
+                    for (int j = 0; j < __instance.powerComps.Count; j++)
+                    {
+                        if (__instance.powerComps[j].PowerOn && __instance.powerComps[j].EnergyOutputPerTick < 0f)
+                        {
+                            potentialShutdownParts.Add(__instance.powerComps[j]);
+                        }
+                    }
+                    if (potentialShutdownParts.Count > 0)
+                    {
+                        potentialShutdownParts.RandomElement().PowerOn = false;
+                    }
+                }
+                return false;
+            }
+            return true;
+        }
+    }
+
+
     [HarmonyPatch(typeof(Map), "MapPostTick")]
     class MapTickPatch
     {

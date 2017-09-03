@@ -21,7 +21,6 @@ namespace SteamCorp
 
         public override void PostDeSpawn(Map map)
         {
-            int a = 0;
             base.PostDeSpawn(map);
             if (parent.GetComp<CompPower>() == null)
             {
