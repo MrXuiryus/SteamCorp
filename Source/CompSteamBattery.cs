@@ -101,7 +101,7 @@ namespace SteamCorp
             (Props.efficiency * 100f).ToString("F0"),
             "%"
             });
-            return text;
+            return text + "\n" + base.CompInspectStringExtra();
         }
     }
 }

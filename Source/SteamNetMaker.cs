@@ -21,7 +21,7 @@ namespace SteamCorp
             do
             {
                 foreach (Building building in openSet)
-                {
+                { 
                     closedSet.Add(building);
                 }
                 HashSet<Building> hashSet = currentSet;
@@ -37,7 +37,7 @@ namespace SteamCorp
                             List<Thing> thingList = adjacentCell.GetThingList(currentBuilding.Map);
                             foreach (Thing thing in thingList)
                             {
-                                if(thing.TryGetComp<CompSteam>() != null)
+                                if (thing.TryGetComp<CompSteam>() != null)
                                 {
                                     Building building = (Building)thing;
                                     if (FlickUtility.WantsToBeOn(building))

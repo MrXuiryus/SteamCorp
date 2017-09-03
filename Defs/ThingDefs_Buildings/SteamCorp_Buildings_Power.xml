@@ -35,13 +35,10 @@
     </costList>
     <comps>
       <li Class="CompProperties_Flickable" />
-      <li Class="SteamCorp.CompProperties_Steam">
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
         <compClass>SteamCorp.CompSteamPowerPlant</compClass>
         <baseSteamConsumption>-1000</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
-	  </li>
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
-        <compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>10</MinSprayDuration>
 		<MaxSprayDuration>120</MaxSprayDuration>
@@ -110,13 +107,10 @@
       <Component>2</Component>
     </costList>
     <comps>
-      <li Class="SteamCorp.CompProperties_Steam">
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
         <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
         <baseSteamConsumption>-3600</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
-	  </li>
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
-        <compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>240</MinSprayDuration>
@@ -380,16 +374,12 @@
       <Component>2</Component>
     </costList>
     <comps>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+	  <li Class="CompProperties_Flickable"/>
       <li Class="SteamCorp.CompProperties_SteamBattery">
         <compClass>SteamCorp.CompSteamBattery</compClass>
         <storedEnergyMax>2000</storedEnergyMax>
         <efficiency>0.25</efficiency>
-        <transmitsSteam>true</transmitsSteam>
-      </li>
-      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
-	  <li Class="CompProperties_Flickable"/>
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
-        <compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MinTicksBetweenSprays>5000</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>40</MinSprayDuration>
