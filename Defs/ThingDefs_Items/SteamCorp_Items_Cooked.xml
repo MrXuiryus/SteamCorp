@@ -6,7 +6,7 @@
     <label>cup of tea</label>
     <description>A fresh cup of hot tea, very relaxing and cheers up colonists.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Chocolate</texPath>
+      <texPath>Items/Cooked/Cupoftea</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Standard_Drop</soundInteract>
@@ -24,12 +24,21 @@
     </thingCategories>
     <ingestible>
       <preferability>DesperateOnly</preferability>
-      <foodType>Processed</foodType>
+      <foodType>Fluid</foodType>
       <nutrition>0.10</nutrition>
       <joy>0.2</joy>
       <joyKind>Social</joyKind>
+      <nurseable>true</nurseable>
+      <ingestSound>Ingest_Beer</ingestSound>
+      <ingestHoldOffsetStanding>
+        <northDefault>
+          <offset>(0.18,0,0)</offset>
+        </northDefault>
+      </ingestHoldOffsetStanding>
+      <ingestCommandString>Drink {0}</ingestCommandString>
+      <ingestReportString>Drinking {0}.</ingestReportString>
+      <chairSearchRadius>25</chairSearchRadius>	  
       <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
-      <ingestSound>Meal_Eat</ingestSound>
     </ingestible>
   </ThingDef>
   
