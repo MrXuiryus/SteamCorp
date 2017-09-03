@@ -28,7 +28,7 @@
       <li>MrXuiryus_Teapot</li>
     </fixedBillGiverDefs>
     <verb>cook</verb>
-    <gerund>cooking at</gerund>
+    <gerund>brewing at</gerund>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
