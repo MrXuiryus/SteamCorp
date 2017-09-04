@@ -21,7 +21,7 @@ namespace SteamCorp
 
         public override void PostDeSpawn(Map map)
         {
-            base.PostDeSpawn(map);
+            base.PostDeSpawn(map); 
             if (parent.GetComp<CompPower>() == null)
             {
                 return;
@@ -39,7 +39,6 @@ namespace SteamCorp
         { 
             base.CompTick();
             UpdateDesiredPowerOutput();
-            //parent.GetComp<CompPower>()?.PowerNet?.DeregisterConnector(parent.GetComp<CompPower>());
         }
          
         public override void UpdateDesiredPowerOutput()

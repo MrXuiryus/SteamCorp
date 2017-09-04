@@ -65,11 +65,9 @@
   </ThingDef>
   
 <!--Drills-->
-
-  <ThingDef ParentName="MrXuiryus_Building_Base">
-    <defName>MrXuiryus_Coaldrill</defName>
-    <label>coal drill</label>
-    <description>A drill that reliably and continually provides coal when worked</description>
+  <ThingDef Name="MrXuiryus_Drill" ParentName="BuildingBase" Abstract="True">
+    <defName>MrXuiryus_Drill</defName>
+	<thingClass>Building</thingClass>
     <size>(1,1)</size>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
@@ -81,14 +79,6 @@
     <designationHotKey>Misc12</designationHotKey>
     <specialDisplayRadius>1.5</specialDisplayRadius>
     <rotatable>true</rotatable>
-    <costList>
-      <MrXuiryus_Brass>100</MrXuiryus_Brass>
-      <Component>3</Component>
-    </costList>
-    <placeWorkers>
-      <li>PlaceWorker_ShowDeepResources</li>
-    </placeWorkers>
-    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     <researchPrerequisites>
       <li>MrXuiryus_Drilling</li>
     </researchPrerequisites>
@@ -98,6 +88,10 @@
       <Flammability>1.0</Flammability>
       <Beauty>-25</Beauty>
     </statBases>
+    <costList>
+      <MrXuiryus_Brass>100</MrXuiryus_Brass>
+      <Component>3</Component>
+    </costList>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
 			<li Class="CompProperties_Flickable"/>
@@ -108,9 +102,15 @@
         <shortCircuitInRain>false</shortCircuitInRain>
       </li>
       <li>
-        <compClass>CompDeepDrill</compClass>
+        <compClass>SteamCorp.CompSteamDrill</compClass>
       </li>
     </comps>
+	</ThingDef>
+	
+  <ThingDef ParentName="MrXuiryus_Drill">
+    <defName>MrXuiryus_CoalDrill</defName>
+    <label>coal drill</label>
+    <description>A drill that reliably and continually provides coal when worked</description>
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
       <texPath>Things/Building/Production/DeepDrill</texPath>
@@ -119,51 +119,10 @@
     </graphicData>
   </ThingDef>
 
-  <ThingDef ParentName="MrXuiryus_Building_Base">
-    <defName>MrXuiryus_Brassdrill</defName>
+  <ThingDef ParentName="MrXuiryus_Drill">
+    <defName>MrXuiryus_BrassDrill</defName>
     <label>brass drill</label>
     <description>A drill that reliably and continually provides brass when worked</description>
-    <size>(1,1)</size>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
-    <pathCost>70</pathCost>
-    <fillPercent>0.5</fillPercent>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-    <hasInteractionCell>true</hasInteractionCell>
-    <designationCategory>Production</designationCategory>
-    <designationHotKey>Misc12</designationHotKey>
-    <specialDisplayRadius>1.5</specialDisplayRadius>
-    <rotatable>true</rotatable>
-    <costList>
-      <MrXuiryus_Brass>100</MrXuiryus_Brass>
-      <Component>3</Component>
-    </costList>
-    <placeWorkers>
-      <li>PlaceWorker_ShowDeepResources</li>
-    </placeWorkers>
-    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
-    <researchPrerequisites>
-      <li>MrXuiryus_Drilling</li>
-    </researchPrerequisites>
-    <statBases>
-      <MaxHitPoints>140</MaxHitPoints>
-      <WorkToBuild>5000</WorkToBuild>
-      <Flammability>1.0</Flammability>
-      <Beauty>-25</Beauty>
-    </statBases>
-    <comps>
-      <li Class="CompProperties_Forbiddable"/>
-			<li Class="CompProperties_Flickable"/>
-			<li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>250</basePowerConsumption>
-        <startElectricalFires>true</startElectricalFires>
-        <shortCircuitInRain>false</shortCircuitInRain>
-      </li>
-      <li>
-        <compClass>CompDeepDrill</compClass>
-      </li>
-    </comps>
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
       <texPath>Things/Building/Production/DeepDrill</texPath>

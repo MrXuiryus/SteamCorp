@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<JobDefs>
+
+  <JobDef>
+    <defName>JobDef_SteamDrill</defName>
+    <driverClass>SteamCorp.JobDriver_SteamDrill</driverClass>
+    <reportString>digging at TargetA.</reportString>
+  </JobDef>
+  
+</JobDefs>

@@ -58,6 +58,7 @@
     <Compile Include="CompProperties_SteamSprayer.cs" />
     <Compile Include="CompSteamAlternator.cs" />
     <Compile Include="CompSteamBreakdownable.cs" />
+    <Compile Include="CompSteamDrill.cs" />
     <Compile Include="CompSteamGeyserPowerPlant.cs" />
     <Compile Include="CompProperties_Steam.cs" />
     <Compile Include="CompSteam.cs" />
@@ -67,11 +68,13 @@
     <Compile Include="CompSteamTrader.cs" />
     <Compile Include="CompSteamTransmitter.cs" />
     <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="JobDriver_SteamDrill.cs" />
     <Compile Include="PlaceWorker_Pipe.cs" />
     <Compile Include="StaticManager.cs" />
     <Compile Include="SteamBreakdownableUtility.cs" />
     <Compile Include="SteamBreakdownManager.cs" />
     <Compile Include="Building_Steam.cs" />
+    <Compile Include="SteamDrillDefOf.cs" />
     <Compile Include="SteamNetGraphics.cs" />
     <Compile Include="SteamNetGrid.cs" />
     <Compile Include="SteamNetMaker.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="SteamPowerConnectionMaker.cs" />
     <Compile Include="SteamPowerNet.cs" />
     <Compile Include="SteamSprayer.cs" />
+    <Compile Include="WorkGiver_SteamDrill.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

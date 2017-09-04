@@ -30,14 +30,14 @@ namespace SteamCorp
                 {
                     dinfo = new DamageInfo(DamageDefOf.Burn, dinfo.Amount, dinfo.Angle, dinfo.Instigator, dinfo.ForceHitPart, dinfo.WeaponGear, dinfo.Category);
                 }
-            }
+            } 
             catch (Exception e)
             {
                 Log.Message(e.ToString());
             }
-        }
+        } 
     }
-     
+
 
     [HarmonyPatch(typeof(Map), "FinalizeInit")]
     class MapInitPatch
@@ -95,9 +95,43 @@ namespace SteamCorp
         }
     }
 
+    [HarmonyPatch(typeof(CompDeepDrill), "TryGetNextResource")]
+    class CompDeepDrillTryGetNextResourcePatch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(ref ThingDef resDef, ref int countPresent, ref IntVec3 cell, CompDeepDrill __instance, bool __result)
+        {
+            if (__instance.parent.def.defName == "MrXuiryus_CoalDrill")
+            {
+                resDef = ThingDef.Named("MrXuiryus_Coal");
+                countPresent = 75;
+                __result = true;
+                return false;
+            }
+            else if (__instance.parent.def.defName == "MrXuiryus_BrassDrill")
+            {
+                resDef = ThingDef.Named("MrXuiryus_Brass");
+                countPresent = 75;
+                __result = true;
+                return false;
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(CompDeepDrill), "CanDrillNow")]
+    class CompDeepDrillCanDrillNowPatch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(CompDeepDrill __instance)
+        {
+            Log.Message(__instance.ResourcesPresent() + "");
+        }
+    }
+
     [HarmonyPatch(typeof(PowerConnectionMaker), "BestTransmitterForConnector")]
     class PowerConnectionMakerPatch
-    {
+    { 
         [HarmonyPrefix]
         public static bool Prefix(ref CompPower __result, ref IntVec3 connectorPos, ref Map map, ref List<PowerNet> disallowedNets)
         {
