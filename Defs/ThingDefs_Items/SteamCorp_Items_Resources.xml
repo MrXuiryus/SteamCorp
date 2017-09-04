@@ -68,7 +68,7 @@
   <ThingDef ParentName="MrXuiryus_ResourceBase">
     <defName>MrXuiryus_Brass</defName>
     <label>Brass</label>
-    <description>A durable alloy used in the creation of various steamworld items.</description>
+    <description>A durable alloy used in the creation of various SteamCorp items.</description>
     <graphicData>
       <texPath>Natural/Chunks/BrassChunks</texPath>
       <graphicClass>Graphic_Random</graphicClass>
