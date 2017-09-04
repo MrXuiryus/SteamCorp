@@ -46,7 +46,7 @@
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
-	<scanThings>false</scanThings>
+	<scanThings>true</scanThings>
         <scanCells>false</scanCells>
   </WorkGiverDef>
 </WorkGivers>  

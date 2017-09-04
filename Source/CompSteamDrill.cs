@@ -24,7 +24,7 @@ namespace SteamCorp
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            powerComp = parent.TryGetComp<CompPowerTrader>();
+            powerComp = parent.TryGetComp<CompPowerTrader>(); 
         }
 
         public override void PostExposeData()
@@ -56,7 +56,7 @@ namespace SteamCorp
                     thingDef.deepCountPerCell / 2,
                     thingDef.stackLimit
                 });
-                int stackCount = Mathf.Max(1, GenMath.RoundRandom((float)num2 * yieldPct));
+                int stackCount = Mathf.Max(1, GenMath.RoundRandom(num2 * yieldPct));
                 Thing thing = ThingMaker.MakeThing(thingDef, null);
                 thing.stackCount = stackCount;
                 GenPlace.TryPlaceThing(thing, parent.InteractionCell, parent.Map, ThingPlaceMode.Near, null);

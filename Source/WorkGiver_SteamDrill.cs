@@ -8,6 +8,13 @@ namespace SteamCorp
 {
     public class WorkGiver_SteamDrill : WorkGiver_Scanner
     {
+        public override ThingRequest PotentialWorkThingRequest
+        {
+            get
+            {
+                return ThingRequest.ForDef(ThingDef.Named("MrXuiryus_BrassDrill"));
+            }
+        }
 
         public override PathEndMode PathEndMode
         {
@@ -41,12 +48,12 @@ namespace SteamCorp
             {
                 return false;
             }
-
+             
             if ((thing is Blueprint || thing is Frame) && thing.Faction == pawn.Faction)
             {
                 return false;
             }
-            if (!pawn.CanReserveAndReach(thing, PathEndMode.OnCell, Danger.None, 1))
+            if (!pawn.CanReserve(thing))
             {
                 return false;
             }
@@ -54,18 +61,9 @@ namespace SteamCorp
             return compDeepDrill.CanDrillNow() && !thing.IsBurning();
         }
 
-        public override Job JobOnCell(Pawn pawn, IntVec3 cell)
+        public override Job JobOnThing(Pawn pawn, Thing thing, bool forced = false)
         {
-            Building building = null;
-            foreach (Thing thing in cell.GetThingList(pawn.Map))
-            {
-                if(thing.TryGetComp<CompSteamDrill>() != null)
-                {
-                    building = (Building)thing;
-                    break;
-                }
-            }
-            return new Job(DefDatabase<JobDef>.GetNamed(SteamDrillDefOf.SteamDrillName), cell);
+            return new Job(DefDatabase<JobDef>.GetNamed(SteamDrillDefOf.SteamDrillName), thing, 1500, forced);
         }
     }
 }

@@ -27,7 +27,6 @@ namespace SteamCorp
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Log.Message("MakeNewToils");
             ReservationLayerDef floor = ReservationLayerDefOf.Floor;
             Toil reservation = Toils_Reserve.Reserve(TargetIndex.A, 1, -1, floor);
             yield return reservation;
@@ -49,20 +48,19 @@ namespace SteamCorp
                     }
                     if (workLeft <= 0f)
                     {
-                        Thing thing = reservation.actor.TargetCurrentlyAimingAt.Thing;
+                        Thing thing = (Thing)reservation.actor.CurJob.targetA;
                         Thing toPlace = null;
+                        Log.Message(thing.def.ToString());
                         if (thing.def.defName == "MrXuiryus_CoalDrill")
                         {
-
                             toPlace = ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("MrXuiryus_Coal", true), null);
                         }
                         else
                         {
-
                             toPlace = ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("MrXuiryus_Brass", true), null);
                         }
-                        thing.stackCount = 75;
-                        GenPlace.TryPlaceThing(thing, TargetLocA, Map, ThingPlaceMode.Near, null);
+                        toPlace.stackCount = 1;
+                        GenPlace.TryPlaceThing(toPlace, TargetLocA, Map, ThingPlaceMode.Near, null);
                         ReadyForNextToil();
                         return;
                     }
@@ -78,7 +76,6 @@ namespace SteamCorp
 
         public override void ExposeData()
         {
-            Log.Message("ExposeData");
             base.ExposeData();
             Scribe_Values.Look(ref workLeft, "workLeft", 0f, false);
         }
