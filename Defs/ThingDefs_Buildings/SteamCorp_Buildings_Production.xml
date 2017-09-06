@@ -65,7 +65,7 @@
   </ThingDef>
   
 <!--Drills-->
-  <ThingDef Name="MrXuiryus_Drill" ParentName="BuildingBase" Abstract="True">
+  <ThingDef Name="MrXuiryus_Drill" ParentName="MrXuiryus_Building_Base" Abstract="True">
     <defName>MrXuiryus_Drill</defName>
 	<thingClass>Building</thingClass>
     <size>(1,1)</size>
@@ -93,14 +93,12 @@
       <Component>3</Component>
     </costList>
     <comps>
-      <li Class="CompProperties_Forbiddable"/>
-			<li Class="CompProperties_Flickable"/>
-			<li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>250</basePowerConsumption>
-        <startElectricalFires>true</startElectricalFires>
-        <shortCircuitInRain>false</shortCircuitInRain>
-      </li>
+		<li Class="SteamCorp.CompProperties_Steam">
+				<compClass>SteamCorp.CompSteamTrader</compClass>
+				<baseSteamConsumption>500</baseSteamConsumption>
+		</li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
       <li>
         <compClass>SteamCorp.CompSteamDrill</compClass>
       </li>
@@ -113,8 +111,8 @@
     <description>A drill that reliably and continually provides coal when worked</description>
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
-      <texPath>Things/Building/Production/DeepDrill</texPath>
-      <drawSize>(2,2)</drawSize>
+      <texPath>Buildings/drills/coaldrill</texPath>
+      <drawSize>(6,6)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
   </ThingDef>
@@ -125,8 +123,8 @@
     <description>A drill that reliably and continually provides brass when worked</description>
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
-      <texPath>Things/Building/Production/DeepDrill</texPath>
-      <drawSize>(2,2)</drawSize>
+      <texPath>Buildings/drills/brassdrill</texPath>
+      <drawSize>(6,6)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
   </ThingDef>    

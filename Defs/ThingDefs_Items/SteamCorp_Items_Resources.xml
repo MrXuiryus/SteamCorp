@@ -27,7 +27,7 @@
     <label>Coal</label>
     <description>A fuel source created over thousands of years. Used to fuel the Steam Generator</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Metal</texPath>
+      <texPath>Natural/Chunks/CoalChunks</texPath>
       <graphicClass>Graphic_Random</graphicClass>
       <color>(255,255,255)</color>
     </graphicData>
@@ -44,25 +44,6 @@
     <thingCategories>
       <li>ResourcesRaw</li>
     </thingCategories>
-    <deepCommonality>4</deepCommonality>
-    <stuffProps>
-      <categories>
-        <li>Stony</li>
-      </categories>
-      <commonality>1.00</commonality>
-      <constructEffect>ConstructMetal</constructEffect>
-      <color>(102,102,105)</color>
-      <soundImpactStuff>BulletImpactMetal</soundImpactStuff>
-      <soundMeleeHitSharp>MeleeHit_Stone</soundMeleeHitSharp>
-      <soundMeleeHitBlunt>MeleeHit_Stone</soundMeleeHitBlunt>
-      <statFactors>
-        <MaxHitPoints>1</MaxHitPoints>
-        <Beauty>1</Beauty>
-        <Flammability>0.2</Flammability>
-        <MeleeWeapon_Cooldown>1</MeleeWeapon_Cooldown>
-      </statFactors>
-      <smeltable>false</smeltable>
-    </stuffProps>
   </ThingDef>
   
   <ThingDef ParentName="MrXuiryus_ResourceBase">
