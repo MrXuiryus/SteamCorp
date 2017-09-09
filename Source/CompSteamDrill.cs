@@ -26,7 +26,8 @@ namespace SteamCorp
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            powerComp = parent.TryGetComp<CompPowerTrader>(); 
+            powerComp = parent.TryGetComp<CompPowerTrader>();
+            steamComp = parent.TryGetComp<CompSteamTrader>();
         }
 
         public override void PostExposeData()
