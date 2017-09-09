@@ -11,7 +11,7 @@
 	<ResearchProjectDef>
 		<defName>MrXuiryus_SteamPower</defName>
 		<label>Steam Power</label>
-		<description>Unlocks the power of steam!</description>
+		<description>Embark on the wonderful world that is steam power!</description>
 		<baseCost>500</baseCost>
 		<techLevel>Industrial</techLevel>
 		<researchViewX>0</researchViewX>
@@ -19,18 +19,158 @@
 		<tab>SteamCorp</tab>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef>
+		<defName>MrXuiryus_SteamCondenserResearch</defName>
+		<label>Steam Condenser</label>
+		<description>A basic steam storage solution.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_SteamPower</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>0</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MrXuiryus_SteamCollectorResearch</defName>
+		<label>Steam Collector</label>
+		<description>A steam collector to harness the natural steam geysers on this rimworld.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_SteamPower</li>
+		</prerequisites>		
+		<researchViewX>2</researchViewX>
+		<researchViewY>0</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MrXuiryus_AdvancedSteamCondenserResearch</defName>
+		<label>Advanced Steam Condenser</label>
+		<description>A basic steam storage solution.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_ScienceBoxResearch</li>
+		</prerequisites>			
+		<researchViewX>5</researchViewX>
+		<researchViewY>0</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MrXuiryus_AdvancedSteamCollectorResearch</defName>
+		<label>Advanced Steam Collector</label>
+		<description>A steam collector to harness the natural steam geysers on this rimworld.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_ScienceBoxResearch</li>
+		</prerequisites>			
+		<researchViewX>6</researchViewX>
+		<researchViewY>0</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>	
+
+	<ResearchProjectDef>
+		<defName>MrXuiryus_ScienceBoxResearch</defName>
+		<label>Science Box</label>
+		<description>A strange box that converts steam power to electrical power with interesting side effects.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_Drilling</li>
+		</prerequisites>		
+		<researchViewX>4</researchViewX>
+		<researchViewY>1</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>		
+
 	<!-- Metal Refinement -->
 	
 	<ResearchProjectDef>
 		<defName>MrXuiryus_Drilling</defName>
-		<label>Steam-Powered Drills</label>
+		<label>Drilling</label>
 		<description>Build special drills dedicated to collecting coal and brass.</description>
 		<baseCost>500</baseCost>
 		<techLevel>Industrial</techLevel>
 		<prerequisites>
 			<li>MrXuiryus_SteamPower</li>
 		</prerequisites>
+		<researchViewX>3</researchViewX>
+		<researchViewY>1</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MrXuiryus_AdvancedDrilling</defName>
+		<label>Advanced Drilling</label>
+		<description>Build special drills dedicated to collecting coal and brass.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_ScienceBoxResearch</li>
+		</prerequisites>
+		<researchViewX>5</researchViewX>
+		<researchViewY>1</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>		
+	
+	<ResearchProjectDef>
+		<defName>MrXuiryus_TeaResearch</defName>
+		<label>Tea Brewing</label>
+		<description>Grow and brew cups of tea to improve colonist moods.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_SteamPower</li>
+		</prerequisites>		
+		<researchViewX>1</researchViewX>
+		<researchViewY>3</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MrXuiryus_PlatedWallsResearch</defName>
+		<label>Plated Walls</label>
+		<description>Weave together heavy plated walls, great for heavy defence.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_Drilling</li>
+		</prerequisites>		
 		<researchViewX>4</researchViewX>
+		<researchViewY>2</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>	
+	
+	<ResearchProjectDef>
+		<defName>MrXuiryus_ColouredLampsResearch</defName>
+		<label>Coloured Lamps</label>
+		<description>Add some style to your colony with coloured lamps.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_SteamPower</li>
+		</prerequisites>			
+		<researchViewX>1</researchViewX>
+		<researchViewY>2</researchViewY>
+		<tab>SteamCorp</tab>
+	</ResearchProjectDef>	
+	
+	<ResearchProjectDef>
+		<defName>MrXuiryus_StreetLampsResearch</defName>
+		<label>Street Lamps</label>
+		<description>Turn your colony into a home with fancy street lamps.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MrXuiryus_ColouredLampsResearch</li>
+		</prerequisites>			
+		<researchViewX>2</researchViewX>
 		<researchViewY>2</researchViewY>
 		<tab>SteamCorp</tab>
 	</ResearchProjectDef>	

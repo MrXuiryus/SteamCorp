@@ -109,7 +109,7 @@
     <comps>
       <li Class="SteamCorp.CompProperties_SteamSprayer">
         <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
-        <baseSteamConsumption>-3600</baseSteamConsumption>
+        <baseSteamConsumption>-1800</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
 		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
@@ -137,9 +137,76 @@
     <staticSunShadowHeight>0.5</staticSunShadowHeight>
     <constructEffect>ConstructMetal</constructEffect>
     <researchPrerequisites>
-      <li>MrXuiryus_SteamPower</li>
+      <li>MrXuiryus_SteamCollectorResearch</li>
     </researchPrerequisites>
   </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_AdvancedSteamCollector</defName>
+    <label>Advanced Steam Collector</label>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
+    <graphicData>
+      <texPath>Buildings/advancedsteamcollector</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(5,5)</drawSize>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <pathCost>150</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>1.0</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <description>Collects steam from geysers which can be used to power other devices and items.</description>
+    <canOverlapZones>false</canOverlapZones>
+    <size>(3,3)</size>
+    <building>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+    </building>
+    <costList>
+      <MrXuiryus_Brass>100</MrXuiryus_Brass>
+      <Component>2</Component>
+    </costList>
+    <comps>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
+        <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
+        <baseSteamConsumption>-5000</baseSteamConsumption>
+        <transmitsSteam>true</transmitsSteam>
+		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
+		<MinSprayDuration>240</MinSprayDuration>
+		<MaxSprayDuration>480</MaxSprayDuration>
+		<SmokeAmount>2</SmokeAmount>
+		<PressureCutoff>100</PressureCutoff>
+	  </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>6</glowRadius>
+        <glowColor>(217,112,33,0)</glowColor>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>4</heatPerSecond>
+      </li>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_OnSteamGeyser</li>
+    </placeWorkers>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>MrXuiryus_AdvancedSteamCollectorResearch</li>
+    </researchPrerequisites>
+  </ThingDef>  
   
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_SteamPipe</defName>
@@ -399,4 +466,70 @@
       <li>MrXuiryus_SteamPower</li>
     </researchPrerequisites>
   </ThingDef>
+  
+  <ThingDef ParentName="MrXuiryus_Building_Base">
+    <defName>MrXuiryus_AdvancedSteamcondenser</defName>
+    <label>advanced steam condenser</label>
+    <thingClass>SteamCorp.Building_SteamBattery</thingClass>
+    <graphicData>
+      <texPath>Buildings/steamcondenser/advancedsteamcondenser</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,3)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>0.50</fillPercent>
+    <tickerType>Normal</tickerType>
+    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>20</Mass>
+      <Flammability>1.0</Flammability>
+      <Beauty>-18</Beauty>
+    </statBases>
+    <description>An advanced steam condenser much more efficient than the previous model.</description>
+    <size>(2,2)</size>
+    <building>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+    </building>
+    <costList>
+      <Steel>50</Steel>
+      <Component>2</Component>
+    </costList>
+    <comps>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+	  <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBattery">
+        <compClass>SteamCorp.CompSteamBattery</compClass>
+        <storedEnergyMax>3500</storedEnergyMax>
+        <efficiency>0.75</efficiency>
+		<MinTicksBetweenSprays>5000</MinTicksBetweenSprays>
+		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
+		<MinSprayDuration>70</MinSprayDuration>
+		<MaxSprayDuration>320</MaxSprayDuration>
+		<SmokeAmount>1</SmokeAmount>
+		<PressureCutoff>2000</PressureCutoff>
+        <transmitsSteam>true</transmitsSteam>
+	  </li>
+    </comps>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <constructEffect>ConstructMetal</constructEffect>
+    <designationHotkey>Misc4</designationHotkey>
+    <canOverlapZones>false</canOverlapZones>
+    <researchPrerequisites>
+      <li>MrXuiryus_AdvancedSteamCollectorResearch</li>
+    </researchPrerequisites>  
+	</ThingDef>	
 </Buildings>
