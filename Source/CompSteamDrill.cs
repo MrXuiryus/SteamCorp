@@ -10,6 +10,8 @@ namespace SteamCorp
 
         private CompPowerTrader powerComp;
 
+        private CompSteamTrader steamComp;
+
         private float lumpProgress;
 
         private float lumpYieldPct;
@@ -78,7 +80,7 @@ namespace SteamCorp
 
         public bool CanDrillNow()
         {
-            return (powerComp == null || powerComp.PowerOn) && ResourcesPresent();
+            return (powerComp == null || powerComp.PowerOn) && (steamComp == null || steamComp.SteamOn) && ResourcesPresent();
         }
 
         public bool ResourcesPresent()
