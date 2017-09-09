@@ -14,6 +14,16 @@ namespace SteamCorp
 
         private float lumpProgress;
 
+        public bool JustProducedLump
+        {
+            get => lumpProgress == 0;
+        }
+
+        public float PercentDone
+        {
+            get => lumpProgress / ResourceLumpWork;
+        }
+
         private float lumpYieldPct;
 
         public float ProgressToNextLumpPercent
@@ -41,7 +51,7 @@ namespace SteamCorp
             float statValue = driller.GetStatValue(StatDefOf.MiningSpeed, true);
             lumpProgress += statValue;
             lumpYieldPct += statValue * driller.GetStatValue(StatDefOf.MiningYield, true) / ResourceLumpWork;
-            if (lumpProgress > 14000f)
+            if (lumpProgress > ResourceLumpWork)
             {
                 TryProduceLump(lumpYieldPct);
                 lumpProgress = 0f;

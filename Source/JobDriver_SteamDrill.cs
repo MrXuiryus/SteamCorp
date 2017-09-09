@@ -9,11 +9,13 @@ namespace SteamCorp
     {
         private float workLeft = -1000f;
 
+        private float baseWorkAmount = 100;
+
         protected float BaseWorkAmount
         {
             get
             {
-                return 200;
+                return baseWorkAmount;
             }
         }
 
@@ -39,35 +41,23 @@ namespace SteamCorp
                 tickAction = delegate
                 {
                     Pawn actor = CurToil.actor;
-                    float num = (SpeedStat == null) ? 1f : pawn.GetStatValue(SpeedStat, true);
-                    workLeft -= num;
+                    float miningSpeed = (SpeedStat == null) ? 1f : pawn.GetStatValue(SpeedStat, true);
                     if (actor.skills != null)
                     {
                         actor.skills.Learn(SkillDefOf.Mining, 0.11f, false);
                     }
-                    if (workLeft <= 0f)
+                    Thing thing = (Thing)reservation.actor.CurJob.targetA;
+                    CompSteamDrill comp = thing.TryGetComp<CompSteamDrill>();
+                    comp.DrillWorkDone(actor);
+                    if (comp.JustProducedLump)
                     {
-                        Thing thing = (Thing)reservation.actor.CurJob.targetA;
-                        Thing toPlace = null;
-                        Log.Message(thing.def.ToString());
-                        if (thing.def.defName == "MrXuiryus_CoalDrill")
-                        {
-                            toPlace = ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("MrXuiryus_Coal", true), null);
-                        }
-                        else
-                        {
-                            toPlace = ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("MrXuiryus_Brass", true), null);
-                        }
-                        toPlace.stackCount = 1;
-                        GenPlace.TryPlaceThing(toPlace, TargetLocA, Map, ThingPlaceMode.Near, null);
                         ReadyForNextToil();
-                        return;
                     }
-
+                    return;
                 }
             };
             doWork.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
-            doWork.WithProgressBar(TargetIndex.A, () => 1f - workLeft / BaseWorkAmount, false, -0.5f);
+            doWork.WithProgressBar(TargetIndex.A, () => ((Thing)reservation.actor.CurJob.targetA).TryGetComp<CompSteamDrill>().PercentDone, false, -0.5f);
             doWork.defaultCompleteMode = ToilCompleteMode.Never;
             yield return doWork;
 

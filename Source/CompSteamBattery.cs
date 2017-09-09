@@ -5,9 +5,9 @@ using RimWorld;
 
 namespace SteamCorp
 { 
-    public class CompSteamBattery : CompSteamSprayer
+    public class CompSteamBattery : CompSteam
     {
-        private float storedSteamEnergy;
+        private float storedSteamEnergy; 
 
         public float AmountCanAccept
         {

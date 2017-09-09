@@ -5,7 +5,7 @@ using Verse.Sound;
 
 namespace SteamCorp
 {
-    public class CompSteamSprayer : CompSteam
+    public class CompSteamSprayer : ThingComp
     { 
         private SteamSprayer steamSprayer;
          

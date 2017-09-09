@@ -35,10 +35,13 @@
     </costList>
     <comps>
       <li Class="CompProperties_Flickable" />
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
+      <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamPowerPlant</compClass>
         <baseSteamConsumption>-1000</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
+	  </li>
+	  <li Class="SteamCorp.CompProperties_SteamSprayer">
+		<compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>10</MinSprayDuration>
 		<MaxSprayDuration>120</MaxSprayDuration>
@@ -107,10 +110,13 @@
       <Component>2</Component>
     </costList>
     <comps>
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
+      <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
         <baseSteamConsumption>-1800</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
+	  </li>
+	  <li Class="SteamCorp.CompProperties_SteamSprayer">
+		<compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>240</MinSprayDuration>
@@ -174,10 +180,13 @@
       <Component>2</Component>
     </costList>
     <comps>
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
+      <li Class="SteamCorp.CompProperties_Steam">
         <compClass>SteamCorp.CompSteamGeyserPowerPlant</compClass>
         <baseSteamConsumption>-5000</baseSteamConsumption>
         <transmitsSteam>true</transmitsSteam>
+	  </li>
+	  <li Class="SteamCorp.CompProperties_SteamSprayer">
+		<compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>240</MinSprayDuration>
@@ -252,6 +261,9 @@
         <glowRadius>0.2</glowRadius>
         <glowColor>(217,112,33,0)</glowColor>
 	  </li>
+	  <li Class="SteamCorp.CompProperties_Steam">
+		<compClass>SteamCorp.CompSteamTransmitter</compClass>
+	  </li>
       <li Class="SteamCorp.CompProperties_SteamSprayer">
         <compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MinTicksBetweenSprays>1800</MinTicksBetweenSprays>
@@ -260,7 +272,6 @@
 		<MaxSprayDuration>120</MaxSprayDuration>
 		<SmokeAmount>1</SmokeAmount>
 		<PressureCutoff>10000</PressureCutoff>
-        <transmitsSteam>true</transmitsSteam>
 	  </li>
     </comps>
     <placeWorkers>
@@ -378,7 +389,11 @@
     </costList>
     <comps>
       <li Class="CompProperties_Flickable"/>
-      <li Class="SteamCorp.CompProperties_SteamSprayer">
+      <li Class="SteamCorp.CompProperties_Steam">
+        <compClass>SteamCorp.CompSteamTransmitter</compClass>
+        <transmitsSteam>true</transmitsSteam>
+	  </li>
+	  <li Class="SteamCorp.CompProperties_SteamSprayer">
         <compClass>SteamCorp.CompSteamSprayer</compClass>
 		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>1000</MaxTicksBetweenSprays>
@@ -386,7 +401,6 @@
 		<MaxSprayDuration>480</MaxSprayDuration>
 		<SmokeAmount>1</SmokeAmount>
 		<PressureCutoff>4000</PressureCutoff>
-        <transmitsSteam>true</transmitsSteam>
 	  </li>
       <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>
@@ -447,6 +461,8 @@
         <compClass>SteamCorp.CompSteamBattery</compClass>
         <storedEnergyMax>2000</storedEnergyMax>
         <efficiency>0.25</efficiency>
+	  </li>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
 		<MinTicksBetweenSprays>5000</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>40</MinSprayDuration>
