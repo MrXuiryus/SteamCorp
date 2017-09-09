@@ -5,7 +5,7 @@ using Verse.Sound;
 
 namespace SteamCorp
 {
-    class CompSteamSprayer : CompSteam
+    public class CompSteamSprayer : CompSteam
     { 
         private SteamSprayer steamSprayer;
          
@@ -27,7 +27,7 @@ namespace SteamCorp
             } 
             else 
             {
-                steamSprayer = new SteamSprayer(this.parent)
+                steamSprayer = new SteamSprayer(parent)
                 {
                     startSprayCallback = new Action(StartSpray),
                     endSprayCallback = new Action(EndSpray)

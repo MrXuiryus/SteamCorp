@@ -6,7 +6,7 @@ using Verse.Sound;
 
 namespace SteamCorp
 {
-    public class CompSteamTrader : CompSteam
+    public class CompSteamTrader : CompSteamSprayer
     {
         public const string PowerTurnedOnSignal = "PowerTurnedOn";
 
@@ -166,10 +166,10 @@ namespace SteamCorp
             }
         }
 
-        public override void SetUpSteamPowerVars()
+        public override void SetUpSteamPowerVars() 
         {
             base.SetUpSteamPowerVars();
-            CompProperties_Steam props = base.Props;
+            CompProperties_SteamSprayer props = Props;
             SteamPowerOutput = -1f * props.baseSteamConsumption;
             powerLastOutputted = (props.baseSteamConsumption <= 0f);
         }
@@ -209,7 +209,7 @@ namespace SteamCorp
 
         private void StartSustainerPoweredIfInactive()
         {
-            CompProperties_Steam props = base.Props;
+            CompProperties_Steam props = Props;
             if (!props.soundAmbientPowered.NullOrUndefined() && sustainerPowered == null)
             {
                 SoundInfo info = SoundInfo.InMap(parent, MaintenanceType.None);

@@ -93,7 +93,7 @@
       <Component>3</Component>
     </costList>
     <comps>
-		<li Class="SteamCorp.CompProperties_Steam">
+		<li Class="SteamCorp.CompProperties_SteamSprayer">
 				<compClass>SteamCorp.CompSteamTrader</compClass>
 				<baseSteamConsumption>500</baseSteamConsumption>
 		</li>
