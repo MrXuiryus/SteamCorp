@@ -36,9 +36,24 @@
   </WorkGiverDef> 
   
   <WorkGiverDef>
-    <defName>SteamCorp_Drill</defName>
+    <defName>SteamCorp_CoalDrill</defName>
     <label>drill</label>
-    <giverClass>SteamCorp.WorkGiver_SteamDrill</giverClass>
+    <giverClass>SteamCorp.WorkGiver_CoalDrill</giverClass>
+    <workType>Mining</workType>
+    <priorityInType>50</priorityInType>
+    <verb>drill</verb>
+    <gerund>drilling</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+	<scanThings>true</scanThings>
+        <scanCells>false</scanCells>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>SteamCorp_BrassDrill</defName>
+    <label>drill</label>
+    <giverClass>SteamCorp.WorkGiver_BrassDrill</giverClass>
     <workType>Mining</workType>
     <priorityInType>50</priorityInType>
     <verb>drill</verb>

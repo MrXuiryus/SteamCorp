@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using Verse.AI;
 using Verse;
 
 namespace SteamCorp
 {
-    public class WorkGiver_SteamDrill : WorkGiver_Scanner
+    public class WorkGiver_CoalDrill : WorkGiver_Scanner
     {
-        public override ThingRequest PotentialWorkThingRequest
+        public override ThingRequest PotentialWorkThingRequest 
         {
             get
             {
-                return ThingRequest.ForDef(ThingDef.Named("MrXuiryus_BrassDrill"));
+                return ThingRequest.ForDef(ThingDef.Named("MrXuiryus_CoalDrill"));
             }
         }
 
@@ -20,7 +19,7 @@ namespace SteamCorp
         {
             get
             {
-                return PathEndMode.Touch;
+                return PathEndMode.InteractionCell;
             }
         }
 
@@ -29,7 +28,10 @@ namespace SteamCorp
             List<Thing> thingList = new List<Thing>();
             foreach (Thing thing in pawn.Map.spawnedThings)
             {
-                if(thing.def.defName == "MrXuiryus_CoalDrill" || thing.def.defName == "MrXuiryus_BrassDrill")
+                if(thing.def.defName == "MrXuiryus_CoalDrill"
+                    && pawn.CanReserveAndReach(thing, PathEndMode.InteractionCell, Danger.None)
+                    && thing.TryGetComp<CompSteamTrader>()!= null 
+                    && thing.TryGetComp<CompSteamTrader>().SteamOn)
                 {
                     thingList.Add(thing);
                 }
@@ -49,7 +51,7 @@ namespace SteamCorp
                 return false;
             }
              
-            if ((thing is Blueprint || thing is Frame) && thing.Faction == pawn.Faction)
+            if (thing is Blueprint || thing is Frame)
             {
                 return false;
             }
@@ -58,7 +60,10 @@ namespace SteamCorp
                 return false;
             }
             CompSteamDrill compDeepDrill = thing.TryGetComp<CompSteamDrill>();
-            return compDeepDrill.CanDrillNow() && !thing.IsBurning();
+            CompSteamTrader compTrader = thing.TryGetComp<CompSteamTrader>();
+            return base.HasJobOnThing(pawn, thing, forced) 
+                && compDeepDrill.CanDrillNow() && !thing.IsBurning() && compTrader.SteamOn 
+                && pawn.CanReserveAndReach(thing, PathEndMode.InteractionCell, Danger.None);
         }
 
         public override Job JobOnThing(Pawn pawn, Thing thing, bool forced = false)

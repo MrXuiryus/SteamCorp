@@ -82,7 +82,8 @@
     <Compile Include="SteamPowerConnectionMaker.cs" />
     <Compile Include="SteamPowerNet.cs" />
     <Compile Include="SteamSprayer.cs" />
-    <Compile Include="WorkGiver_SteamDrill.cs" />
+    <Compile Include="WorkGiver_BrassDrill.cs" />
+    <Compile Include="WorkGiver_CoalDrill.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -19,7 +19,7 @@ namespace SteamCorp
             {
                 mat = PowerOverlayMats.MatConnectorLine;
                 y = Altitudes.AltitudeFor(AltitudeLayer.WorldDataOverlay);
-            }
+            } 
             Vector3 center = (A.TrueCenter() + B.TrueCenter()) / 2f;
             center.y = y;
             Vector3 v = B.TrueCenter() - A.TrueCenter();

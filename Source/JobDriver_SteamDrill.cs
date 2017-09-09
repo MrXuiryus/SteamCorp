@@ -27,8 +27,7 @@ namespace SteamCorp
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            ReservationLayerDef floor = ReservationLayerDefOf.Floor;
-            Toil reservation = Toils_Reserve.Reserve(TargetIndex.A, 1, -1, floor);
+            Toil reservation = Toils_Reserve.Reserve(TargetIndex.A, 1, -1);
             yield return reservation;
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.InteractionCell);
             Toil doWork = new Toil
