@@ -127,7 +127,31 @@
       <drawSize>(6,6)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
-  </ThingDef>    
+  </ThingDef>
+
+  <ThingDef ParentName="MrXuiryus_Drill">
+    <defName>MrXuiryus_AdvancedBrassDrill</defName>
+    <label>advanced brass drill</label>
+    <description>A drill that reliably and continually provides brass when worked</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Buildings/drills/advancedbrassdrill</texPath>
+      <drawSize>(6,6)</drawSize>
+      <drawRotated>false</drawRotated>
+    </graphicData>
+  </ThingDef> 
+
+  <ThingDef ParentName="MrXuiryus_Drill">
+    <defName>MrXuiryus_AdvancedCoalDrill</defName>
+    <label>advanced coal drill</label>
+    <description>A drill that reliably and continually provides brass when worked</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Buildings/drills/advancedcoaldrill</texPath>
+      <drawSize>(6,6)</drawSize>
+      <drawRotated>false</drawRotated>
+    </graphicData>
+  </ThingDef>     
 
 <!--Stove-->
 
