@@ -263,6 +263,7 @@
 	  </li>
 	  <li Class="SteamCorp.CompProperties_Steam">
 		<compClass>SteamCorp.CompSteamTransmitter</compClass>
+        <transmitsSteam>true</transmitsSteam>
 	  </li>
       <li Class="SteamCorp.CompProperties_SteamSprayer">
         <compClass>SteamCorp.CompSteamSprayer</compClass>

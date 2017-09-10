@@ -63,7 +63,7 @@ namespace SteamCorp
             }
         }
 
-        public new CompProperties_SteamSprayer Props
+        public CompProperties_SteamSprayer Props
         {
             get => (CompProperties_SteamSprayer)props;
         }
