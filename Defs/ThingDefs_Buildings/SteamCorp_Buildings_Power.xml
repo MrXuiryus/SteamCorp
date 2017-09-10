@@ -461,6 +461,7 @@
         <compClass>SteamCorp.CompSteamBattery</compClass>
         <storedEnergyMax>2000</storedEnergyMax>
         <efficiency>0.25</efficiency>
+        <transmitsSteam>true</transmitsSteam>
 	  </li>
       <li Class="SteamCorp.CompProperties_SteamSprayer">
 		<MinTicksBetweenSprays>5000</MinTicksBetweenSprays>
@@ -469,7 +470,6 @@
 		<MaxSprayDuration>240</MaxSprayDuration>
 		<SmokeAmount>1</SmokeAmount>
 		<PressureCutoff>2000</PressureCutoff>
-        <transmitsSteam>true</transmitsSteam>
 	  </li>
     </comps>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
@@ -529,13 +529,15 @@
         <compClass>SteamCorp.CompSteamBattery</compClass>
         <storedEnergyMax>3500</storedEnergyMax>
         <efficiency>0.75</efficiency>
+        <transmitsSteam>true</transmitsSteam>
+	  </li>
+      <li Class="SteamCorp.CompProperties_SteamSprayer">
 		<MinTicksBetweenSprays>5000</MinTicksBetweenSprays>
 		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
 		<MinSprayDuration>70</MinSprayDuration>
 		<MaxSprayDuration>320</MaxSprayDuration>
-		<SmokeAmount>1</SmokeAmount>
+		<SmokeAmount>2</SmokeAmount>
 		<PressureCutoff>2000</PressureCutoff>
-        <transmitsSteam>true</transmitsSteam>
 	  </li>
     </comps>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
