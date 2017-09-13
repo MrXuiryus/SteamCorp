@@ -48,7 +48,8 @@ namespace SteamCorp
             {
                 sprayTicksLeft--;
                 CompSteam comp = parent.TryGetComp<CompSteam>();
-                if (Rand.Value < 0.6f
+                CompSteamTrader trader = parent.TryGetComp<CompSteamTrader>();
+                if (Rand.Value < 0.6f && (trader == null || trader.SteamOn)
                     && (comp != null && comp.SteamNet.CurrentStoredEnergy() >= PressureCutoff)
                     && (parent.TryGetComp<CompFlickable>() == null || FlickUtility.WantsToBeOn(parent)))
                 {

@@ -10,7 +10,7 @@
 
         public int MaxSprayDuration;
 
-        public int SmokeAmount;
+        public float SmokeAmount;
 
         public float PressureCutoff;
 

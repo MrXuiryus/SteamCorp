@@ -4,7 +4,8 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Steamtrap</defName>
     <label>steam trap</label>
-    <thingClass>Building_TrapRearmable</thingClass>
+    <thingClass>SteamCorp.Building_Steam</thingClass>
+	<category>Building</category>
     <graphicData>
       <texPath>Buildings/steamvent</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -15,37 +16,47 @@
     <altitudeLayer>Building</altitudeLayer>
     <drawerType>RealtimeOnly</drawerType>
     <rotatable>false</rotatable>
-    <tickerType>Normal</tickerType>
     <stealable>false</stealable>
     <statBases>
       <MaxHitPoints>60</MaxHitPoints>
       <WorkToBuild>2000</WorkToBuild>
       <Beauty>-4</Beauty>
-      <TrapMeleeDamage>60</TrapMeleeDamage>
-      <TrapSpringChance>0.8</TrapSpringChance>
     </statBases>
-    <description>A trap that burns victims with high temperature steam, watch your step.</description>
+    <description>A trap that burns victims with high temperature steam every 3 seconds, watch your step.</description>
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
     <costStuffCount>70</costStuffCount>
     <designationCategory>Security</designationCategory>
     <designationHotKey>Misc6</designationHotKey>
-    <building>
-      <isTrap>true</isTrap>
-      <trapDamageCategory>Heat</trapDamageCategory>
-      <trapUnarmedGraphicData>
-        <texPath>Buildings/steamvent</texPath>
-        <graphicClass>Graphic_Single</graphicClass>
-      </trapUnarmedGraphicData>
-    </building>
+	<tickerType>Normal</tickerType>
     <comps>
 		<li Class="SteamCorp.CompProperties_Steam">
-				<compClass>SteamCorp.CompSteamTrader</compClass>
-				<baseSteamConsumption>100</baseSteamConsumption>
+			<compClass>SteamCorp.CompSteamTrader</compClass>
+			<baseSteamConsumption>100</baseSteamConsumption>
+			<transmitsSteam>true</transmitsSteam>
 		</li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+		<li Class="SteamCorp.CompProperties_DamageDealer">
+			<compClass>SteamCorp.CompDamageDealer</compClass>
+			<damageAmount>16</damageAmount>
+			<damageDef>Burn</damageDef>
+			<affectInteractionCell>false</affectInteractionCell>
+			<affectAdjacentCells>false</affectAdjacentCells>
+			<affectOwnCell>true</affectOwnCell>
+			<damagesSelf>false</damagesSelf>
+			<ticksBetweenDamage>180</ticksBetweenDamage>
+		</li>
+		<li Class="SteamCorp.CompProperties_SteamSprayer">
+			<compClass>SteamCorp.CompSteamSprayer</compClass>
+			<MaxTicksBetweenSprays>60</MaxTicksBetweenSprays>
+			<MinSprayDuration>60</MinSprayDuration>
+			<MaxSprayDuration>60</MaxSprayDuration>
+			<SmokeAmount>.25</SmokeAmount>
+			<PressureCutoff>0</PressureCutoff>
+			<MinTicksBetweenSprays>60</MinTicksBetweenSprays>
+		</li>
+		<li Class="CompProperties_Flickable"/>
+		<li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
     </comps>	
   </ThingDef>
   

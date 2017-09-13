@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace HediffDamageComps
+namespace SteamCorp
 {
     public class CompProperties_DamageDealer : CompProperties
     {
@@ -10,6 +10,7 @@ namespace HediffDamageComps
         public bool affectAdjacentCells;
         public bool damagesSelf;
         public int ticksBetweenDamage;
+        public bool affectOwnCell;
 
         public CompProperties_DamageDealer() {
 			compClass = typeof(CompDamageDealer);
