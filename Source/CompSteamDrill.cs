@@ -6,8 +6,6 @@ namespace SteamCorp
 {
     class CompSteamDrill : ThingComp
     {
-        private const float ResourceLumpWork = 14000f;
-
         private CompPowerTrader powerComp;
 
         private CompSteamTrader steamComp;
@@ -19,9 +17,14 @@ namespace SteamCorp
             get => lumpProgress == 0;
         }
 
+        public CompProperties_SteamDrill Props
+        {
+            get => (CompProperties_SteamDrill)props;
+        }
+
         public float PercentDone
         {
-            get => lumpProgress / ResourceLumpWork;
+            get => lumpProgress / Props.workNeeded;
         }
 
         private float lumpYieldPct;
@@ -30,7 +33,7 @@ namespace SteamCorp
         {
             get
             {
-                return lumpProgress / ResourceLumpWork;
+                return lumpProgress / Props.workNeeded;
             }
         }
 
@@ -50,8 +53,8 @@ namespace SteamCorp
         {
             float statValue = driller.GetStatValue(StatDefOf.MiningSpeed, true);
             lumpProgress += statValue;
-            lumpYieldPct += statValue * driller.GetStatValue(StatDefOf.MiningYield, true) / ResourceLumpWork;
-            if (lumpProgress > ResourceLumpWork)
+            lumpYieldPct += statValue * driller.GetStatValue(StatDefOf.MiningYield, true) / Props.workNeeded;
+            if (lumpProgress > Props.workNeeded)
             {
                 TryProduceLump(lumpYieldPct);
                 lumpProgress = 0f;
@@ -63,13 +66,7 @@ namespace SteamCorp
         {
             if (TryGetNextResource(out ThingDef thingDef, out int num, out IntVec3 c))
             {
-                int num2 = Mathf.Min(new int[]
-                {
-                    num,
-                    thingDef.deepCountPerCell / 2,
-                    thingDef.stackLimit
-                });
-                int stackCount = Mathf.Max(1, GenMath.RoundRandom(num2 * yieldPct));
+                int stackCount = Mathf.Max(1, GenMath.RoundRandom(num * yieldPct));
                 Thing thing = ThingMaker.MakeThing(thingDef, null);
                 thing.stackCount = stackCount;
                 GenPlace.TryPlaceThing(thing, parent.InteractionCell, parent.Map, ThingPlaceMode.Near, null);
@@ -82,9 +79,9 @@ namespace SteamCorp
 
         public bool TryGetNextResource(out ThingDef resDef, out int countPresent, out IntVec3 cell)
         {
-            resDef = (parent.def.defName == "MrXuiryus_CoalDrill") 
+            resDef = (parent.def.defName == "MrXuiryus_CoalDrill" || parent.def.defName == "MrXuiryus_AdvancedCoalDrill") 
                 ? ThingDef.Named("MrXuiryus_Coal") : ThingDef.Named("MrXuiryus_Brass");
-            countPresent = 75;
+            countPresent = Props.stackAmount;
             cell = parent.Position;
             return true;
         }

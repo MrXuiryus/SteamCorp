@@ -8,14 +8,6 @@ namespace SteamCorp
 {
     public class WorkGiver_BrassDrill : WorkGiver_Scanner
     {
-        public override ThingRequest PotentialWorkThingRequest 
-        {
-            get
-            {
-                return ThingRequest.ForDef(ThingDef.Named("MrXuiryus_BrassDrill"));
-            }
-        }
-
         public override PathEndMode PathEndMode
         {
             get
@@ -26,7 +18,10 @@ namespace SteamCorp
         
 		public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            return pawn.Map.listerBuildings.AllBuildingsColonistOfDef(ThingDef.Named("MrXuiryus_BrassDrill")).Cast<Thing>();
+            List<Thing> ret = new List<Thing>();
+            ret.AddRange(pawn.Map.listerBuildings.AllBuildingsColonistOfDef(ThingDef.Named("MrXuiryus_BrassDrill")).Cast<Thing>());
+            ret.AddRange(pawn.Map.listerBuildings.AllBuildingsColonistOfDef(ThingDef.Named("MrXuiryus_AdvancedBrassDrill")).Cast<Thing>());
+            return ret;
         }
 
         public override bool ShouldSkip(Pawn pawn)
@@ -34,7 +29,8 @@ namespace SteamCorp
             List<Building> allBuildingsColonist = pawn.Map.listerBuildings.allBuildingsColonist;
             for (int i = 0; i < allBuildingsColonist.Count; i++)
             {
-                if (allBuildingsColonist[i].def == ThingDef.Named("MrXuiryus_BrassDrill"))
+                if (allBuildingsColonist[i].def == ThingDef.Named("MrXuiryus_BrassDrill")
+                    || allBuildingsColonist[i].def == ThingDef.Named("MrXuiryus_AdvancedBrassDrill"))
                 {
                     CompSteamTrader comp = allBuildingsColonist[i].GetComp<CompSteamTrader>();
                     if (comp == null || comp.SteamOn)
