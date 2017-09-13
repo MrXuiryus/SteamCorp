@@ -42,10 +42,18 @@
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     <comps>
       <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <startElectricalFires>true</startElectricalFires>
-        <basePowerConsumption>120</basePowerConsumption>
+        <compClass>CompSteamTrader</compClass>
+        <baseSteamConsumption>120</baseSteamConsumption>
       </li>
+	  <li Class="SteamCorp.CompProperties_SteamSprayer">
+		<compClass>SteamCorp.CompSteamSprayer</compClass>
+		<MaxTicksBetweenSprays>6000</MaxTicksBetweenSprays>
+		<MinSprayDuration>10</MinSprayDuration>
+		<MaxSprayDuration>120</MaxSprayDuration>
+		<SmokeAmount>.75</SmokeAmount>
+		<PressureCutoff>50</PressureCutoff>
+		<MinTicksBetweenSprays>180</MinTicksBetweenSprays>
+	  </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_TempControl">
         <energyPerSecond>21</energyPerSecond>
