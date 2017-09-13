@@ -52,7 +52,12 @@
     <Compile Include="Building_SteamBattery.cs" />
     <Compile Include="Building_SteamSprayer.cs" />
     <Compile Include="Building_SteamValve.cs" />
+    <Compile Include="CompDamageDealer.cs" />
+    <Compile Include="CompHediffGiver.cs" />
+    <Compile Include="CompProperties_DamageDealer.cs" />
+    <Compile Include="CompProperties_HeDiffGiver.cs" />
     <Compile Include="CompProperties_SteamAlternator.cs" />
+    <Compile Include="CompProperties_SteamDrill.cs" />
     <Compile Include="CompProperties_SteamBattery.cs" />
     <Compile Include="CompProperties_SteamBreakdownable.cs" />
     <Compile Include="CompProperties_SteamSprayer.cs" />

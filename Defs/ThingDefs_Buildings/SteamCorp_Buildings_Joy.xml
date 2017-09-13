@@ -4,7 +4,7 @@
   <ThingDef ParentName="MrXuiryus_Building_Base">
     <defName>MrXuiryus_Piano</defName>
     <label>piano</label>
-    <description>A cathode ray tube display for showing moving pictures with sound. Even on the rimworlds, there is often an old transmitter running something at least marginally interesting.</description>
+    <description>A piano for playing music and increasing joy.</description>
     <graphicData>
       <texPath>Buildings/joy/piano</texPath>
       <graphicClass>Graphic_Multi</graphicClass>

@@ -92,17 +92,6 @@
       <MrXuiryus_Brass>100</MrXuiryus_Brass>
       <Component>3</Component>
     </costList>
-    <comps>
-		<li Class="SteamCorp.CompProperties_Steam">
-				<compClass>SteamCorp.CompSteamTrader</compClass>
-				<baseSteamConsumption>500</baseSteamConsumption>
-		</li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
-      <li>
-        <compClass>SteamCorp.CompSteamDrill</compClass>
-      </li>
-    </comps>
 	</ThingDef>
 	
   <ThingDef ParentName="MrXuiryus_Drill">
@@ -115,6 +104,17 @@
       <drawSize>(6,6)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
+    <comps>
+		<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>500</basePowerConsumption>
+		</li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+      <li>
+        <compClass>SteamCorp.CompSteamDrill</compClass>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="MrXuiryus_Drill">
@@ -127,6 +127,17 @@
       <drawSize>(6,6)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
+    <comps>
+		<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>500</basePowerConsumption>
+		</li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+      <li>
+        <compClass>SteamCorp.CompSteamDrill</compClass>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="MrXuiryus_Drill">
@@ -139,6 +150,17 @@
       <drawSize>(6,6)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
+    <comps>
+		<li Class="SteamCorp.CompProperties_Steam">
+				<compClass>SteamCorp.CompSteamTrader</compClass>
+				<baseSteamConsumption>500</baseSteamConsumption>
+		</li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+      <li>
+        <compClass>SteamCorp.CompSteamDrill</compClass>
+      </li>
+    </comps>
   </ThingDef> 
 
   <ThingDef ParentName="MrXuiryus_Drill">
@@ -151,6 +173,17 @@
       <drawSize>(6,6)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
+    <comps>
+		<li Class="SteamCorp.CompProperties_Steam">
+				<compClass>SteamCorp.CompSteamTrader</compClass>
+				<baseSteamConsumption>500</baseSteamConsumption>
+		</li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="SteamCorp.CompProperties_SteamBreakdownable"/>
+      <li>
+        <compClass>SteamCorp.CompSteamDrill</compClass>
+      </li>
+    </comps>
   </ThingDef>     
 
 <!--Stove-->
