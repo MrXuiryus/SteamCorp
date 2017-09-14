@@ -41,9 +41,10 @@
     </placeWorkers>
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompSteamTrader</compClass>
+      <li Class="SteamCorp.CompProperties_Steam">
+        <compClass>SteamCorp.CompSteamTrader</compClass>
         <baseSteamConsumption>120</baseSteamConsumption>
+        <transmitsSteam>true</transmitsSteam>
       </li>
 	  <li Class="SteamCorp.CompProperties_SteamSprayer">
 		<compClass>SteamCorp.CompSteamSprayer</compClass>

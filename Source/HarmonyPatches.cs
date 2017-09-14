@@ -16,26 +16,6 @@ namespace SteamCorp
             var harmony = HarmonyInstance.Create("SteamCorp");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
-    } 
-
-    [HarmonyPatch(typeof(Thing), "TakeDamage")]
-    class ThingPatch
-    {
-        [HarmonyPrefix]
-        public static void Prefix(Thing __instance, ref DamageInfo dinfo)
-        {
-            try
-            {
-                if (dinfo.Instigator?.def?.defName == "MrXuiryus_Steamtrap")
-                {
-                    dinfo = new DamageInfo(DamageDefOf.Burn, dinfo.Amount, dinfo.Angle, dinfo.Instigator, dinfo.ForceHitPart, dinfo.WeaponGear, dinfo.Category);
-                }
-            } 
-            catch (Exception e)
-            {
-                Log.Message(e.ToString());
-            }
-        } 
     }
 
 
@@ -43,7 +23,7 @@ namespace SteamCorp
     class MapInitPatch
     {
         [HarmonyPostfix]
-        public static void FinalizeInitPatch(Map __instance)
+        public static void FinalizeInitPatch()
         {
             StaticManager.Net.UpdatePowerNetsAndConnections_First();
         }
