@@ -347,6 +347,8 @@ namespace SteamCorp
             bool cHasAlternator = parent.Map.thingGrid.ThingsListAt(c).Exists(t => t.TryGetComp<CompSteamAlternator>() != null);
             bool powerNetExistsAtC = parent.Map.powerNetGrid.TransmittedPowerNetAt(c) != null;
             bool powerNetExistsAtParent = parent.Map.powerNetGrid.TransmittedPowerNetAt(parent.Position) != null;
+            bool powerConduitBlueprintAtC = c.GetThingList(parent.Map).Find(t => t.def.defName == "PowerConduit_Blueprint") != null;
+            bool powerConduitBlueprintAtParent = parent.Position.GetThingList(parent.Map).Find(t => t.def.defName == "PowerConduit_Blueprint") != null;
 
             //check if both points are in bounds
             if (c.InBounds(parent.Map) && parent.Position.InBounds(parent.Map))
@@ -366,6 +368,11 @@ namespace SteamCorp
                     return;
                 }
                 else if (parentIsSteamBuilding && cHasSteamBuilding)
+                {
+                    __result = true;
+                    return;
+                }
+                else if (powerConduitBlueprintAtC && powerConduitBlueprintAtParent)
                 {
                     __result = true;
                     return;
