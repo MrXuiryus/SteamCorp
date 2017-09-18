@@ -337,7 +337,7 @@ namespace SteamCorp
 
     [HarmonyPatch(typeof(Graphic_LinkedTransmitter), "ShouldLinkWith")]
     class Graphic_LinkedTransmitterPatch
-    { 
+    {
         [HarmonyPostfix]
         public static void ShouldLinkWithPatch(ref bool __result, ref IntVec3 c, ref Thing parent)
         {
@@ -372,10 +372,24 @@ namespace SteamCorp
                     __result = true;
                     return;
                 }
-                else if (powerConduitBlueprintAtC && powerConduitBlueprintAtParent)
+                else if (powerConduitBlueprintAtC || powerConduitBlueprintAtParent)
                 {
-                    __result = true;
-                    return;
+                    if(powerConduitBlueprintAtC)
+                    {
+                        if(powerConduitBlueprintAtParent || powerNetExistsAtC)
+                        {
+                            __result = true;
+                            return;
+                        }
+                    }
+                    else if(powerConduitBlueprintAtParent)
+                    {
+                        if (powerConduitBlueprintAtC || powerNetExistsAtParent)
+                        {
+                            __result = true;
+                            return;
+                        }
+                    }
                 }
             }
             __result = false;
